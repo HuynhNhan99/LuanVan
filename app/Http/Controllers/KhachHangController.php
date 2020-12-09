@@ -32,8 +32,8 @@ class KhachHangController extends Controller
         ],
         [
             'password.min' => 'Mật khẩu phải chứa ít nhất 8 ký tự !',
-            'sdt_kh.numeric' => 'Số điện thoại phải là số!'
-            
+            'sdt_kh.numeric' => 'Số điện thoại phải là số!',
+            'sdt_kh.min' => 'Số điện thoại phải ít nhất 10 số!'
         ]);
         if($validatedData){
             $data = array();

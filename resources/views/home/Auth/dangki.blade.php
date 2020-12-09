@@ -98,7 +98,7 @@
                                 </div>
 
                                 <div class="mt-3">
-                                    <button type="submit" class="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn" style="background:#f7941d">Submit</button>
+                                    <button type="submit" class="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn" style="background:rgb(24, 158, 255)">Submit</button>
 
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">

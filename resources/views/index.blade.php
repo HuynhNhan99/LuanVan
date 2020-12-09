@@ -168,6 +168,7 @@
 							"_token": '{{ csrf_token() }}',
 							"id_sach": $(this).data('id'),
 							"soluong": $('#qty').val(),
+							"phantram_km": $('#km').val(),
 						}
 					}).done(function(response) {
 

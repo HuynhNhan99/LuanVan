@@ -91,7 +91,7 @@
                 Quên mật khẩu? Nhấn vào <a class="text-primary" data-toggle="modal" data-target="#Themnxb" style="cursor: pointer;">đây</a>
                 </div>
                 <div class="my-3">
-                  <button type="submit" class="btn btn-block btn-lg font-weight-medium auth-form-btn" style="background: #f7941d">Submit</button>
+                  <button type="submit" class="btn btn-block btn-lg font-weight-medium auth-form-btn" style="background: rgb(24, 158, 255)">Submit</button>
                 </div>
                 
                 <div class="mb-2 d-flex">

@@ -2192,7 +2192,7 @@ button.btn.btn-primary.btn-number {
 }
 
 button.btn.btn-primary.btn-number:active {
-    background: #F7941D;
+    background: rgb(24, 158, 255);
 }
 
 button.btn.btn-fefault.cart {
@@ -2202,7 +2202,7 @@ button.btn.btn-fefault.cart {
 }
 
 button.btn.btn-fefault.cart:active {
-    background: #F7941D;
+    background: rgb(24, 158, 255);
 }
 
 button.btn.btn-fefault.cart:hover,
@@ -2211,7 +2211,7 @@ button.btn.btn-fefault.cart:focus {
 }
 
 button.btn.btn-primary.btn-number:hover {
-    color: #F7941D;
+    color: rgb(24, 158, 255);
 }
 
 .blog-socials .btn.btn-primary {

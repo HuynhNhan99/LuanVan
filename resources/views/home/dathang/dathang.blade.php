@@ -42,7 +42,7 @@ $phiship = Session::get('phiship');
                 </div>
             </div>
             <div class="col-2 action" style="text-align: end;">
-                <a class="edit" data-toggle="modal" data-target="#Themnxb" style="cursor: pointer;font-size: 14px;color: #F7941D;display: inline-block;padding: 6px 12px;">Chỉnh sửa</a>
+                <a class="edit" data-toggle="modal" data-target="#Themnxb" style="cursor: pointer;font-size: 14px;color: rgb(24, 158, 255);display: inline-block;padding: 6px 12px;">Chỉnh sửa</a>
             </div>
         </div>
 
@@ -88,7 +88,7 @@ $phiship = Session::get('phiship');
                             <ul>
                                 <li>Tạm tính<span>{{number_format($tongtien)}} đ</span></li>
                                 <li>Phí ship<span>{{number_format($phiship)}} đ</span></li>
-                                <li class="last">Thành tiền<span style="font-size: 25px; color:#F7941D;">{{number_format($tongtien+$phiship)}} đ</span></li>
+                                <li class="last">Thành tiền<span style="font-size: 25px; color:rgb(24, 158, 255);">{{number_format($tongtien+$phiship)}} đ</span></li>
                             </ul>
                         </div>
                     </div>

@@ -326,7 +326,7 @@ big {
     content: "";
     height: 2px;
     width: 50px;
-    background: #F7941D;
+    background: rgb(24, 158, 255);
     left: 50%;
     bottom: 0;
     margin-left: -25px;
@@ -423,7 +423,7 @@ big {
 }
 
 .breadcrumbs ul li a:hover {
-    color: #F7941D;
+    color: rgb(24, 158, 255);
 }
 
 
@@ -1469,7 +1469,7 @@ object {
 }
 
 .quickview-content .nice-select .list li:hover {
-    background: #F7941D;
+    background: rgb(24, 158, 255);
     color: #fff;
 }
 
@@ -1504,7 +1504,7 @@ object {
     width: 5px;
     height: 5px;
     border-radius: 100%;
-    background-color: #F7941D;
+    background-color: rgb(24, 158, 255);
     content: "";
     left: 0;
     top: 50%;
@@ -1582,7 +1582,7 @@ object {
 }
 
 .quickview-content .quickview-action-wrap .quickview-cart a:hover {
-    background-color: #F7941D;
+    background-color: rgb(24, 158, 255);
     color: #333;
 }
 
@@ -1617,11 +1617,11 @@ object {
 }
 
 .quickview-content .quickview-action-wrap .quickview-wishlist a:hover {
-    color: #F7941D;
+    color: rgb(24, 158, 255);
 }
 
 .quickview-content .quickview-action-wrap .quickview-compare a:hover {
-    color: #F7941D;
+    color: rgb(24, 158, 255);
 }
 
 @media only screen and (max-width: 767px) {
@@ -1840,7 +1840,7 @@ object {
 
 .modal .owl-carousel .owl-nav div:hover {
     color: #fff;
-    background: #F7941D;
+    background: rgb(24, 158, 255);
 }
 
 .modal .owl-carousel .owl-controls .owl-nav .owl-prev {
@@ -1889,7 +1889,7 @@ object {
 }
 
 .quickview-content .quantity .button .btn:hover {
-    color: #F7941D;
+    color: rgb(24, 158, 255);
 }
 
 .quickview-content .quantity .input-number {
@@ -1923,7 +1923,7 @@ object {
 
 .quickview-content .add-to-cart .btn:hover {
     color: #fff;
-    background: #F7941D;
+    background: rgb(24, 158, 255);
 }
 
 .quickview-content .add-to-cart .btn.min {
@@ -1990,7 +1990,7 @@ object {
 .default-social ul li a i {}
 
 .default-social ul li a:hover {
-    color: #F7941D;
+    color: rgb(24, 158, 255);
 }
 
 

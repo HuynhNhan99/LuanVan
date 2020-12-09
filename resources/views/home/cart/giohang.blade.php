@@ -14,8 +14,8 @@ $count = Cart::count();
 			<div class="col-12">
 				<div class="bread-inner">
 					<ul class="bread-list">
-						<li><a href="/"><i class="fas fa-home"></i>Trang chủ <i class="fas fa-angle-right"></i></i></a></li>
-						<li class="active"><a href="blog-single.html">Giỏ hàng</a></li>
+						<li><a href="/"><i class="fas fa-home"></i>Trang chủ </i></a></li>
+						<li class="active"><a href="blog-single.html" style="padding-left: 10px;">Giỏ hàng</a></li>
 					</ul>			
 				</div>
 			</div>
@@ -36,6 +36,7 @@ $count = Cart::count();
 							<th>HÌNH</th>
 							<th>TÊN SÁCH</th>
 							<th class="text-center">GIÁ SÁCH</th>
+							<th class="text-center">GIẢM GIÁ</th>
 							<th class="text-center">SỐ LƯỢNG</th>
 							<th class="text-center">TỔNG TIỀN</th>
 							<th class="text-center">XÓA</th>
@@ -51,13 +52,15 @@ $count = Cart::count();
                         }else{
                             echo $sach->options->image;
                         }
-                        ?>" alt="#"></td>
-							<td class="product-des" data-title="Description">
+						?>" alt="#"></td>
+							
+							<td class="product-des" data-title="Description" style="width:450px;">
 								<p class="product-name"><a href="#">{{ $sach->name }}</a></p>
 								<p class="product-des">tác giả</p>
 							</td>
-							<td class="price" data-title="Price"><span>{{ number_format($sach->price) }}</span></td>
-							<td class="qty" data-title="Qty">
+							<td class="price" data-title="Price"><span>{{ number_format($sach->price*100/(100-$sach->weight)) }}</span></td>
+							<td class="price" data-title="Price"> - {{ $sach->weight }}% </td>
+							<td class="qty" data-title="Qty" style="text-align: center;">
 								<!-- Input Order -->
 								<div class="input-group">
 									<div class="button minus">
@@ -97,7 +100,7 @@ $count = Cart::count();
 							<div class="right">
 								<ul>
 									<li>Tạm tính<span>{{$tongtien}} đ</span></li>
-									<li class="last" >Thành tiền<span style="font-size: 25px; color:#F7941D;">{{$tongtien}} đ</span></li>
+									<li class="last" >Thành tiền<span style="font-size: 25px; color:rgb(24, 158, 255);">{{$tongtien}} đ</span></li>
 									<li><span style="font-size: 13px; color:#9e9d9d;">(Đã bao gồm VAT nếu có)</span></li>
 								</ul>
 								<div class="button5">

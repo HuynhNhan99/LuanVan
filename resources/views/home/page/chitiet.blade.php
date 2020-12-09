@@ -43,10 +43,10 @@ $kh = Session::get('id_kh');
 					<div class="col-md-7" style="padding-left: 10px;">
 						<form style="background: white;">
 							{{ csrf_field() }}
-							<div class="product-information" >
+							<div class="product-information">
 								<!--/product-information-->
 								<div class="row">
-									<p style="font-size: 12px;"><b>Tác giả:</b> {{$sach->ten_tg}}  |  <b>Thể loại:</b> {{$sach->ten_tl}}</p>
+									<p style="font-size: 12px;"><b>Tác giả:</b> {{$sach->ten_tg}} | <b>Thể loại:</b> {{$sach->ten_tl}}</p>
 								</div>
 								<div class="row">
 									<h1>{{ $sach->ten_sach }}</h1>
@@ -66,9 +66,16 @@ $kh = Session::get('id_kh');
 										<p> ( {{$tong_dg}} đánh giá)</p>
 								</div>
 								<div class="row">
-									<span style="margin-top: 20px;margin-bottom: 20px;">{{ number_format($sach->gia_sach) }} đ</span>
-									<span style="color:#b3b3b3;font-size:18px;font-weight: 400;margin-top: 20px;margin-bottom: 20px;text-decoration: line-through;opacity: .6;margin-right: 2px;">{{ number_format($sach->gia_sach) }} đ</span>
-									<span style="color:red;font-size:18px;font-weight: 400;margin-top: 20px;margin-bottom: 20px;margin-left: 10px;">- 30%</span>
+									<?php
+									if(isset($sach->phantram_km)){
+										echo '<span style="margin-top: 20px;margin-bottom: 20px;">'.number_format( (100-$sach->phantram_km)*$sach->gia_sach/100) .'đ</span>
+											<span style="color:#b3b3b3;font-size:18px;font-weight: 400;margin-top: 20px;margin-bottom: 20px;text-decoration: line-through;opacity: .6;margin-right: 2px;">'.number_format($sach->gia_sach) .'đ</span>
+											<span style="color:red;font-size:18px;font-weight: 400;margin-top: 20px;margin-bottom: 20px;margin-left: 10px;">- '.$sach->phantram_km.'%</span>';
+									}else{
+										echo '<span style="margin-top: 20px;margin-bottom: 20px;">'.number_format( $sach->gia_sach) .'đ</span>';
+									}
+									?>
+									
 								</div>
 								<div class="row"> Số lượng:
 								</div>
@@ -87,6 +94,11 @@ $kh = Session::get('id_kh');
 										</div>
 									</div>
 								</div>
+								@if(isset($sach->phantram_km))
+								<input type="hidden" value="{{$sach->phantram_km}}" id="km"  name="phantram_km" />
+								@else
+								<input type="hidden" value="0" id="km" name="phantram_km" />
+								@endif
 								<div class="row">
 									<div class="input-group">
 										<button type="button" class="btn btn-fefault cart addcart" data-id="{{ $sach->id_sach }}">
@@ -289,41 +301,47 @@ $kh = Session::get('id_kh');
 						<div class="col-12">
 							<div class="owl-carousel popular-slider">
 								@foreach ($sach_tuongtu as $key => $sach)
-								<!-- Start Single Product -->
 								<div class="single-product" style="margin-top: 30px;">
 									<div class="product-img">
-										<a href="chitiet-sach/{{$sach->id_sach}}">
+										<a href="/chitiet-sach/{{ $sach['id_sach'] }}">
 											<img class="default-img" src="<?php
-																			if (file_exists('public/uploads/anhsach/' . $sach->hinh_anh)) {
-																				echo 'public/uploads/anhsach/' . $sach->hinh_anh;
+																			if (file_exists('public/uploads/anhsach/' . $sach['hinh_anh'])) {
+																				echo 'public/uploads/anhsach/' . $sach['hinh_anh'];
 																			} else {
-																				echo $sach->hinh_anh;
+																				echo $sach['hinh_anh'];
 																			}
 																			?>" alt="#" style="margin-left: 38px;">
-
-											<span class="out-of-stock">Hot</span>
+											<span class="new">Mới</span>
 										</a>
-										<div class="button-head">
-											<div class="product-action-2">
-												<a title="Add to cart" href="/chitiet-sach/{{ $sach->id_sach }}"> <i class="fa fa-shopping-cart"></i> XEM CHI TIẾT</a>
-											</div>
-										</div>
+
+
 									</div>
 									<div class="product-content">
-										<h3><a href="chitiet-sach/{{$sach->id_sach}}">{{$sach->ten_sach}}</a></h3>
-										@for($n=1;$n<=5;$n++) <?php
-																if ($n <= $sach->diemtb) {
-																	$color = "color:#ffcc00;";
-																} else {
-																	$color = "color:#ccc;";
-																}
-																?> <i class="fa fa-star" style=" {{$color}}; font-size:10px;"></i>
-											@endfor
+										<h3><a href="/chitiet-sach/{{ $sach['id_sach']  }}">{{ $sach['ten_sach']  }}</a></h3>
+										<div style="padding-left: 10px;">
+											@for($n=1;$n<=5;$n++) <?php
+																	if ($n <= $sach['diemtb']) {
+																		$color = "color:#ffcc00;";
+																	} else {
+																		$color = "color:#ccc;";
+																	}
+																	?> <i class="fa fa-star" style=" {{$color}}; font-size:10px;"></i>
+												@endfor
+												({{ $sach['soluong']}} nhận xét)</div>
+										<div class="product-price">
+											<?php
+											if ($sach['khuyenmai'] != 0) {
+												echo '<span class="old">' . number_format($sach['gia_sach']) . '  đ</span>  -' . $sach['khuyenmai'] . '% 
+															<h3 class="text_info" style="color:red;padding-left: 0px;">' . number_format((100 - $sach['khuyenmai']) * $sach['gia_sach'] / 100) . ' đ</h3>
+															';
+											} else {
+												echo '<h3 class="text_info" style="color:red;padding-left: 0px;">' . number_format($sach['gia_sach']) . ' đ</h3>
+															';
+											}
+											?>
 
-											<div class="product-price">
-												<span class="old">{{ number_format($sach->gia_sach) }} đ</span>
-												<span class="text_info" style="color:red;">{{ number_format($sach->gia_sach) }} đ</span>
-											</div>
+										</div>
+
 									</div>
 								</div>
 								@endforeach

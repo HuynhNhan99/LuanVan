@@ -29,8 +29,8 @@ class CartController extends Controller
         $data['id']=$request->id_sach;
         $data['name']=$sach->ten_sach;
         $data['qty']=$request->soluong;
-        $data['weight']="123";
-        $data['price']=$sach->gia_sach;
+        $data['weight']=$request->phantram_km;
+        $data['price']=(100- $request->phantram_km) * $sach->gia_sach/100;
         $data['options']['image']=$sach->hinh_anh;
         //Cart::destroy();
         Cart::add($data);

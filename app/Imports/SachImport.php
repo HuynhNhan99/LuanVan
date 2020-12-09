@@ -21,7 +21,8 @@ class SachImport implements ToModel, WithHeadingRow
            'id_ncc'     => $row['id_ncc'],
            'id_nxb'     => $row['id_nxb'],
            'id_tg'      => $row['id_tg'],
-           'id_tl'      => $row['id_tl']
+           'id_tl'      => $row['id_tl'],
+           'ngay_nhap'  => now()
         ]);
     }
 }
