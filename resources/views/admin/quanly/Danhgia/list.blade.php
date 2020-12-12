@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row" style="margin-bottom: 20px;">
-                        <div class="col-lg-8">
+                        <div class="col-lg-6">
                             <h4 class="card-title">Danh sách các đánh giá</h4>
                         </div>
                         <div class="col-lg-4">
@@ -30,29 +30,40 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-lg-2">
+                        <select class="form-control" id="sapxepdh" style="width:100%;">
+                            <option value="0">--- Sắp xếp --- </option>
+                            <option value="1">Theo giá</option>
+                            <option value="2">Theo tên</option>
+                            <option value="3">Theo ngày nhập</option>
+                        </select>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Tên khách hàng</th>
-                                    <th>Tên sách</th>
-                                    <th>Điểm đánh giá</th>
-                                    <th>Nội dung đánh giá</th>
-                                    <th>Trạng thái</th>
+                                    <th>TÊN KHÁCH HÀNG</th>
+                                    <th>TÊN SÁCH</th>
+                                    <th>ĐIỂM</th>
+                                    <th>NỘI DUNG</th>
+                                    <th>TRẠNG THÁI</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach( $danhgia as $key => $dg)
-                                {{ csrf_field() }}
                                 <tr>
                                     <td>{{ $key+1 }}</td>
                                     <td>{{ $dg->ten_kh }}</td>
                                     <td style="text-align: left;">{{ $dg->ten_sach }}</td>
                                     <td>{{ $dg->diem_dg }}</td>
                                     <td>{{ $dg->noi_dung }}</td>
-                                    <td><a href=""><i class="mdi mdi-arrow-up-bold" style="font-size: x-large;color: green;"></i></a></td>
+                                    @if($dg->tt==0)
+                                    <td><a href="ql-danhgia?tt={{$dg->tt}}&id_dg={{$dg->id_dg}}"><label class="badge badge-danger" style="cursor: pointer;">Ẩn</label></a></td>
+                                    @else
+                                    <td><a href="ql-danhgia?tt={{$dg->tt}}&id_dg={{$dg->id_dg}}"><label class="badge badge-primary" style="cursor: pointer;">Hiện</label></a></td>
+                                    @endif
                                     <!-- <td><a href=""><i class="mdi mdi-arrow-down-bold" style="font-size: x-large;color: red;"></i></a></td> -->
                                 </tr>
                                 @endforeach

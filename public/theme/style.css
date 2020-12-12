@@ -941,7 +941,6 @@ Version:1.0
 .header.shop .main-category {
     position: absolute;
     left: 0;
-    top: 64px;
     background: #fff;
     z-index: 1;
     width: 100%;
@@ -2113,7 +2112,7 @@ Version:1.0
 /* Sinlge Product */
 
 .single-product {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .single-product .product-img {

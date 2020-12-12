@@ -31,11 +31,11 @@
                         ?>
                         </div>
                         <div class="col-lg-2">
-                            <select class="form-control" id="sapxepdh" style="width:100%;">
-                                <option value="0">Tháng {{$thang}}</option>
-                                <option value="1">Theo ngày đặt</option>
-                                <option value="2">Theo tổng tiền</option>
-                                <option value="3">Theo trạng thái ĐH</option>
+                            <select class="form-control" id="topthang" style="width:100%;">
+                                <option>---Tháng---</option>
+                                @for($i=1;$i<=12;$i++)
+                                <option value="{{$i}}">Tháng {{$i}}</option>
+                                @endfor
                             </select>
                         </div>
                         <div class="col-lg-2">
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="topsach">
                             <thead>
                                 <tr>
                                     <th>TOP</th>
@@ -57,7 +57,7 @@
                                     <th>SỐ LƯỢNG BÁN ĐƯỢC</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 @foreach( $top10 as $key => $sach)
                                 <tr>
                                     <td>{{ $key+1 }}</td>

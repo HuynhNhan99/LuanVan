@@ -30,7 +30,7 @@ $count = Cart::count();
 						<ul class="list-main">
 							@if($name)
 							<li><i class="fas fa-shopping-cart"></i> <a href="#">Đơn hàng</a></li>
-							<li><i class="ti-user"></i> <a href="#">Tài khoản của tôi</a></li>
+							<li><i class="ti-user"></i> <a href="{{URL::to('/tai-khoan-cua-toi')}}">Tài khoản của tôi</a></li>
 							<li><i class="ti-power-off"></i><a href="{{URL::to('/dang-xuat')}}">Đăng xuất</a></li>
 							@else
 							<li><i class="ti-user"></i> <a href="dangki-kh">Đăng kí</a></li>

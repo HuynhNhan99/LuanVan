@@ -100,6 +100,16 @@ class KhachHangController extends Controller
         return $data; 
     }
 
+    public function tai_khoan(){
+        $khachhang= DB::table('khachhang')->where('id_kh',Session::get('id_kh'))
+        ->join('tbl_tinhthanhpho', 'tbl_tinhthanhpho.matp', '=', 'khachhang.matp')
+        ->join('tbl_quanhuyen', 'tbl_quanhuyen.maqh', '=', 'khachhang.maqh')
+        ->join('tbl_xaphuongthitran', 'tbl_xaphuongthitran.maxa', '=', 'khachhang.maxa')
+        ->first();
+        $thanhpho = ThanhPho::orderby('matp','ASC')->get();
+        return view('home.Auth.thongtin')->with('thanhpho',$thanhpho)->with('kh',$khachhang); 
+    }
+
     //admin
     public function list_kh(){
         $kh = DB::table('khachhang')->orderby('id_kh','ASC')->get();
@@ -116,5 +126,16 @@ class KhachHangController extends Controller
         ->join('dausach', 'danhgia.id_sach', '=', 'dausach.id_sach')
         ->get();
         return view('admin.quanly.Danhgia.list')->with('danhgia',$dg);
+    }
+    public function ql_danhgia(Request $request){
+        $data = array();
+        if($request->get('tt')==0){
+            $data['tt'] = 1;
+        }else if($request->get('tt')==1){
+            $data['tt'] = 0;
+        }
+        DB::table('danhgia')->where('id_dg',$request->get('id_dg'))
+        ->update($data);
+        return Redirect::to('/list-danhgia');
     }
 }

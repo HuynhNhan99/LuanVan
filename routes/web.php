@@ -37,7 +37,8 @@ Route::post('/dangnhap-kh','App\Http\Controllers\KhachHangController@dangnhap_kh
 Route::get('/dang-xuat','App\Http\Controllers\KhachHangController@dangxuat_kh');
 
 Route::get('don-hang','App\Http\Controllers\CartController@donhang');
-Route::get('chitietdh/{id_dh}','App\Http\Controllers\CartController@ctdonhang');
+Route::get('tai-khoan-cua-toi','App\Http\Controllers\KhachHangController@tai_khoan');
+
 Route::get('xoadh/{id_dh}','App\Http\Controllers\CartController@xoadonhang');
 
 Route::get('/all-donhang','App\Http\Controllers\DatHangController@donhang');
@@ -89,6 +90,7 @@ Route::post('tl-km','App\Http\Controllers\HomeController@tl_km');
 Route::post('add-km','App\Http\Controllers\HomeController@add_km');
 
 Route::get('list-danhgia','App\Http\Controllers\KhachHangController@list_danhgia');
+Route::get('ql-danhgia','App\Http\Controllers\KhachHangController@ql_danhgia');
 
 
 Route::get('/thongke','App\Http\Controllers\HomeController@thongke');
@@ -109,6 +111,7 @@ Route::post('update-phivc','App\Http\Controllers\PhivanchuyenController@update_p
 
 Route::get('in-dh/{id_dh}','App\Http\Controllers\DatHangController@in_dh');
 Route::post('loc-don-hang','App\Http\Controllers\DatHangController@loc_dh');
+
 
 Route::get('top-10','App\Http\Controllers\AdminController@top_10');
 Route::get('dt-thang','App\Http\Controllers\AdminController@dt_thang');

@@ -56,7 +56,9 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{$doanhthu}}
                                 @foreach($doanhthu as $key => $val)
+                                {{$val->id_sach}}
                                 <tr role="row" class="even">
                                     <td class="">{{$val->ten_sach}}</td>
                                     <td class="sorting_1">

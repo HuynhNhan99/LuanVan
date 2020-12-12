@@ -73,16 +73,7 @@ class CartController extends Controller
          ])->get();
         return  view('home.cart.donhang')->with('donhang1',$donhang1)->with('donhang2',$donhang2)->with('donhang3',$donhang3)->with('donhang4',$donhang4)->with('donhang5',$donhang5);
     }
-    public function ctdonhang($id_dh){
-        $edit_sach= DB::table('donhang')
-        ->join('ctgiohang','ctgiohang.id_dh','=','donhang.id_dh')
-        ->join('dausach','dausach.id_sach','=','ctgiohang.id_sach')
-        ->where([
-            ['donhang.id_dh',$id_dh],
-            ['donhang.id_kh', Session::get('id_kh')],
-         ])->get();
-        return  view('home.cart.chitietdh')->with('ctdonhang',$edit_sach);
-    }
+    
     public function xoadonhang($id_dh){
         $data = array();
         $data['donhang.trang_thai']= 5;

@@ -104,18 +104,35 @@ class AdminController extends Controller
     }
     public function top_10(){
         //sach bán chạy
-        $top10=  DB::table('donhang')
-        ->selectRaw('sum(ctgiohang.so_luong) as soluong, MONTH(ngay_dat) as thang, YEAR(ngay_dat) as nam, ctgiohang.id_sach,dausach.ten_sach,dausach.gia_sach ')
-        ->join('ctgiohang','donhang.id_dh','=','ctgiohang.id_dh') 
-        ->join('dausach','ctgiohang.id_sach','=','dausach.id_sach') 
-        //->where('donhang.trang_thai',4)
-        ->groupBy('id_sach','thang')
-        ->havingRaw('thang = 11')
-        ->orderBy('soluong', 'desc')
-        ->get();
-        return view('admin.doanhthu.top10')->with('top10',$top10);
+        if(isset($_GET['thang'])){
+            $top10=  DB::table('donhang')
+            ->selectRaw('sum(ctgiohang.so_luong) as soluong, MONTH(ngay_dat) as thang, YEAR(ngay_dat) as nam, ctgiohang.id_sach,dausach.ten_sach,dausach.gia_sach ')
+            ->join('ctgiohang','donhang.id_dh','=','ctgiohang.id_dh') 
+            ->join('dausach','ctgiohang.id_sach','=','dausach.id_sach') 
+            //->where('donhang.trang_thai',4)
+            ->groupBy('id_sach','thang')
+            ->havingRaw('thang='.$_GET['thang'].'')
+            ->orderBy('soluong', 'desc')
+            ->get();
+            return view('admin.doanhthu.topsach')->with('top10',$top10);
+        }else{
+            $month = date("m",strtotime(now()));
+            $year = date("Y",strtotime(now()));
+            $top10=  DB::table('donhang')
+            ->selectRaw('sum(ctgiohang.so_luong) as soluong, MONTH(ngay_dat) as thang, YEAR(ngay_dat) as nam, ctgiohang.id_sach,dausach.ten_sach,dausach.gia_sach ')
+            ->join('ctgiohang','donhang.id_dh','=','ctgiohang.id_dh') 
+            ->join('dausach','ctgiohang.id_sach','=','dausach.id_sach') 
+            //->where('donhang.trang_thai',4)
+            ->groupBy('id_sach','thang')
+            ->havingRaw('thang='.$month.' and nam='.$year.'')
+            ->orderBy('soluong', 'desc')
+            ->get();
+            return view('admin.doanhthu.top10')->with('top10',$top10);
+        }
+        
 
     }
+    
     public function dt_thang(){
         $doanhthu=  DB::table('donhang')
         ->selectRaw('sum(ctgiohang.so_luong) as soluong, MONTH(ngay_dat) as thang, YEAR(ngay_dat) as nam, ctgiohang.id_sach,dausach.ten_sach,dausach.gia_sach ')

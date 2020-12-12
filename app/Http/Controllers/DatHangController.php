@@ -81,7 +81,6 @@ class DatHangController extends Controller
             ->join('tbl_xaphuongthitran', 'tbl_xaphuongthitran.maxa', '=', 'khachhang.maxa')
             ->first();
         //dd($khachhang);
-       
         if ($phi) {
             Session::put('phiship', $phi->phi_vc);
         } else {

@@ -266,6 +266,7 @@
 				}
 			});
 
+			
 
 			$('.js-danh-gia').on('click', function() {
 				if ($("#rating-action").hasClass('hide')) {
@@ -340,6 +341,15 @@
 				$("#list-cart").empty();
 				$("#list-cart").html(response);
 			})
+		}
+		function checkboxes() {
+			var check =$('#check_mk:checked').val();
+			if(check){
+				$(".thaydoi_mk").show();
+			}else{
+				$(".thaydoi_mk").hide();
+			}
+			
 		}
 	</script>
 

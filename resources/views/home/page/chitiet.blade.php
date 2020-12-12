@@ -8,14 +8,14 @@ $kh = Session::get('id_kh');
 
 ?>
 <div class="container-fluid" style="background: #f9f9f9; padding-right: 0px;padding-left: 0px;">
-	<div class="breadcrumbs" style="background: #ccc;">
+	<div class="breadcrumbs" style="background: white;">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="bread-inner">
 						<ul class="bread-list">
-							<li><a href="/"><i class="fas fa-home"></i>Trang chủ <i class="fas fa-angle-right"></i></i></a></li>
-							<li class="active"><a href="blog-single.html">Các loại sách</a></li>
+							<li><a href="/"><i class="fas fa-home"></i>Trang chủ</a></li>
+							<li class="active"><a href="blog-single.html" style="padding-left:10px;">Các loại sách</a></li>
 						</ul>
 					</div>
 				</div>

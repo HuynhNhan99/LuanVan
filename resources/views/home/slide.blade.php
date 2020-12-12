@@ -27,9 +27,29 @@
 		<div class="container-fluid">
 			<div class="row">
 				<!-- Single Banner  -->
-				<div class="col-lg-6 col-md-6 col-12">
+				<div class="col-lg-3 col-md-6 col-12">
 					<div class="single-banner">
-						<img src="https://nhasachphuongnam.com/images/promo/178/Banner_Tro_ve_Khong_590x200px-01__2_.jpg" alt="#">
+						<img src="https://www.vinabook.com/images/thumbnails/promo/802x480/363501_15.jpg" alt="#">
+						<!-- <div class="content">
+							<p>Man's Collectons</p>
+							<h3>Summer travel <br> collection</h3>
+							<a href="#">Discover Now</a>
+						</div> -->
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="single-banner">
+						<img src="https://www.vinabook.com/images/thumbnails/promo/802x480/363104_06.jpg" alt="#">
+						<!-- <div class="content">
+							<p>Man's Collectons</p>
+							<h3>Summer travel <br> collection</h3>
+							<a href="#">Discover Now</a>
+						</div> -->
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="single-banner">
+						<img src="https://www.vinabook.com/images/thumbnails/promo/802x480/363192_nextflix.jpg" alt="#">
 						<!-- <div class="content">
 							<p>Man's Collectons</p>
 							<h3>Summer travel <br> collection</h3>
@@ -39,9 +59,9 @@
 				</div>
 				<!-- /End Single Banner  -->
 				<!-- Single Banner  -->
-				<div class="col-lg-6 col-md-6 col-12">
+				<div class="col-lg-3 col-md-6 col-12">
 					<div class="single-banner">
-						<img src="https://nhasachphuongnam.com/images/promo/178/Banner_Tro_ve_Khong_590x200px-01__2_.jpg" alt="#">
+						<img src="https://www.vinabook.com/images/thumbnails/promo/802x480/363104_06.jpg" alt="#">
 						<!-- <div class="content">
 							<p>Bag Collectons</p>
 							<h3>Awesome Bag <br> 2020</h3>

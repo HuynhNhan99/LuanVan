@@ -125,28 +125,28 @@
     <script src="admin/js/template.js"></script>
     <!-- endinject -->
     <script>
-        $(".choose").change(function(){
-        var action = $(this).attr('id');
-        var maid = $(this).val();
-        var result = '';
-        if(action=='thanhpho'){
-          result ='quanhuyen';
-        }else{
-          result = 'xaphuong';
-        }
-        $.ajax({
-					url:"{{ url('select-dc') }}",
-					type:"POST",
-					data: {
-						"_token": '{{ csrf_token() }}',
-						"maid": maid,
-						"action": action,
-						}
-				}).done(function(response){
-					$("#"+result).html(response);
-					
-				})
-      });
+        $(".choose").change(function() {
+            var action = $(this).attr('id');
+            var maid = $(this).val();
+            var result = '';
+            if (action == 'thanhpho') {
+                result = 'quanhuyen';
+            } else {
+                result = 'xaphuong';
+            }
+            $.ajax({
+                url: "{{ url('select-dc') }}",
+                type: "POST",
+                data: {
+                    "_token": '{{ csrf_token() }}',
+                    "maid": maid,
+                    "action": action,
+                }
+            }).done(function(response) {
+                $("#" + result).html(response);
+
+            })
+        });
     </script>
 </body>
 

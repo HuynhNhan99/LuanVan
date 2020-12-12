@@ -181,8 +181,18 @@
 				})
 
       });
-      
+      $("#topthang").change(function(){
+        var thang = $(this).val();
+        $.ajax({
+          url:"{{ url('top-10?thang=') }}"+thang+"&nam="+2020,
+					type:"GET",
+				}).done(function(response){
+          $("#topsach").empty();
+					$("#topsach").html(response);
+				})
+      });
     });
+   
     
   </script>
 </body>

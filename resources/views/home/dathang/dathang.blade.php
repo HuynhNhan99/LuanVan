@@ -16,8 +16,8 @@ $phiship = Session::get('phiship');
             <div class="col-12">
                 <div class="bread-inner">
                     <ul class="bread-list">
-                        <li><a href="/"><i class="fas fa-home"></i>Trang chủ <i class="fas fa-angle-right"></i></i></a></li>
-                        <li class="active"><a href="blog-single.html">Giỏ hàng</a></li>
+                        <li><a href="/"><i class="fas fa-home"></i>Trang chủ </a></li>
+                        <li class="active"><a href="dat-hang" style="padding-left: 10px;">Đặt hàng</a></li>
                     </ul>
                 </div>
             </div>

@@ -47,12 +47,13 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
 	<style>
-	.col-lg-4.col-md-4.col-12:hover {
-		/* background-color: lightgrey; */
-		box-shadow: 0 0 10px 4px #d7d4d4, 0 0 10px 5px #ebeae9;
-	}
+		.col-lg-4.col-md-4.col-12:hover {
+			/* background-color: lightgrey; */
+			box-shadow: 0 0 10px 4px #d7d4d4, 0 0 10px 5px #ebeae9;
+		}
 	</style>
 </head>
+
 <body class="js">
 	@include('home.header1')
 	@include('home.slide')
@@ -160,7 +161,10 @@
 					$(".main-category").hide();
 				}
 			})
+
 		});
+
+		
 	</script>
 </body>
 
