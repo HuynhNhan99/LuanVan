@@ -7,7 +7,7 @@
                 <div class="bread-inner">
                     <ul class="bread-list">
                         <li><a href="/"><i class="fas fa-home"></i>Trang chủ</i></a></li>
-                        <li class="active"><a href="blog-single.html" style="padding-left: 10px;">Đơn hàng</a></li>
+                        <li class="active"><a href="blog-single.html" style="padding-left: 10px;">Thông tin cá nhân</a></li>
                     </ul>
                 </div>
             </div>
@@ -20,17 +20,18 @@
             <div class="auth-form-transparent ">
                 <h4>THÔNG TIN TÀI KHOẢN CỦA BẠN </h4>
                 <hr />
-                <form class="pt-3" action="{{URL::to('/dang-ki')}}" method="post">
+                <form class="pt-3" action="{{URL::to('/thay-doi-mk')}}" method="post">
+                {{ csrf_field() }}
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Họ Tên</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control"  value="{{$kh->ten_kh}}">
+                            <input type="text" class="form-control" name="ten_kh" value="{{$kh['ten_kh']}}" require>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-3 col-form-label">Giới tính</label>
-                        @if($kh->gioi_tinh==0)
+                        @if($kh['gioi_tinh']== 0)
                         <div class="col-sm-9">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gioi_tinh"  value="0" checked style="width:16px;height:16px;">
@@ -41,7 +42,7 @@
                                 <label class="form-check-label" for="inlineRadio2" style="padding-left: 20px;"> Nam</label>
                             </div>
                         </div>
-                        @else
+                        @elseif($kh['gioi_tinh']==1)
                         <div class="col-sm-9">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gioi_tinh"  value="0" style="width:16px;height:16px;">
@@ -52,34 +53,51 @@
                                 <label class="form-check-label" for="inlineRadio2" style="padding-left: 20px;"> Nam</label>
                             </div>
                         </div>
+                        @else
+                        <div class="col-sm-9">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gioi_tinh"  value="0"   style="width:16px;height:16px;">
+                                <label class="form-check-label" for="inlineRadio1" style="padding-left: 20px;"> Nữ</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gioi_tinh"  value="1" style="width:16px;height:16px;">
+                                <label class="form-check-label" for="inlineRadio2" style="padding-left: 20px;"> Nam</label>
+                            </div>
+                        </div>
                         @endif
                     </div>
                     <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-3 col-form-label">Địa chỉ</label>
+                        <label  class="col-sm-3 col-form-label">Địa chỉ</label>
+                        @if($kh['tentp']==NULL)
                         <div class="col-sm-9">
-                            <input type="text" readonly class="form-control-plaintext"  value="{{$kh->diachi_kh}}, {{$kh->tenxa}}, {{$kh->tenqh}}, {{$kh->tentp}}" style="width:80%;border: none;">
-                            <a class="edit" data-toggle="modal" data-target="#Suadc" style="cursor: pointer;font-size: 14px;color: rgb(24, 158, 255);display: inline-block;padding: 6px 12px;">Chỉnh sửa</a>
+                            <input type="text" readonly class="form-control-plaintext"  value="Vui lòng thêm địa chỉ!" style="width:80%;border: none;">
+                            <a class="edit" data-toggle="modal" data-target="#Suadc" style="cursor: pointer;font-size: 14px;color: #f7941d ;display: inline-block;padding: 6px 12px;">Thêm</a>
+                        </div>
+                        @else
+                        <div class="col-sm-9">
+                            <input type="text" readonly class="form-control-plaintext"  value="{{$kh['diachi_kh']}}, {{$kh['tenxa']}}, {{$kh['tenqh']}}, {{$kh['tentp']}}" style="width:80%;border: none;">
+                            <a class="edit" data-toggle="modal" data-target="#Suadc" style="cursor: pointer;font-size: 14px;color: #f7941d ;display: inline-block;padding: 6px 12px;">Chỉnh sửa</a>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label">Số điện thoại</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="sdt_kh" value="{{$kh['sdt_kh']}}" require>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-3 col-form-label">Số điện thoại</label>
+                        <label  class="col-sm-3 col-form-label">Email</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="sdt_kh" value="{{$kh->sdt_kh}}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-3 col-form-label">Email</label>
-                        <div class="col-sm-9">
-                            <input type="email" class="form-control" name="email_kh" value="{{$kh->email_kh}}">
+                            <input type="email" class="form-control" name="email_kh" value="{{$kh['email_kh']}}" require>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="check_mk" onchange="checkboxes()" style="width:16px;height:16px;">
+                                <input type="checkbox" class="form-check-input" id="check_mk" name="check_mk" onchange="checkboxes()" style="width:16px;height:16px;">
                                 <label class="form-check-label" style="padding-left:20px;">Thay đổi mật khẩu</label>
                             </div>
                         </div>
@@ -88,19 +106,19 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Mật khẩu hiện tại</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" placeholder="Nhập mật khẩu hiện tại">
+                            <input type="password" class="form-control" name="password_ht" placeholder="Nhập mật khẩu hiện tại">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label  class="col-sm-3 col-form-label">Mật khẩu mới</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" placeholder="Nhập mật khẩu mới">
+                            <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu mới">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-3 col-form-label">Nhập lại</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" placeholder="Nhập lại mật khẩu">
+                            <input type="password" class="form-control" name="password_confirm" placeholder="Nhập lại mật khẩu">
                         </div>
                     </div>
                     </div>
@@ -130,7 +148,7 @@
                     <span aria-hidden="true"><i class="fas fa-times"></i></span>
                 </button>
             </div>
-            <form class="form" method="post" action="{{URL::to('dat-hang')}}">
+            <form class="form" method="post" action="{{URL::to('them-dc')}}">
                 <div class="modal-body">
                     {{ csrf_field() }}
                     <div class="form-group">

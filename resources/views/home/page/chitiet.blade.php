@@ -15,7 +15,7 @@ $kh = Session::get('id_kh');
 					<div class="bread-inner">
 						<ul class="bread-list">
 							<li><a href="/"><i class="fas fa-home"></i>Trang chủ</a></li>
-							<li class="active"><a href="blog-single.html" style="padding-left:10px;">Các loại sách</a></li>
+							<li class="active"><a href="blog-single.html" style="padding-left:10px;">Chi tiết sách</a></li>
 						</ul>
 					</div>
 				</div>
@@ -52,7 +52,7 @@ $kh = Session::get('id_kh');
 									<h1>{{ $sach->ten_sach }}</h1>
 								</div>
 								<div class="row">
-									<p>ID: {{ $sach->id_sach }}</p>
+									<p></p>
 								</div>
 								<div class="row">
 									@for($n=1;$n<=5;$n++) <?php
@@ -70,9 +70,11 @@ $kh = Session::get('id_kh');
 									if(isset($sach->phantram_km)){
 										echo '<span style="margin-top: 20px;margin-bottom: 20px;">'.number_format( (100-$sach->phantram_km)*$sach->gia_sach/100) .'đ</span>
 											<span style="color:#b3b3b3;font-size:18px;font-weight: 400;margin-top: 20px;margin-bottom: 20px;text-decoration: line-through;opacity: .6;margin-right: 2px;">'.number_format($sach->gia_sach) .'đ</span>
-											<span style="color:red;font-size:18px;font-weight: 400;margin-top: 20px;margin-bottom: 20px;margin-left: 10px;">- '.$sach->phantram_km.'%</span>';
+											<span style="color:red;font-size:18px;font-weight: 400;margin-top: 20px;margin-bottom: 20px;margin-left: 10px;">- '.$sach->phantram_km.'%</span>
+											<input type="hidden" value='.$sach->phantram_km.' id="km"  name="phantram_km" />';
 									}else{
-										echo '<span style="margin-top: 20px;margin-bottom: 20px;">'.number_format( $sach->gia_sach) .'đ</span>';
+										echo '<span style="margin-top: 20px;margin-bottom: 20px;">'.number_format( $sach->gia_sach) .'đ</span>
+										<input type="hidden" value="0" id="km" name="phantram_km" />';
 									}
 									?>
 									
@@ -86,7 +88,7 @@ $kh = Session::get('id_kh');
 												<i class="ti-minus"></i>
 											</button>
 										</div>
-										<input type="text" name="quant[1]" class="input-number" data-min="1" data-max="100" id="qty" value="1" style="border: 1px solid #eceded;width: 100%;text-align: center;height: 47px;border-radius: 0;overflow: hidden;padding: 0px 45px;">
+										<input type="text" name="quant[1]" class="input-number" data-min="1" data-max="{{$sach->sl_sach}}" id="qty" value="1" style="border: 1px solid #eceded;width: 100%;text-align: center;height: 47px;border-radius: 0;overflow: hidden;padding: 0px 45px;">
 										<div class="button plus" style="    display: inline-block;position: absolute;top: 0;right: 0;border-radius: 0;overflow: hidden;">
 											<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
 												<i class="ti-plus"></i>
@@ -94,11 +96,15 @@ $kh = Session::get('id_kh');
 										</div>
 									</div>
 								</div>
-								@if(isset($sach->phantram_km))
-								<input type="hidden" value="{{$sach->phantram_km}}" id="km"  name="phantram_km" />
+								@if($sach->sl_sach==0)
+								<div class="row">
+									<div class="input-group">
+										<button type="button" class="btn btn-fefault cart " >
+											 HẾT HÀNG
+										</button>
+									</div>
+								</div>
 								@else
-								<input type="hidden" value="0" id="km" name="phantram_km" />
-								@endif
 								<div class="row">
 									<div class="input-group">
 										<button type="button" class="btn btn-fefault cart addcart" data-id="{{ $sach->id_sach }}">
@@ -106,6 +112,8 @@ $kh = Session::get('id_kh');
 										</button>
 									</div>
 								</div>
+								@endif
+
 							</div>
 						</form>
 						<!--/product-information-->
@@ -120,8 +128,6 @@ $kh = Session::get('id_kh');
 						<ul class="nav nav-tabs">
 							<li><a href="#chitiet" data-toggle="tab" class="active">Thông tin chi tiết</a></li>
 							<li><a href="#mota" data-toggle="tab">Mô tả sản phẩm</a></li>
-							<li><a href="#binhluan" data-toggle="tab">Bình luận</a></li>
-
 						</ul>
 					</div>
 					<div class="col-sm-12 tab-content" style="background: white; padding:10px;">
@@ -167,18 +173,6 @@ $kh = Session::get('id_kh');
 							</div>
 							@endif
 						</div>
-
-						<div class="tab-pane fade" id="binhluan">
-							<div class="col-sm-12" style="background: white;">
-								<form action="#">
-									<textarea name="" cols="30" row="3"></textarea>
-									<button type="button" class="btn btn-default pull-right">Gửi đánh giá</button>
-								</form>
-							</div>
-						</div>
-
-
-
 					</div>
 				</div>
 				<div class="row" id="reviews">

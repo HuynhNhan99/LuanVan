@@ -76,7 +76,7 @@ $count = Cart::count();
                     <div class="right">
                         <ul>
                             <li>Tạm tính<span>{{$tongtien}} đ</span></li>
-                            <li class="last">Thành tiền<span style="font-size: 25px; color:rgb(24, 158, 255);">{{$tongtien}} đ</span></li>
+                            <li class="last">Thành tiền<span style="font-size: 25px; color:#f7941d ;">{{$tongtien}} đ</span></li>
                             <li><span style="font-size: 13px; color:#9e9d9d;">(Đã bao gồm VAT nếu có)</span></li>
                         </ul>
                         <div class="button5">

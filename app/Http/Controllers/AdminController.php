@@ -127,7 +127,12 @@ class AdminController extends Controller
             ->havingRaw('thang='.$month.' and nam='.$year.'')
             ->orderBy('soluong', 'desc')
             ->get();
-            return view('admin.doanhthu.top10')->with('top10',$top10);
+            foreach( $top10 as $key => $sach){
+                $sl_sach[$key]=(int)$sach->soluong;
+                $ten_sach[$key]=$sach->ten_sach;
+            }
+            
+            return view('admin.doanhthu.top10')->with('top10',$top10)->with('sl_sach',$sl_sach)->with('ten_sach',$ten_sach);
         }
         
 

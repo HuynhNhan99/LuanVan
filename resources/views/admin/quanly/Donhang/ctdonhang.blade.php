@@ -1,8 +1,6 @@
 @extends('admin.index')
 @section('noidung')
-<?php
-    $ship=$khachhang->tong_tien - $tt->tongtien;
-?>
+
 <div class="content-wrapper">
     <div class="row">
         <div class="col-md-12 grid-margin">
@@ -11,7 +9,7 @@
                     <div class="d-flex">
                         <i class="mdi mdi-home text-muted hover-cursor"></i>
                         <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-                        <p class="text-primary mb-0 hover-cursor">Danh sách các đầu sách</p>
+                        <p class="text-primary mb-0 hover-cursor">Chi tiết đơn hàng</p>
                     </div>
                 </div>
             </div>
@@ -35,11 +33,15 @@
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: right;padding-left: 0px;width: 550px;padding:10px;">Địa chỉ</th>
-                                    <td style="text-align: left;">{{ $khachhang->diachi_kh }}, {{ $khachhang->tenxa }}, {{ $khachhang->tenqh }}, {{ $khachhang->tentp }} </td>
+                                    <td style="text-align: left;">{{ $khachhang->dc_dh }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" style="text-align: right;padding-left: 0px;width: 550px;padding:10px;">Hình thức thanh toán</th>
                                     <td style="text-align: left;">{{ $khachhang->ten_tt }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="text-align: right;padding-left: 0px;width: 550px;padding:10px;">Ngày đặt</th>
+                                    <td style="text-align: left;">{{ $khachhang->ngay_dat }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -75,26 +77,26 @@
                                 <tr>
                                     <td>{{ $key+1 }}</td>
                                     <td><img src="<?php
-                                                    if (file_exists('public/uploads/anhsach/' . $sach->hinh_anh)) {
-                                                        echo 'public/uploads/anhsach/' . $sach->hinh_anh;
+                                                    if (file_exists('public/uploads/anhsach/' . $sach['hinh_anh'])) {
+                                                        echo 'public/uploads/anhsach/' . $sach['hinh_anh'];
                                                     } else {
-                                                        echo $sach->hinh_anh;
+                                                        echo $sach['hinh_anh'];
                                                     }
                                                     ?>" style="width:50px;"></td>
-                                    <td>{{ $sach->ten_sach }} </td>
-                                    <td>{{ number_format($sach->gia_sach) }}</td>
-                                    <td>{{ $sach->so_luong }}</td>
-                                    <td>{{ number_format($sach->so_luong * $sach->gia_sach) }}</td>
+                                    <td>{{ $sach['ten_sach'] }} </td>
+                                    <td>{{ number_format($sach['gia_sach'] -($sach['gia_sach']* $sach['phantram_km']/100)) }}</td>
+                                    <td>{{ $sach['so_luong'] }}</td>
+                                    <td>{{ number_format($sach['so_luong'] *($sach['gia_sach'] -($sach['gia_sach']* $sach['phantram_km']/100))) }}</td>
                                 </tr>
                                 @endforeach
                                 <tr>
-                                <td>Thành tiền: {{ $tt->tongtien }}</td>
+                                <td>Thành tiền: {{ $khachhang->tong_tien }}</td>
                                 </tr>
                                 <tr>   
-                                <td>Phí ship: {{ $ship }}</td>
+                                <td>Phí ship: {{ $khachhang->tien_ship }}</td>
                                 </tr>
                                 <tr>
-                                <td>Tổng tiền: {{ $khachhang->tong_tien }}</td>
+                                <td>Tổng tiền: {{ $khachhang->tong_tien + $khachhang->tien_ship }}</td>
                                 </tr>
                             </tbody>
                         </table>

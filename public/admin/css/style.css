@@ -21581,7 +21581,7 @@ dl li {
 }
 
 .auth .auth-form-transparent {
-    background: transparent;
+    background: white;
 }
 
 .auth .auth-form-transparent .form-control,
@@ -21612,13 +21612,14 @@ dl li {
 
 @media (min-width: 768px) {
     .auth.auth-img-bg .auth-form-transparent {
-        width: 75%;
+        width: 35%;
         margin: auto;
+        border-radius: 10px;
     }
 }
 
 .auth .brand-logo {
-    margin-bottom: 2rem;
+    margin-bottom: 20px;
 }
 
 .auth .brand-logo img {

@@ -8,7 +8,7 @@
                     <div class="d-flex">
                         <i class="mdi mdi-home text-muted hover-cursor"></i>
                         <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-                        <p class="text-primary mb-0 hover-cursor">Dữ liệu</p>
+                        <p class="text-primary mb-0 hover-cursor">Quản lý đánh giá</p>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-lg-2">
                         <select class="form-control" id="sapxepdh" style="width:100%;">
-                            <option value="0">--- Sắp xếp --- </option>
+                            <option value="0">--- Trạng thái --- </option>
                             <option value="1">Theo giá</option>
                             <option value="2">Theo tên</option>
                             <option value="3">Theo ngày nhập</option>

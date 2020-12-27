@@ -11,7 +11,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class CartController extends Controller
 {
     public function CheckLoginKH(){
-        $ad_id =Session::get('name');
+        $ad_id =Session::get('id_kh');
         if($ad_id){
             return Redirect::to('/');
         }else{
@@ -83,6 +83,15 @@ class CartController extends Controller
         ->where('donhang.id_dh',$id_dh)->update($data);
         return  Redirect::to('/don-hang');
     }
-    
+    public function datlai_dh($id_dh){
+        $data = array();
+        $data['donhang.trang_thai']= 1;
+        $data['donhang.ngay_dat']= now();
+        DB::table('donhang')
+        ->join('ctgiohang','ctgiohang.id_dh','=','donhang.id_dh')
+        ->join('dausach','dausach.id_sach','=','ctgiohang.id_sach')
+        ->where('donhang.id_dh',$id_dh)->update($data);
+        return  Redirect::to('/don-hang');
+    }    
 
 }

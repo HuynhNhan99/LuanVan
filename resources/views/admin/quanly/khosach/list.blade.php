@@ -8,7 +8,7 @@
                     <div class="d-flex">
                         <i class="mdi mdi-home text-muted hover-cursor"></i>
                         <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-                        <p class="text-primary mb-0 hover-cursor">Quản lý khách hàng</p>
+                        <p class="text-primary mb-0 hover-cursor">Quản lý kho sách</p>
                     </div>
                 </div>
             </div>
@@ -19,46 +19,41 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row" style="margin-bottom: 20px;">
-                        <div class="col-lg-8">
-                            <h4 class="card-title">Danh sách khách hàng</h4>
+                        <div class="col-lg-6">
+                            <h4 class="card-title">Danh sách các đầu sách</h4>
                         </div>
                         <div class="col-lg-4">
                             <div class="input-group md-form form-sm form-2 pl-0">
-                                <input class="form-control right my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
+                                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
                                 <div class="input-group-append">
                                     <span class="input-group-text red lighten-3" id="basic-text1" style="color: white; background:#4d83ff;border-color: #4d83ff;"><i class="fas fa-search text-grey" aria-hidden="true"></i></span>
                                 </div>
                             </div>
                         </div>
-                       
+                        <div class="col-lg-2">
+                            <button type="button" class="btn right btn-primary" data-toggle="modal" data-target="#Thempvc" style="width:100%; height:100%">Thêm mới</button>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Tên khách hàng</th>
-                                    <th>Giới tính</th>
-                                    <th>Số điện thoại</th>
-                                    <th>email</th>
-                                    <th>username</th>
-                                    <th> Action </th>
+                                    <th>Tên Thành phố</th>
+                                    <th>Tên Quận huyện</th>
+                                    <th>Tên Xã phường</th>
+                                    <th>Phí ship</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach( $khachhang as $key => $kh)
+                                @foreach( $phivc as $key => $phi)
+                                {{ csrf_field() }}
                                 <tr>
                                     <td>{{ $key+1 }}</td>
-                                    <td>{{ $kh->ten_kh }}</td>
-                                    <td><?php if ($kh->gioi_tinh == 0) echo 'nữ';
-                                        else echo 'nam';
-                                        ?></td>
-                                    <td>{{ $kh->sdt_kh }}</td>
-                                    <td>{{ $kh->email_kh }}</td>
-                                    <td>{{ $kh->name }}</td>
-                                    <td>
-                                        <a href="{{URL::to('/delete-khachhang/'.$kh->id_kh)}}"><i class="fas fa-trash "></i></a>
-                                    </td>
+                                    <td>{{ $phi->tentp }}</td>
+                                    <td>{{ $phi->tenqh }}</td>
+                                    <td>{{ $phi->tenxa }}</td>
+                                    <td contenteditable data-ship_id="{{$phi->ma_phi}}" class="phi-ship">{{ number_format($phi->phi_vc) }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -70,18 +65,4 @@
     </div>
 </div>
 
-<!-- Thêm -->
-<div class="modal fade" id="Themnxb" tabindex="-1" role="dialog" aria-labelledby="Themnxb" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="Themnxb">THÊM PHÍ VẬN CHUYỂN</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-        </div>
-    </div>
-</div>
 @endsection

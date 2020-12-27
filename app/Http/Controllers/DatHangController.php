@@ -11,13 +11,14 @@ use App\Models\PhuongXa;
 use App\Models\ThanhPho;
 use App\Models\QuanHuyen;
 use Barryvdh\DomPDF\Facade as PDF;
+use SebastianBergmann\Environment\Console;
 use Toastr;
 
 class DatHangController extends Controller
 {
     public function CheckLoginKH()
     {
-        $ad_id = Session::get('name');
+        $ad_id = Session::get('id_kh');
         if ($ad_id) {
             return Redirect::to('/');
         } else {
@@ -46,12 +47,11 @@ class DatHangController extends Controller
             $data = array();
             $data['sdt_kh'] = $request->sdt_kh;
             $data['diachi_kh'] = $request->diachi_kh;
-            $data['email_kh'] = $request->email_kh;
             $data['matp'] = $request->matp;
             $data['maqh'] = $request->maqh;
             $data['maxa'] = $request->maxa;
             DB::table('khachhang')->where('id_kh', Session::get('id_kh'))->update($data);
-            return Redirect::to('/dat-hang');
+            return Redirect::to('/xacnhan-dc');
         }
     }
     public function Update_nxb(Request $request, $nxb_id)
@@ -61,42 +61,53 @@ class DatHangController extends Controller
         DB::table('nxb')->where('id_nxb', $nxb_id)->update($data);
         return Redirect::to('/list-nxb');
     }
-
-    public function dat_hang()
+    public function xacnhan_dc()
     {
-        $thanhtoan =  DB::table('thanhtoan')->get();
-        $shipping =  DB::table('khachhang')->where('name', Session::get('name'))
-            ->join('tbl_tinhthanhpho', 'tbl_tinhthanhpho.matp', '=', 'khachhang.matp')
-            ->join('tbl_quanhuyen', 'tbl_quanhuyen.maqh', '=', 'khachhang.maqh')
-            ->join('tbl_xaphuongthitran', 'tbl_xaphuongthitran.maxa', '=', 'khachhang.maxa')
-            ->first();
-        $phi = DB::table('phivanchuyen')
-            ->where('matp', $shipping->matp)
-            ->where('maqh', $shipping->maqh)
-            ->where('maxa', $shipping->maxa)->first();
-        $thanhpho = ThanhPho::orderby('matp', 'ASC')->get();
         $khachhang =  DB::table('khachhang')->where('id_kh', Session::get('id_kh'))
             ->join('tbl_tinhthanhpho', 'tbl_tinhthanhpho.matp', '=', 'khachhang.matp')
             ->join('tbl_quanhuyen', 'tbl_quanhuyen.maqh', '=', 'khachhang.maqh')
             ->join('tbl_xaphuongthitran', 'tbl_xaphuongthitran.maxa', '=', 'khachhang.maxa')
             ->first();
+        $thanhpho = ThanhPho::orderby('matp', 'ASC')->get();
+        //dd($khachhang);
+        
+        return view('home.dathang.xacnhandc')->with('khachhang', $khachhang)->with('thanhpho', $thanhpho);
+    }
+    public function dat_hang()
+    {
+        $thanhtoan =  DB::table('thanhtoan')->get();
+        $khachhang =  DB::table('khachhang')->where('id_kh', Session::get('id_kh'))
+            ->join('tbl_tinhthanhpho', 'tbl_tinhthanhpho.matp', '=', 'khachhang.matp')
+            ->join('tbl_quanhuyen', 'tbl_quanhuyen.maqh', '=', 'khachhang.maqh')
+            ->join('tbl_xaphuongthitran', 'tbl_xaphuongthitran.maxa', '=', 'khachhang.maxa')
+            ->first();
+        $phi = DB::table('phivanchuyen')
+            ->where('matp', $khachhang->matp)
+            ->where('maqh', $khachhang->maqh)
+            ->where('maxa', $khachhang->maxa)->first();
         //dd($khachhang);
         if ($phi) {
             Session::put('phiship', $phi->phi_vc);
         } else {
             Session::put('phiship', 30000);
         }
-        return view('home.dathang.dathang')->with('shipping', $shipping)->with('thanhtoan', $thanhtoan)->with('khachhang', $khachhang)->with('thanhpho', $thanhpho);
+        return view('home.dathang.dathang')->with('thanhtoan', $thanhtoan)->with('khachhang', $khachhang);
     }
     public function thanhtoan(Request $request)
-    {
+    {   $khachhang =  DB::table('khachhang')->where('id_kh', Session::get('id_kh'))
+        ->join('tbl_tinhthanhpho', 'tbl_tinhthanhpho.matp', '=', 'khachhang.matp')
+        ->join('tbl_quanhuyen', 'tbl_quanhuyen.maqh', '=', 'khachhang.maqh')
+        ->join('tbl_xaphuongthitran', 'tbl_xaphuongthitran.maxa', '=', 'khachhang.maxa')
+        ->first();
         $tongtien = Cart::subtotal(0, '.', '');
         $tienship = Session::get('phiship');
         $data_dh = array();
         $data_dh['id_tt'] = $request->id_tt;
         $data_dh['id_kh'] = Session::get('id_kh');
         $data_dh['ngay_dat'] = now();
-        $data_dh['tong_tien'] = $tongtien + $tienship;
+        $data_dh['tong_tien'] = $tongtien;
+        $data_dh['tien_ship'] = $tienship;
+        $data_dh['dc_dh'] = $khachhang->diachi_kh.', '.$khachhang->tenxa.', '.$khachhang->tenqh.', '.$khachhang->tentp;
         $data_dh['trang_thai'] = 1;
         $giohang = Cart::content();
         if ($request->id_tt == 2) {
@@ -108,13 +119,23 @@ class DatHangController extends Controller
             $data_ctdh['id_sach'] = $ctgiohang->id;
             $data_ctdh['so_luong'] = $ctgiohang->qty;
             DB::table('ctgiohang')->insert($data_ctdh);
+            $sach =  DB::table('dausach')->where('id_sach',$ctgiohang->id)->first();
+            $data_sl = array();
+            $data_sl['sl_sach'] = $sach->sl_sach - $ctgiohang->qty;
+            DB::table('dausach')->where('id_sach',$ctgiohang->id)->update($data_sl);
         }
+        
         Cart::destroy();
         return Redirect::to('/');
     }
     
     public function thanhtoan_vnpay(Request $request)
     {
+        $khachhang =  DB::table('khachhang')->where('id_kh', Session::get('id_kh'))
+        ->join('tbl_tinhthanhpho', 'tbl_tinhthanhpho.matp', '=', 'khachhang.matp')
+        ->join('tbl_quanhuyen', 'tbl_quanhuyen.maqh', '=', 'khachhang.maqh')
+        ->join('tbl_xaphuongthitran', 'tbl_xaphuongthitran.maxa', '=', 'khachhang.maxa')
+        ->first();
         $url = session('url_prev','/');
     if($request->vnp_ResponseCode == "00") {
         $tongtien = Cart::subtotal(0, '.', '');
@@ -123,7 +144,9 @@ class DatHangController extends Controller
         $data_dh['id_tt'] = 2;
         $data_dh['id_kh'] = Session::get('id_kh');
         $data_dh['ngay_dat'] = now();
-        $data_dh['tong_tien'] = $tongtien + $tienship;
+        $data_dh['tong_tien'] = $tongtien;
+        $data_dh['tien_ship'] = $tienship;
+        $data_dh['dc_dh'] = $khachhang->diachi_kh.', '.$khachhang->tenxa.', '.$khachhang->tenqh.', '.$khachhang->tentp;
         $data_dh['trang_thai'] = 1;
         $giohang = Cart::content();
         $id_dh = DB::table('donhang')->insertGetId($data_dh);
@@ -132,6 +155,10 @@ class DatHangController extends Controller
             $data_ctdh['id_sach'] = $ctgiohang->id;
             $data_ctdh['so_luong'] = $ctgiohang->qty;
             DB::table('ctgiohang')->insert($data_ctdh);
+            $sach =  DB::table('dausach')->where('id_sach',$ctgiohang->id)->first();
+            $data_sl = array();
+            $data_sl['sl_sach'] = $sach->sl_sach - $ctgiohang->qty;
+            DB::table('dausach')->where('id_sach',$ctgiohang->id)->update($data_sl);
         }
         Cart::destroy();
         return Redirect::to('/');
@@ -158,29 +185,62 @@ class DatHangController extends Controller
     }
     public function ctdonhang($id_dh)
     {
+        $ct_sach = DB::table('donhang')
+            ->join('ctgiohang', 'ctgiohang.id_dh', '=', 'donhang.id_dh')
+            ->join('dausach', 'dausach.id_sach', '=', 'ctgiohang.id_sach')
+            ->where('donhang.id_dh', $id_dh)
+            ->get();
+        
+        foreach ($ct_sach as $key => $ctdh) {
+            $km =  DB::table('khuyenmai')
+                ->join('ctkhuyenmai', 'ctkhuyenmai.id_km', '=', 'khuyenmai.id_km')
+                ->join('dausach', 'dausach.id_sach', '=', 'ctkhuyenmai.id_sach')
+                ->where('dausach.id_sach', $ctdh->id_sach)
+                ->where('khuyenmai.ngay_bat_dau','<=',$ctdh->ngay_dat)
+                ->where('khuyenmai.ngay_ket_thuc','>=',$ctdh->ngay_dat)
+                ->first();
+            if($km){
+                $array_sach[$key] = [
+                    "id_sach" => $km->id_sach,
+                    "ten_sach" => $km->ten_sach,
+                    "hinh_anh" => $km->hinh_anh,
+                    "gia_sach" => $km->gia_sach,
+                    "so_luong" => $ctdh->so_luong,
+                    "phantram_km" => $km->phantram_km,
+                ];
+                
+            }else{
+                $array_sach[$key] = [
+                    "id_sach" => $ctdh->id_sach,
+                    "ten_sach" => $ctdh->ten_sach,
+                    "hinh_anh" => $ctdh->hinh_anh,
+                    "gia_sach" => $ctdh->gia_sach,
+                    "so_luong" => $ctdh->so_luong,
+                    "phantram_km" => 0,
+                ];
+               
+            }
+        }
+        $dh =  DB::table('donhang')
+            ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
+            ->join('thanhtoan', 'thanhtoan.id_tt', '=', 'donhang.id_tt')
+            ->where('donhang.id_dh', $id_dh)->first();
+        return view('admin.quanly.Donhang.ctdonhang')->with('ctdonhang', $array_sach)->with('khachhang', $dh);
+    }
+    public function in_dh($id_dh)
+    {
+        //sử dụng mảng
         $ctdh = DB::table('donhang')
             ->join('ctgiohang', 'ctgiohang.id_dh', '=', 'donhang.id_dh')
             ->join('dausach', 'dausach.id_sach', '=', 'ctgiohang.id_sach')
+            ->join('ctkhuyenmai', 'ctkhuyenmai.id_sach', '=', 'dausach.id_sach')
+            ->join('khuyenmai', 'ctkhuyenmai.id_km', '=', 'khuyenmai.id_km')
             ->where('donhang.id_dh', $id_dh)
             ->get();
         $dh =  DB::table('donhang')
             ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
             ->join('thanhtoan', 'thanhtoan.id_tt', '=', 'donhang.id_tt')
-            ->join('tbl_tinhthanhpho', 'tbl_tinhthanhpho.matp', '=', 'khachhang.matp')
-            ->join('tbl_quanhuyen', 'tbl_quanhuyen.maqh', '=', 'khachhang.maqh')
-            ->join('tbl_xaphuongthitran', 'tbl_xaphuongthitran.maxa', '=', 'khachhang.maxa')
             ->where('donhang.id_dh', $id_dh)->first();
-        $tt = DB::table('donhang')
-            ->join('ctgiohang', 'ctgiohang.id_dh', '=', 'donhang.id_dh')
-            ->join('dausach', 'dausach.id_sach', '=', 'ctgiohang.id_sach')
-            ->where('donhang.id_dh', $id_dh)
-            ->selectRaw('sum(gia_sach) as tongtien')
-            ->groupBy('donhang.id_dh')
-            ->first();
-        return view('admin.quanly.Donhang.ctdonhang')->with('tt', $tt)->with('ctdonhang', $ctdh)->with('khachhang', $dh);
-    }
-    public function in_dh($id_dh)
-    {
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML('
             <style>
@@ -317,29 +377,29 @@ class DatHangController extends Controller
             <div class="row">
                 <div class="col-xs-12">
                     <div class="invoice-title">
-                        <h2 style="font-size: 30px; font-family: DejaVu Sans;">Hóa đơn</h2><h3 class="pull-right">Order #' . $id_dh . '</h3>
+                    <strong style="font-size:20px;">HÓA ĐƠN</strong><h3 class="pull-right">Order #' . $id_dh . '</h3>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-xs-6">
                             <address>
                             <strong>Thông tin đơn hàng:</strong><br>
-                                Tên: John Smith<br>
-                                Số điện thoại: 0123456789<br>
-                                Địa chỉ: 1234 Main<br>
-                                Email: <br>
+                                Tên: '.$dh->ten_kh.'<br>
+                                Số điện thoại: '.$dh->sdt_kh.'<br>
+                                Địa chỉ: '.$dh->dc_dh.'<br>
+                                Email: '.$dh->email_kh.'<br>
                             </address>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
                             <address>
-                                <strong>Phương thức thanh toán:</strong> Visa ending **** 4242<br>
+                                <strong>Phương thức thanh toán:</strong> '.$dh->ten_tt.'<br>
                             </address>
                         </div>
                         <div class="col-xs-6 text-right">
                             <address>
-                                <strong>Ngày đặt:</strong> March 7, 2014<br><br>
+                                <strong>Ngày đặt:</strong> '.$dh->ngay_dat.'<br><br>
                             </address>
                         </div>
                     </div>
@@ -364,42 +424,25 @@ class DatHangController extends Controller
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                                        <tr>
-                                            <td>BS-200</td>
-                                            <td class="text-center">$10.99</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-right">$10.99</td>
-                                        </tr>
-                                        <tr>
-                                            <td>BS-400</td>
-                                            <td class="text-center">$20.00</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-right">$60.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>BS-1000</td>
-                                            <td class="text-center">$600.00</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-right">$600.00</td>
-                                        </tr>
+                                       
+                                      
                                         <tr>
                                             <td class="thick-line"></td>
                                             <td class="thick-line"></td>
-                                            <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                                            <td class="thick-line text-right">$670.99</td>
+                                            <td class="thick-line text-center"><strong>Tổng tiền:</strong></td>
+                                            <td class="thick-line text-right">'.$dh->tong_tien.'</td>
                                         </tr>
                                         <tr>
                                             <td class="no-line"></td>
                                             <td class="no-line"></td>
-                                            <td class="no-line text-center"><strong>Shipping</strong></td>
-                                            <td class="no-line text-right">$15</td>
+                                            <td class="no-line text-center"><strong> Tiền ship: </strong></td>
+                                            <td class="no-line text-right">'.$dh->tien_ship.'</td>
                                         </tr>
                                         <tr>
                                             <td class="no-line"></td>
                                             <td class="no-line"></td>
-                                            <td class="no-line text-center"><strong>Total</strong></td>
-                                            <td class="no-line text-right">$685.99</td>
+                                            <td class="no-line text-center"><strong>Thành tiền: </strong></td>
+                                            <td class="no-line text-right">'.$dh->tong_tien .'+'.$dh->tien_ship.'</td>
                                         </tr>
                                     </tbody>
                                 </table>

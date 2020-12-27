@@ -8,9 +8,53 @@
                     <div class="d-flex">
                         <i class="mdi mdi-home text-muted hover-cursor"></i>
                         <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-                        <p class="text-primary mb-0 hover-cursor">Danh sách các đầu sách</p>
+                        <p class="text-primary mb-0 hover-cursor">Top sách bán chạy nhất tháng</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="display: contents;">
+        <div class="card">
+            <div class="card-body">
+                <div class="chartjs-size-monitor">
+                    <div class="chartjs-size-monitor-expand">
+                        <div class=""></div>
+                    </div>
+                    <div class="chartjs-size-monitor-shrink">
+                        <div class=""></div>
+                    </div>
+                </div>
+                <h4 class="card-title">SỐ LƯỢNG CUỐN SÁCH BÁN ĐƯỢC TRONG THÁNG</h4>
+                <div class="row" style="margin-bottom: 20px;">
+                    <div class="col-lg-5">
+
+                    </div>
+                    {{ csrf_field() }}
+                    <div class="col-lg-3">
+                        <?php foreach ($top10 as $key => $sach)
+                            $thang = $sach->thang;
+                        $nam = $sach->nam;
+                        ?>
+                    </div>
+                    <div class="col-lg-2">
+                        <select class="form-control" id="topthang" style="width:100%;">
+                            <option>---Tháng---</option>
+                            @for($i=1;$i<=12;$i++) <option value="{{$i}}">Tháng {{$i}}</option>
+                                @endfor
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <select class="form-control" id="sapxepdh" style="width:100%;">
+                            <option value="0">Năm {{$nam}}</option>
+                            <option value="1">Theo ngày đặt</option>
+                            <option value="2">Theo tổng tiền</option>
+                            <option value="3">Theo trạng thái ĐH</option>
+                        </select>
+                    </div>
+                </div>
+                <canvas id="pieChart" data-sl="{{json_encode($sl_sach)}}" data-sach="{{json_encode($ten_sach)}}" class="chartjs-render-monitor" style="display: block; width: 532px; height: 265px;">
+                </canvas>
             </div>
         </div>
     </div>
@@ -25,17 +69,16 @@
                         </div>
                         {{ csrf_field() }}
                         <div class="col-lg-3">
-                        <?php foreach( $top10 as $key => $sach)
-                        $thang=$sach->thang;
-                        $nam=$sach->nam;
-                        ?>
+                            <?php foreach ($top10 as $key => $sach)
+                                $thang = $sach->thang;
+                            $nam = $sach->nam;
+                            ?>
                         </div>
                         <div class="col-lg-2">
                             <select class="form-control" id="topthang" style="width:100%;">
                                 <option>---Tháng---</option>
-                                @for($i=1;$i<=12;$i++)
-                                <option value="{{$i}}">Tháng {{$i}}</option>
-                                @endfor
+                                @for($i=1;$i<=12;$i++) <option value="{{$i}}">Tháng {{$i}}</option>
+                                    @endfor
                             </select>
                         </div>
                         <div class="col-lg-2">
@@ -57,7 +100,7 @@
                                     <th>SỐ LƯỢNG BÁN ĐƯỢC</th>
                                 </tr>
                             </thead>
-                            <tbody >
+                            <tbody>
                                 @foreach( $top10 as $key => $sach)
                                 <tr>
                                     <td>{{ $key+1 }}</td>

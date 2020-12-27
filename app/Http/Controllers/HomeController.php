@@ -396,4 +396,11 @@ class HomeController extends Controller
         }
         return Redirect::to('/khuyen-mai');
     }
+
+    public function list_km(Request $request)
+    {
+        $km = DB::table('khuyenmai')->get();
+        
+        return view('admin.quanly.Khuyenmai.list')->with('km',$km);
+    }
 }

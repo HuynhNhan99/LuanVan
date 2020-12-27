@@ -115,6 +115,8 @@
 	<script src="theme/js/jquery.min.js"></script>
 	<script src="theme/js/jquery-migrate-3.0.0.js"></script>
 	<script src="theme/js/jquery-ui.min.js"></script>
+
+	
 	<!-- Popper JS -->
 	<script src="theme/js/popper.min.js"></script>
 	<!-- Bootstrap JS -->

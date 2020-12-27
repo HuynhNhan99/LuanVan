@@ -3,8 +3,8 @@
     $(function() {
         if ($('#cash-deposits-chart').length) {
             var rowId = $('#cash-deposits-chart').attr('data-month');
-            var min1 = $('#cash-deposits-chart').data('min');
-            var max1 = $('#cash-deposits-chart').data('max');
+            var a = ($('#cash-deposits-chart').data('max') / 1000000 | 0) + 1;
+            var max1 = a * 1000000;
             var cashDepositsCanvas = $("#cash-deposits-chart").get(0).getContext("2d");
             var obj = JSON.parse(rowId)
             var data = {
@@ -33,7 +33,7 @@
                         ticks: {
                             min: 0,
                             max: max1,
-                            stepSize: 200000,
+                            stepSize: a * 100000,
                             fontColor: "#6c7383",
                             fontSize: 16,
                             fontStyle: 300,

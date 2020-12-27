@@ -27,6 +27,7 @@ Route::get('gio-hang','App\Http\Controllers\CartController@Cart');
 
 Route::post('dat-hang','App\Http\Controllers\DatHangController@dathang');
 Route::get('dat-hang','App\Http\Controllers\DatHangController@dat_hang');
+Route::get('xacnhan-dc','App\Http\Controllers\DatHangController@xacnhan_dc');
 Route::post('thanh-toan','App\Http\Controllers\DatHangController@thanhtoan');
 Route::get('thanhtoan-vnpay','App\Http\Controllers\DatHangController@thanhtoan_vnpay');
 
@@ -40,12 +41,23 @@ Route::get('don-hang','App\Http\Controllers\CartController@donhang');
 Route::get('tai-khoan-cua-toi','App\Http\Controllers\KhachHangController@tai_khoan');
 
 Route::get('xoadh/{id_dh}','App\Http\Controllers\CartController@xoadonhang');
+Route::get('datlai-dh/{id_dh}','App\Http\Controllers\CartController@datlai_dh');
 
 Route::get('/all-donhang','App\Http\Controllers\DatHangController@donhang');
 Route::post('/duyet-dh/{id_dh}','App\Http\Controllers\DatHangController@duyet_dh');
 Route::get('/ct-donhang/{id_dh}','App\Http\Controllers\DatHangController@ctdonhang');
 
 Route::post('danh-gia','App\Http\Controllers\KhachHangController@danh_gia');
+
+Route::post('thay-doi-mk','App\Http\Controllers\KhachHangController@doi_mk');
+
+Route::get('/auth/redirect','App\Http\Controllers\KhachHangController@redirectToProvider');
+Route::get('/auth/callback','App\Http\Controllers\KhachHangController@handleProviderCallback');
+
+Route::get('/auth/redirect_fb','App\Http\Controllers\KhachHangController@redirect_FB');
+Route::get('/auth/callback_fb','App\Http\Controllers\KhachHangController@callback_FB');
+
+Route::post('them-dc','App\Http\Controllers\KhachHangController@them_dc');
 
 //Backend
 Route::get('/dashboard','App\Http\Controllers\AdminController@index');
@@ -88,6 +100,7 @@ Route::post('update-ncc/{id_ncc}','App\Http\Controllers\NhaCungCapController@Upd
 Route::get('khuyen-mai','App\Http\Controllers\HomeController@khuyen_mai');
 Route::post('tl-km','App\Http\Controllers\HomeController@tl_km');
 Route::post('add-km','App\Http\Controllers\HomeController@add_km');
+Route::get('list-km','App\Http\Controllers\HomeController@list_km');
 
 Route::get('list-danhgia','App\Http\Controllers\KhachHangController@list_danhgia');
 Route::get('ql-danhgia','App\Http\Controllers\KhachHangController@ql_danhgia');
@@ -123,4 +136,5 @@ Route::post('reset-mk','App\Http\Controllers\MailController@html_email');
 Route::get('dat-lai-mk','App\Http\Controllers\MailController@datlai_mk');
 Route::post('datlai-mk','App\Http\Controllers\MailController@dat_lai_mk');
 
-
+//python
+Route::get('python','App\Http\Controllers\KhachHangController@python');

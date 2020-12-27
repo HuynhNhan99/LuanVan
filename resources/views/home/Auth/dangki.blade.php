@@ -22,7 +22,7 @@
             <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
                 <div class="row flex-grow">
                     <div class="col-lg-7 d-flex align-items-center justify-content-center">
-                        <div class="auth-form-transparent text-left p-3">
+                        <div class="auth-form-transparent text-left p-3" style="width:70%;">
                             <div class="brand-logo">
                                 <img src="theme/images/logo.png" alt="logo">
                             </div>
@@ -96,9 +96,16 @@
                                     <p style="color: red;">{{$errors->first('password')}}</p>
                                     @endif
                                 </div>
+                                <div class="form-group">
+                                    <label for="tenSach">Nhập lại mật khẩu</label>
+                                    <input type="password" class="form-control" name="password_confirm" required />
+                                    @if ($errors->has('password_confirm'))
+                                    <p style="color: red;">{{$errors->first('password_confirm')}}</p>
+                                    @endif
+                                </div>
 
                                 <div class="mt-3">
-                                    <button type="submit" class="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn" style="background:rgb(24, 158, 255)">Submit</button>
+                                    <button type="submit" class="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn" style="background:#f7941d ">Submit</button>
 
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">

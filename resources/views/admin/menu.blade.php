@@ -42,10 +42,11 @@
         </ul>
       </div>
     </li>
+    
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#doanhthu" aria-expanded="false" aria-controls="doanhthu">
         <i class="mdi mdi-chart-areaspline menu-icon"></i>
-        <span class="menu-title">Quản lý doanh thu</span>
+        <span class="menu-title">Thống kê</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="doanhthu">
@@ -55,6 +56,12 @@
           <li class="nav-item"> <a class="nav-link" href="top-10">Top cuốn sách bán chạy </a></li>
         </ul>
       </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="list-danhgia">
+        <i class="mdi mdi-briefcase-check menu-icon"></i>
+        <span class="menu-title">Quản lý Kho</span>
+      </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="list-danhgia">

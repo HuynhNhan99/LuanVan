@@ -4,6 +4,25 @@ $(function() {
      * Data and config for chartjs
      */
     var choxacnhan = $('#pieChart').attr('data');
+    var a = $('#pieChart').data('sl');
+    var sl = $('#pieChart').attr('data-sl');
+    var sach = $('#pieChart').attr('data-sach');
+    var mau = [
+        'rgba(255, 99, 132, 2)',
+        'rgba(54, 162, 235, 2)',
+        'rgba(255, 206, 86, 2)',
+        'rgba(75, 192, 192, 2)',
+        'rgba(153, 102, 255, 2)',
+        'rgba(255, 159, 64, 2)',
+        '#FFFF00',
+        '#DD0000',
+        '#FF3366',
+        '#3333CC'
+    ]
+    var array = [];
+    for (let i = 0; i < a.length; i++) {
+        array[i] = mau[i]
+    }
     'use strict';
     var data = {
         labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
@@ -82,33 +101,12 @@ $(function() {
     var doughnutPieData = {
 
         datasets: [{
-            data: JSON.parse(choxacnhan),
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.5)',
-                'rgba(54, 162, 235, 0.5)',
-                'rgba(255, 206, 86, 0.5)',
-                'rgba(75, 192, 192, 0.5)',
-                'rgba(153, 102, 255, 0.5)',
-                'rgba(255, 159, 64, 0.5)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
+            data: JSON.parse(sl),
+            backgroundColor: array,
         }],
 
         // These labels appear in the legend and in the tooltips when hovering different arcs
-        labels: [
-            'Chờ xác nhận',
-            'Đã xác nhận',
-            'Đang giao',
-            'Đã giao',
-            'Đã hủy',
-        ]
+        labels: JSON.parse(sach)
     };
     var doughnutPieOptions = {
         responsive: true,

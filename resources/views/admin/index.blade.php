@@ -39,9 +39,6 @@
         @yield('noidung')
         <!-- /noi dung -->
 
-        <!-- footer -->
-        @include('admin.footer')
-        <!-- /footer-->
       </div>
       <!-- main-panel ends -->
     </div>

@@ -3,7 +3,7 @@
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 
-$name = Session::get('name');
+$id_kh = Session::get('id_kh');
 $sachs = Cart::content();
 $tongtien = Cart::subtotal();
 $tong = Cart::total();
@@ -28,7 +28,7 @@ $count = Cart::count();
 					<!-- Top Right -->
 					<div class="right-content">
 						<ul class="list-main">
-							@if($name)
+							@if($id_kh)
 							<li><i class="fas fa-shopping-cart"></i> <a href="#">Đơn hàng</a></li>
 							<li><i class="ti-user"></i> <a href="{{URL::to('/tai-khoan-cua-toi')}}">Tài khoản của tôi</a></li>
 							<li><i class="ti-power-off"></i><a href="{{URL::to('/dang-xuat')}}">Đăng xuất</a></li>
@@ -83,7 +83,7 @@ $count = Cart::count();
 						<!-- Search Form -->
 						<div id="change-cart">
 							<div class="sinlge-bar shopping">
-								<a href="#" class="single-icon">
+								<a href="gio-hang" class="single-icon">
 									<button type="button" class="btn btn-light"> GIỎ HÀNG
 										<i class="fas fa-shopping-cart"></i>
 										<span class="total-count">{{ $count }}</span>
@@ -147,20 +147,9 @@ $count = Cart::count();
 									<div class="nav-inner">
 										<ul class="nav main-menu menu navbar-nav">
 											<li class="active"><a href="#">Trang chủ</a></li>
-											<li><a href="loc-sach">Đầu sách</a></li>
-											<li><a href="#">Shop<i class="ti-angle-down"></i></a>
-												<ul class="dropdown">
-													<li><a href="shop-grid.html">Shop Grid</a></li>
-													<li><a href="cart.html">Cart</a></li>
-													<li><a href="checkout.html">Checkout</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Blog<i class="ti-angle-down"></i></a>
-												<ul class="dropdown">
-													<li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
-												</ul>
-											</li>
-											<li><a href="contact.html">Liên hệ</a></li>
+											<li><a href="loc-sach">Sản phẩm</a></li>
+											<li><a href="gio-hang">Giỏ hàng</a></li>
+											
 										</ul>
 									</div>
 								</div>

@@ -91,7 +91,6 @@
                     </div>
                     <h4 class="card-title">THỐNG KÊ TRẠNG THÁI ĐƠN HÀNG</h4>
                     <canvas id="pieChart" data="{{ json_encode($tt_dh) }}" class="chartjs-render-monitor" style="display: block; width: 532px; height: 265px;">
-
                     </canvas>
                 </div>
             </div>

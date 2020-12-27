@@ -8,7 +8,7 @@
           <div class="d-flex">
             <i class="mdi mdi-home text-muted hover-cursor"></i>
             <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-            <p class="text-primary mb-0 hover-cursor">Danh sách các đầu sách</p>
+            <p class="text-primary mb-0 hover-cursor">Danh sách các đơn hàng</p>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
               </select>
             </div>
             <div class="col-lg-2">
-              <button type="button" class="btn btn-primary">Duyệt tất cả</button>
+              <button type="button" class="btn btn-primary">Duyệt</button>
             </div>
           </div>
           <div class="table-responsive" id="loc-dh">

@@ -8,7 +8,7 @@
                     <div class="d-flex">
                         <i class="mdi mdi-home text-muted hover-cursor"></i>
                         <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-                        <p class="text-primary mb-0 hover-cursor">Quản lý phí vận chuyển</p>
+                        <p class="text-primary mb-0 hover-cursor">Quản lý các chương trình khuyến mãi</p>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <div class="row" style="margin-bottom: 20px;">
                         <div class="col-lg-6">
-                            <h4 class="card-title">Danh sách phí vận chuyển</h4>
+                            <h4 class="card-title">Danh các chương trình khuyến mãi</h4>
                         </div>
                         <div class="col-lg-4">
                             <div class="input-group md-form form-sm form-2 pl-0">
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <button type="button" class="btn right btn-primary" data-toggle="modal" data-target="#Thempvc" style="width:100%; height:100%">Thêm mới</button>
+                            <button type="button" class="btn right btn-primary" data-toggle="modal" data-target="#Themncc" style="width:100%; height:100%">Thêm mới</button>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -39,21 +39,25 @@
                             <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Tên Thành phố</th>
-                                    <th>Tên Quận huyện</th>
-                                    <th>Tên Xã phường</th>
-                                    <th>Phí ship</th>
+                                    <th>Tên chương trình khuyến mãi</th>
+                                    <th>Giảm giá</th>
+                                    <th>Ngày bắt đầu</th>
+                                    <th>Ngày kết thúc</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach( $phivc as $key => $phi)
-                                {{ csrf_field() }}
+                                @foreach( $km as $key => $khuyenmai)
                                 <tr>
                                     <td>{{ $key+1 }}</td>
-                                    <td>{{ $phi->tentp }}</td>
-                                    <td>{{ $phi->tenqh }}</td>
-                                    <td>{{ $phi->tenxa }}</td>
-                                    <td contenteditable data-ship_id="{{$phi->ma_phi}}" class="phi-ship">{{ number_format($phi->phi_vc) }}</td>
+                                    <td>{{ $khuyenmai->ten_km }}</td>
+                                    <td>{{ $khuyenmai->phantram_km }}%</td>
+                                    <td>{{ $khuyenmai->ngay_bat_dau }}</td>
+                                    <td>{{ $khuyenmai->ngay_ket_thuc }}</td>
+                                    <td>
+                                        <a href="{{URL::to('/edit-ncc/'.$khuyenmai->id_km)}}"><i class="fa fa-edit"></i></a>
+                                        <a href="{{URL::to('/delete-ncc/'.$khuyenmai->id_km)}}"><i class="fas fa-trash "></i></a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -66,42 +70,33 @@
 </div>
 
 <!-- Thêm -->
-<div class="modal fade" id="Thempvc" tabindex="-1" role="dialog" aria-labelledby="Thempvc" aria-hidden="true">
+<!-- <div class="modal fade" id="Themncc" tabindex="-1" role="dialog" aria-labelledby="Themncc" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="Thempvc">THÊM PHÍ VẬN CHUYỂN</h5>
+                <h5 class="modal-title" id="Themncc">Thêm Nhà xuất bản</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="forms-sample" action="{{URL::to('/them-phivc')}}" method="post">
+            <form class="forms-sample" action="{{URL::to('/add-ncc')}}" method="post">
                 <div class="modal-body">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="Tinh/TP"><strong>Tỉnh/Thành phố:</strong></label>
-                        <select class="form-control choose thanhpho" name="matp" id="thanhpho">
-                            <option>-----Tỉnh/Thành phố----</option>
-                            @foreach($thanhpho as $key =>$city)
-                            <option value="{{$city->matp}}">{{$city->tentp}}</option>
-                            @endforeach
-                        </select>
+                        <label for="TrangThai">Tên Nhà cung cấp</label>
+                        <input class="form-control" id="TenNcc" name="ten_ncc"></input>
                     </div>
                     <div class="form-group">
-                        <label for="Tinh/TP"><strong>Quận huyện:</strong></label>
-                        <select class="form-control choose quanhuyen" name="maqh" id="quanhuyen">
-                            <option>-----Quận huyện----</option>
-                        </select>
+                        <label for="TrangThai">Số điện thoại</label>
+                        <input class="form-control" id="SdtNxb" name="sdt_ncc"></input>
                     </div>
                     <div class="form-group">
-                        <label for="Tinh/TP"><strong>Phường xã:</strong></label>
-                        <select class="form-control xaphuong" name="maxa" id="xaphuong">
-                            <option>-----Phường xã----</option>
-                        </select>
+                        <label for="TrangThai">Email</label>
+                        <input class="form-control" id="EmailNxb" name="email_ncc"></input>
                     </div>
                     <div class="form-group">
-                        <label for="Phi"><strong>Phí vận chuyển</strong></label>
-                        <input type="text" class="form-control" name="phi_vc" required />
+                        <label for="TrangThai">Địa chỉ</label>
+                        <input class="form-control" id="DchiNcc" name="diachi_ncc"></input>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -109,10 +104,8 @@
                     <button type="submit" class="btn btn-primary">Thêm</button>
                 </div>
             </form>
-
-
         </div>
     </div>
-</div>
+</div> -->
 
 @endsection

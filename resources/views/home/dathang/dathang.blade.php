@@ -31,18 +31,18 @@ $phiship = Session::get('phiship');
         <div class="row diachi" style="margin: 0px;">
             <div class="col-10 info">
                 <div class="ten" style="text-transform: uppercase;margin: 0px 0px 10px;">
-                    {{$shipping->ten_kh}}
+                    {{$khachhang->ten_kh}}
                     <span class="fas fa-map-marker-alt" style="font-size: 14px;margin: 0px 0px 0px 15px;display: inline-block;-webkit-box-align: center;align-items: center;color: rgb(38, 188, 78);text-transform: none;"> Địa chỉ nhận hàng</span>
                 </div>
                 <div class="sdt">
-                    <span style="color:rgb(120, 120, 120)">Số điện thoại:</span> {{$shipping->sdt_kh}}
+                    <span style="color:rgb(120, 120, 120)">Số điện thoại:</span> {{$khachhang->sdt_kh}}
                 </div>
                 <div class="diachi">
-                    <span style="color:rgb(120, 120, 120)">Địa chỉ:</span> {{$shipping->diachi_kh}}, {{$shipping->tenxa}}, {{$shipping->tenqh}}, {{$shipping->tentp}}
+                    <span style="color:rgb(120, 120, 120)">Địa chỉ:</span> {{$khachhang->diachi_kh}}, {{$khachhang->tenxa}}, {{$khachhang->tenqh}}, {{$khachhang->tentp}}
                 </div>
             </div>
             <div class="col-2 action" style="text-align: end;">
-                <a class="edit" data-toggle="modal" data-target="#Themnxb" style="cursor: pointer;font-size: 14px;color: rgb(24, 158, 255);display: inline-block;padding: 6px 12px;">Chỉnh sửa</a>
+                <a class="edit" href="xacnhan-dc" style="cursor: pointer;font-size: 14px;color: #f7941d ;display: inline-block;padding: 6px 12px;">Chỉnh sửa</a>
             </div>
         </div>
 
@@ -88,7 +88,7 @@ $phiship = Session::get('phiship');
                             <ul>
                                 <li>Tạm tính<span>{{number_format($tongtien)}} đ</span></li>
                                 <li>Phí ship<span>{{number_format($phiship)}} đ</span></li>
-                                <li class="last">Thành tiền<span style="font-size: 25px; color:rgb(24, 158, 255);">{{number_format($tongtien+$phiship)}} đ</span></li>
+                                <li class="last">Thành tiền<span style="font-size: 25px; color:#f7941d ;">{{number_format($tongtien+$phiship)}} đ</span></li>
                             </ul>
                         </div>
                     </div>
@@ -132,59 +132,4 @@ $phiship = Session::get('phiship');
     </div>
 </div>
 
-<div class="modal fade" id="Themnxb" tabindex="-1" role="dialog" aria-labelledby="Themnxb" aria-hidden="true">
-    <div class="modal-dialog" role="document" style="width: 600px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="Themnxb" style="font-size: 18px;">THAY ĐỔI THÔNG TIN GIAO HÀNG</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 20px;padding-right: 20px;">
-                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                </button>
-            </div>
-            <form class="form" method="post" action="{{URL::to('dat-hang')}}">
-                <div class="modal-body">
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                        <label>Số điện thoại<span> *</span></label>
-                        <input type="text" class="form-control" name="sdt_kh" placeholder="" required="required" value="{{$khachhang->sdt_kh}}" style="font-family: inherit;font-size: 15px;font-weight: normal; height:45px;" require>
-                    </div>
-                    <div class="form-group">
-                        <label for="Tinh/TP">Tỉnh/Thành phố:</label>
-                        <select class="form-control choose thanhpho" name="matp" id="thanhpho" style="font-family: inherit;font-size: 15px;font-weight: normal; height:45px;">
-                            <option>-----Tỉnh/Thành phố----</option>
-                            @foreach($thanhpho as $key =>$city)
-                            <option value="{{$city->matp}}">{{$city->tentp}}</option>
-                            @endforeach
-                        </select>
-                        @if ($errors->has('matp'))
-                        <p style="color: red;">{{$errors->first('matp')}}</p>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        <label for="Tinh/TP">Quận huyện:</label>
-                        <select class="form-control choose quanhuyen" name="maqh" id="quanhuyen" style="font-family: inherit;font-size: 15px;font-weight: normal; height:45px;">
-                        <option>-----Quận huyện----</option>
-                        </select>
-                        @if ($errors->has('maqh'))
-                        <p style="color: red;">{{$errors->first('maqh')}}</p>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        <label for="Tinh/TP">Phường xã:</label>
-                        <select class=" form-control xaphuong" name="maxa" id="xaphuong" style="font-family: inherit;font-size: 15px;font-weight: normal; height:45px;">
-                            <option>-----Phường xã----</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Địa chỉ<span> *</span></label>
-                        <input type="text" class="form-control" name="diachi_kh" placeholder="" required="required" value="{{$khachhang->diachi_kh}}" style="font-family: inherit;font-size: 15px;font-weight: normal; height:45px;" require>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class=" btn button" type="submit">XÁC NHẬN</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 @endsection

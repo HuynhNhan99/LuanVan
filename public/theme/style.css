@@ -103,7 +103,7 @@ Version:1.0
 }
 
 .color-plate span.color1 {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .color-plate span.color2 {
@@ -186,7 +186,7 @@ Version:1.0
     width: 100px;
     height: 100px;
     border-radius: 100%;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     -webkit-animation: preloader-fx 1.6s linear infinite;
     animation: preloader-fx 1.6s linear infinite;
 }
@@ -240,7 +240,7 @@ Version:1.0
 
 .btn:hover {
     color: #fff;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 #scrollUp {
@@ -267,7 +267,7 @@ Version:1.0
 }
 
 #scrollUp i:hover {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
 }
 
@@ -371,7 +371,7 @@ Version:1.0
 
 .header .nav li .dropdown li:hover a {
     color: #fff;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .header .nav li .dropdown li a:hover {
@@ -427,7 +427,7 @@ Version:1.0
 
 .header .nav li .dropdown li .dropdown.sub-dropdown li a:hover {
     color: #fff;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .header .nav li .dropdown.sub-dropdown li:last-child a {
@@ -461,13 +461,11 @@ Version:1.0
 }
 
 .header.shop .topbar .login a {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 
 /* Topbar Left Nav */
-
-.header.shop .left-nav {}
 
 .header.shop .top-left .list-main li:first-child {
     padding-left: 0;
@@ -477,7 +475,7 @@ Version:1.0
     display: inline-block;
     margin-right: 4px;
     font-size: 15px;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     position: relative;
     top: 3px;
 }
@@ -499,7 +497,7 @@ Version:1.0
     display: inline-block;
     margin-right: 4px;
     font-size: 15px;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     position: relative;
     top: 1px;
 }
@@ -514,7 +512,7 @@ Version:1.0
 }
 
 .header.shop .list-main li a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .header.shop .nav li {
@@ -533,7 +531,7 @@ Version:1.0
 }
 
 .header.shop .nav li .new {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
     text-transform: uppercase;
     font-size: 10px;
@@ -549,7 +547,7 @@ Version:1.0
     content: "";
     left: 4px;
     bottom: -8px;
-    border: 4px solid rgb(24, 158, 255);
+    border: 4px solid #f7941d;
     border-bottom-color: transparent;
     border-left-color: transparent;
     border-right-color: transparent;
@@ -618,7 +616,7 @@ Version:1.0
 }
 
 .header .shopping .dropdown-cart-header a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .header .shopping-list li {
@@ -684,7 +682,7 @@ Version:1.0
 }
 
 .header .shopping-list h4 a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .header .shopping-item .bottom {
@@ -723,7 +721,7 @@ Version:1.0
 }
 
 .header .shopping-item .bottom .btn:hover {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
 }
 
@@ -829,7 +827,7 @@ Version:1.0
 }
 
 .header.shop .nice-select .list li:hover {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
 }
 
@@ -871,7 +869,7 @@ Version:1.0
 
 .header.shop .search-bar .btnn:hover {
     color: #fff;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 
@@ -919,7 +917,7 @@ Version:1.0
     color: #fff;
     background: transparent;
     position: relative;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .header.shop .all-category h3 {
@@ -985,7 +983,7 @@ Version:1.0
     -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
     transition: all 0.4s ease;
-    border-left: 3px solid rgb(24, 158, 255);
+    border-left: 3px solid #f7941d;
     -webkit-box-shadow: 0px 5px 15px #0000000a;
     -moz-box-shadow: 0px 5px 15px #0000000a;
     box-shadow: 0px 5px 15px #0000000a;
@@ -1002,7 +1000,7 @@ Version:1.0
 }
 
 .header.shop .main-category li a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .header.shop .main-category .main-mega {
@@ -1020,7 +1018,7 @@ Version:1.0
     background: #fff;
     border: none;
     padding: 30px;
-    border-left: 3px solid rgb(24, 158, 255);
+    border-left: 3px solid #f7941d;
     opacity: 0;
     visibility: hidden;
     -webkit-transition: all 0.4s ease;
@@ -1062,7 +1060,7 @@ Version:1.0
 
 .header.shop .main-category li .mega-menu .single-menu .title-link {
     margin-bottom: 20px;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
     padding: 2px 13px;
     border-radius: 3px;
@@ -1084,7 +1082,7 @@ Version:1.0
 }
 
 .header.shop .main-category li .mega-menu .single-menu .inner-link a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     background: transparent;
 }
 
@@ -1115,7 +1113,7 @@ Version:1.0
 }
 
 .header.shop .nav li .new {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
     text-transform: uppercase;
     font-size: 9px;
@@ -1148,17 +1146,17 @@ Version:1.0
 
 .header.shop .nav li:hover a {
     color: #fff;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .header.shop.v2 .nav li:hover a {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     background: transparent;
 }
 
 .header.shop .nav li.active a {
     color: #fff;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .header.shop.v2 .nav li.active a {
@@ -1167,7 +1165,7 @@ Version:1.0
 }
 
 .header.shop.v2 .nav li.active a {
-    color: rgb(24, 158, 255) !important;
+    color: #f7941d !important;
 }
 
 .header.shop .nav .dropdown li {
@@ -1175,7 +1173,7 @@ Version:1.0
 }
 
 .header.shop .nav li .dropdown li:hover a {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .header.shop.v2 .nav li.active .dropdown li a {
@@ -1184,7 +1182,7 @@ Version:1.0
 
 .header.shop.v2 .nav li.active .dropdown li a:hover {
     color: #fff !important;
-    background: rgb(24, 158, 255) !important;
+    background: #f7941d !important;
 }
 
 .header.shop.v2 .nav li.active .dropdown li a:hover {
@@ -1192,7 +1190,7 @@ Version:1.0
 }
 
 .header.shop.v2 .nav li .dropdown li:hover a {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .header.shop .nav li .dropdown li a {
@@ -1218,11 +1216,11 @@ Version:1.0
 
 .header.shop.v2 .nav li .dropdown li a:hover {
     color: #fff !important;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .header.shop .nav li .dropdown li .dropdown.sub-dropdown li a:hover {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .header.shop .right-bar {
@@ -1239,7 +1237,7 @@ Version:1.0
 }
 
 .header.shop .right-bar .sinlge-bar.top-search a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .header.shop .right-bar .sinlge-bar .single-icon {
@@ -1249,14 +1247,14 @@ Version:1.0
 }
 
 .header.shop .right-bar .sinlge-bar .single-icon:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .header.shop .right-bar .sinlge-bar .single-icon .total-count {
     position: absolute;
     top: -7px;
     right: -8px;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     width: 18px;
     height: 18px;
     line-height: 18px;
@@ -1276,7 +1274,7 @@ Version:1.0
 }
 
 .header.shop .right-bar .sinlge-bar li a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .mobile-search {
@@ -1298,7 +1296,7 @@ Version:1.0
 }
 
 .header .search-top a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .header .search-form {
@@ -1362,7 +1360,7 @@ Version:1.0
 
 .header .search-form button:hover {
     color: #fff;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     border-color: transparent;
 }
 
@@ -1373,8 +1371,6 @@ Version:1.0
     width: 100%;
     z-index: 999;
 }
-
-.header.sticky .all-category {}
 
 .header.sticky .all-category h3 {
     cursor: pointer;
@@ -1406,7 +1402,7 @@ Version:1.0
 }
 
 .header.sticky.v2 .header-inner .nav li:hover a {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .header.sticky .header-inner .nav li .dropdown li a {
@@ -1472,8 +1468,6 @@ Version:1.0
     height: 470px;
 }
 
-.hero-slider .text-inner {}
-
 .hero-slider .hero-text {
     padding: 0 30px;
     margin-top: 100px;
@@ -1483,7 +1477,7 @@ Version:1.0
     line-height: 50px;
     font-size: 47px;
     font-weight: 700;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     margin-bottom: 20px;
 }
 
@@ -1516,7 +1510,7 @@ Version:1.0
 }
 
 .hero-slider .hero-text .btn:hover {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
 }
 
@@ -1528,7 +1522,7 @@ Version:1.0
 }
 
 .hero-area2 .single-slider.overlay:before {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     opacity: 0;
     visibility: hidden;
     transform: scale(0.9);
@@ -1592,8 +1586,6 @@ Version:1.0
     color: #fff;
 }
 
-.hero-area2 .single-slider .content .button {}
-
 .hero-area2 .single-slider .content .button .btn {
     padding: 9px 25px;
     border: 2px solid #fff;
@@ -1637,7 +1629,7 @@ Version:1.0
 }
 
 .hero-area2 .owl-carousel .owl-nav div:hover {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
 }
 
@@ -1653,8 +1645,6 @@ Version:1.0
 
 
 /* Hero Area 3 */
-
-.hero-area3 {}
 
 .hero-area3 .big-content {
     background-image: url('https://via.placeholder.com/850x530');
@@ -1683,10 +1673,8 @@ Version:1.0
 }
 
 .hero-area3 .big-content .title span {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
-
-.hero-area3 .big-content .des {}
 
 .hero-area3 .big-content .button {
     margin-top: 40px;
@@ -1730,10 +1718,8 @@ Version:1.0
 }
 
 .hero-area3 .small-content .title span {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
-
-.hero-area3 .small-content .des {}
 
 .hero-area3 .small-content .button {
     margin-top: 10px;
@@ -1749,8 +1735,8 @@ Version:1.0
 }
 
 .hero-area3 .small-content .button .btn:hover {
-    color: rgb(24, 158, 255);
-    border-color: rgb(24, 158, 255);
+    color: #f7941d;
+    border-color: #f7941d;
 }
 
 
@@ -1782,10 +1768,8 @@ Version:1.0
 }
 
 .hero-area4 .big-content .title span {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
-
-.hero-area4 .big-content .des {}
 
 .hero-area4 .big-content .button {
     margin-top: 40px;
@@ -1822,7 +1806,7 @@ Version:1.0
 }
 
 .hero-area4 .owl-carousel .owl-nav div:hover {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
 }
 
@@ -1881,12 +1865,12 @@ Version:1.0
 }
 
 .small-banner .single-banner h3 span {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .small-banner .single-banner p {
     font-size: 14px;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     font-weight: 500;
     margin-bottom: 5px;
     text-transform: capitalize;
@@ -1904,8 +1888,8 @@ Version:1.0
 }
 
 .small-banner .single-banner a:hover {
-    color: rgb(24, 158, 255);
-    border-color: rgb(24, 158, 255);
+    color: #f7941d;
+    border-color: #f7941d;
 }
 
 
@@ -1951,12 +1935,12 @@ Version:1.0
 }
 
 .midium-banner .single-banner h3 span {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .midium-banner .single-banner p {
     font-size: 13px;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     font-weight: 500;
     margin-bottom: 5px;
     text-transform: uppercase;
@@ -1982,7 +1966,7 @@ Version:1.0
 }
 
 .midium-banner .single-banner a:hover {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
 }
 
@@ -2045,7 +2029,7 @@ Version:1.0
 
 .most-popular .owl-carousel .owl-nav div:hover {
     color: #fff;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .most-popular .owl-carousel .owl-controls .owl-nav .owl-prev {
@@ -2103,7 +2087,7 @@ Version:1.0
 
 .product-area .nav-tabs li a.active,
 .product-area .nav-tabs li:hover a {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
     border-color: transparent;
 }
@@ -2142,7 +2126,7 @@ Version:1.0
 }
 
 .single-product .product-img a span.price-dec {
-    background-color: rgb(24, 158, 255);
+    background-color: #f7941d;
     display: inline-block;
     font-size: 11px;
     color: #fff;
@@ -2229,7 +2213,7 @@ Version:1.0
 .single-product .product-img .product-action a span {
     visibility: hidden;
     position: absolute;
-    background: rgb(24, 158, 255) !important;
+    background: #f7941d !important;
     color: #fff !important;
     text-align: center;
     padding: 5px 12px;
@@ -2254,14 +2238,14 @@ Version:1.0
     content: "";
     right: 0;
     bottom: -12px;
-    border: 6px solid rgb(24, 158, 255);
+    border: 6px solid #f7941d;
     border-left: 0px solid transparent;
     border-right: 6px solid transparent;
     border-bottom: 6px solid transparent;
 }
 
 .single-product .product-img .product-action a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .single-product .product-img .product-action a:hover span {
@@ -2311,7 +2295,7 @@ Version:1.0
 }
 
 .single-product .product-img .product-action-2 a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .single-product .button-head {
@@ -2400,8 +2384,11 @@ Version:1.0
 }
 
 .single-product .product-content h3 {
-    line-height: 22px;
     padding-left: 10px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 
 .single-product .product-content h3 a {
@@ -2411,7 +2398,7 @@ Version:1.0
 }
 
 .single-product .product-content h3 a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .single-product .product-content .product-price {
@@ -2474,8 +2461,8 @@ Version:1.0
     box-shadow: none;
     border: none;
     height: 4px;
-    background: rgb(24, 158, 255);
-    color: rgb(24, 158, 255);
+    background: #f7941d;
+    color: #f7941d;
     border-radius: 0px;
 }
 
@@ -2506,8 +2493,8 @@ Version:1.0
 }
 
 .shop .range .ui-slider-handle.ui-state-default.ui-corner-all {
-    background: rgb(24, 158, 255);
-    color: rgb(24, 158, 255);
+    background: #f7941d;
+    color: #f7941d;
     cursor: pointer;
 }
 
@@ -2577,9 +2564,9 @@ Version:1.0
 
 .nutloc {
     background: rgb(255, 255, 255);
-    border: 1px solid rgb(24, 158, 255);
+    border: 1px solid #f7941d;
     font-size: 12px;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     padding: 5px 15px;
     width: 99px;
     margin-top: 8px;
@@ -2606,7 +2593,7 @@ Version:1.0
 }
 
 .shop-sidebar .categor-list li a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 
@@ -2654,7 +2641,7 @@ Version:1.0
 }
 
 .shop-sidebar .single-post .content h5 a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shop-sidebar .single-post .content .price {
@@ -2675,7 +2662,7 @@ Version:1.0
 }
 
 .shop-sidebar .single-post .reviews li.yellow i {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 
@@ -2724,8 +2711,6 @@ Version:1.0
     font-weight: 500;
 }
 
-.shop .single-shorter option {}
-
 .shop .nice-select {
     clear: initial;
     display: inline-block;
@@ -2755,7 +2740,7 @@ Version:1.0
 }
 
 .shop .nice-select .list li:hover {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
 }
 
@@ -2786,7 +2771,7 @@ Version:1.0
 
 .shop .view-mode li.active a,
 .shop .view-mode li:hover a {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
     border-color: transparent;
 }
@@ -2838,7 +2823,7 @@ Version:1.0
 }
 
 .shop.single .flex-control-thumbs li img.flex-active {
-    border-color: rgb(24, 158, 255);
+    border-color: #f7941d;
 }
 
 .shop.single .flex-direction-nav {
@@ -2865,8 +2850,6 @@ Version:1.0
     border-bottom: 1px solid #eee;
 }
 
-.shop.single .product-des {}
-
 .shop.single .product-des .total-review {
     font-size: 14px;
     font-weight: 500;
@@ -2875,7 +2858,7 @@ Version:1.0
 }
 
 .shop.single .product-des .total-review:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shop.single .product-des .rating {
@@ -2888,7 +2871,7 @@ Version:1.0
 }
 
 .shop.single .product-des .rating li i {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shop.single .product-des .rating li.dark i {
@@ -2909,14 +2892,12 @@ Version:1.0
 .shop.single .product-des .price span {
     display: inline-block;
     margin-right: 15px;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shop.single .product-des .product-buy {
     margin-top: 40px;
 }
-
-.shop.single .product-des .product-buy {}
 
 .shop.single .product-des .color {
     display: inline-block;
@@ -2977,7 +2958,7 @@ Version:1.0
 }
 
 .shop.single .product-des .color ul li .two {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .shop.single .product-des .color ul li .three {
@@ -3027,7 +3008,7 @@ Version:1.0
 }
 
 .shop.single .product-des .size ul li a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shop.single .quantity {
@@ -3079,7 +3060,7 @@ Version:1.0
 }
 
 .shop.single .quantity .button .btn:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shop.single .quantity .input-number {
@@ -3113,7 +3094,7 @@ Version:1.0
 
 .shop.single .add-to-cart .btn:hover {
     color: #fff;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .shop.single .add-to-cart .btn.min {
@@ -3137,7 +3118,7 @@ Version:1.0
 }
 
 .shop.single .cat a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shop.single .availability {
@@ -3182,12 +3163,10 @@ Version:1.0
 
 .shop.single .nav-tabs li a.active,
 .shop.single .nav-tabs li:hover a {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
     border-color: transparent;
 }
-
-.shop.single .tab-single {}
 
 .shop.single .single-des {
     margin-top: 35px;
@@ -3198,8 +3177,6 @@ Version:1.0
     font-weight: 500;
     font-size: 22px;
 }
-
-.shop.single .single-des ul {}
 
 .shop.single .single-des ul li {
     color: #555;
@@ -3216,28 +3193,18 @@ Version:1.0
     top: 9px;
     height: 7px;
     width: 7px;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     border-radius: 50%;
 }
-
-.shop.single .single-des p {}
 
 .shop.single .item-info {
     width: 100%;
 }
 
-.shop.single .item-info tbody {}
-
-.shop.single .item-info tbody tr {}
-
 .shop.single .item-info tbody td {
     border: 1px solid #e6e6e6;
     padding: 10px;
 }
-
-.shop.single .item-info tbody strong {}
-
-.shop.single .ratting-main {}
 
 .shop.single .avg-ratting {
     margin-bottom: 20px;
@@ -3291,14 +3258,12 @@ Version:1.0
     line-height: 18px;
 }
 
-.shop.single .ratting-main .single-rating ul {}
-
 .shop.single .ratting-main .single-rating ul li {
     display: inline-block;
 }
 
 .shop.single .ratting-main .single-rating ul li i {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     font-size: 14px;
 }
 
@@ -3363,7 +3328,7 @@ Version:1.0
 }
 
 .shop.single .comment-review .rating li i {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     font-size: 14px;
 }
 
@@ -3375,8 +3340,6 @@ Version:1.0
     font-size: 20px;
     color: #333;
 }
-
-.shop.single .avg-ratting {}
 
 .shop.single .form .form-group input {
     width: 100%;
@@ -3458,7 +3421,7 @@ Version:1.0
     content: "";
     height: 2px;
     width: 50px;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     left: 0;
     bottom: -1px;
 }
@@ -3495,7 +3458,7 @@ Version:1.0
     line-height: 40px;
     font-size: 14px;
     color: #fff;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     border-radius: 100%;
     display: block;
     position: absolute;
@@ -3551,13 +3514,13 @@ Version:1.0
 }
 
 .shop-home-list .single-list .content a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shop-home-list .single-list .content .price {
     margin-top: 15px;
     font-weight: 500;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     display: inline-block;
     color: #fff;
     padding: 2px 18px;
@@ -3603,7 +3566,7 @@ Version:1.0
 }
 
 .shopping-summery tbody tr {
-    border-bottom: 1px solid rgb(24, 158, 255);
+    border-bottom: 1px solid #f7941d;
     margin-top: 20px;
 }
 
@@ -3630,7 +3593,7 @@ Version:1.0
 }
 
 .shopping-summery tbody .product-name a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shopping-summery tbody .product img {
@@ -3642,13 +3605,11 @@ Version:1.0
 }
 
 .shopping-summery tbody .product:hover img {
-    border-color: rgb(24, 158, 255);
+    border-color: #f7941d;
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
     transform: rotate(360deg);
 }
-
-.shopping-cart .border {}
 
 .shopping-cart .table .remove-icon {
     font-size: 16px;
@@ -3663,8 +3624,6 @@ Version:1.0
 .shopping-summery tbody .price {
     text-align: center;
 }
-
-.shopping-summery tbody .price span {}
 
 .shopping-cart tbody .qty .input-group {
     width: 175px;
@@ -3702,7 +3661,7 @@ Version:1.0
 }
 
 .shopping-cart .qty .button .btn:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shopping-cart .qty .input-number {
@@ -3719,25 +3678,17 @@ Version:1.0
     text-align: center;
 }
 
-.shopping-summery tbody .total-amount span {}
-
 .shopping-summery tbody .action {
     text-align: center;
 }
 
 .shopping-summery tbody .action a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shopping-cart .total-amount {
     margin-top: 5px;
 }
-
-.shopping-cart .total-amount .left {}
-
-.shopping-cart .total-amount .left .coupon {}
-
-.shopping-cart .total-amount .left .coupon form {}
 
 .shopping-cart .total-amount .left .coupon form input {
     width: 220px;
@@ -3762,7 +3713,7 @@ Version:1.0
 
 .shopping-cart .total-amount .left .coupon form .btn:hover {
     background: #fff;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shopping-cart .total-amount .left label {
@@ -3836,8 +3787,6 @@ Version:1.0
     padding: 20px
 }
 
-.shopping-cart .total-amount .right ul {}
-
 .shopping-cart .total-amount .right ul li {
     font-size: 15px;
     font-weight: 400;
@@ -3887,9 +3836,9 @@ Version:1.0
 
 .row.diachi {
     border-radius: 5px;
-    border-style: solid;
+    border-style: dashed;
     border-width: 1px;
-    border-color: #ccc;
+    border-color: #f7941d;
     padding: 15px;
 }
 
@@ -3911,8 +3860,6 @@ Version:1.0
     margin-top: 12px;
     margin-bottom: 30px;
 }
-
-.shop.checkout .form {}
 
 .shop.checkout .form .form-group {
     margin-bottom: 25px;
@@ -4028,7 +3975,7 @@ Version:1.0
     bottom: 0;
     height: 2px;
     width: 50px;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .shop.checkout .single-widget .content ul {
@@ -4177,7 +4124,7 @@ Version:1.0
     bottom: 0;
     height: 2px;
     width: 50px;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     margin-left: -25px;
 }
 
@@ -4245,7 +4192,7 @@ Version:1.0
 }
 
 .shop.login .form .btn:hover {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
 }
 
@@ -4317,7 +4264,7 @@ Version:1.0
 }
 
 .shop.login .login-form .lost-pass:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 
@@ -4334,8 +4281,6 @@ Version:1.0
     margin-top: 50px;
 }
 
-.shop-list .list-content .product-price {}
-
 .shop-list .list-content .product-price span {
     font-size: 14px;
     font-weight: 600;
@@ -4348,7 +4293,7 @@ Version:1.0
 }
 
 .shop-list .list-content .title a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shop-list .list-content .title a {
@@ -4365,7 +4310,7 @@ Version:1.0
 }
 
 .shop-list .list-content .rating li i {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shop-list .list-content .rating li.total {
@@ -4373,8 +4318,6 @@ Version:1.0
     font-size: 12px;
     margin-left: 3px;
 }
-
-.shop-list .list-content .des {}
 
 .shop-list .list-content .btn {
     margin-top: 22px;
@@ -4391,7 +4334,7 @@ Version:1.0
 }
 
 .shop-list .list-content .btn:hover {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
     border-color: transparent;
 }
@@ -4430,7 +4373,7 @@ Version:1.0
 
 .pagination .pagination-list li.active a,
 .pagination .pagination-list li:hover a {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
     border-color: transparent;
 }
@@ -4438,8 +4381,6 @@ Version:1.0
 .pagination .pagination-list li a i {
     font-size: 13px;
 }
-
-.pagination .pagination-list li a i {}
 
 .blog-grids.pagination {
     margin-top: 50px;
@@ -4510,7 +4451,7 @@ Version:1.0
     margin-top: 35px;
     font-size: 35px;
     font-weight: 700;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .cown-down .content .price s {
@@ -4637,7 +4578,7 @@ Version:1.0
 }
 
 .shop-newsletter .inner p span {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shop-newsletter .newsletter-inner {
@@ -4673,7 +4614,7 @@ Version:1.0
     padding: 10px 30px;
     position: relative;
     top: 0;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
     left: -4px;
     border-radius: 0 30px 30px 0;
@@ -4733,13 +4674,13 @@ Version:1.0
     bottom: -1px;
     height: 2px;
     width: 60px;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .about-us .about-content h3 span {
     display: inline-block;
     font-weight: 700;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .about-us .about-content p {
@@ -4762,12 +4703,12 @@ Version:1.0
 }
 
 .about-us .about-content .button .btn:hover {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
 }
 
 .about-us .about-content .button .btn.primary {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
 }
 
@@ -4805,7 +4746,7 @@ Version:1.0
     height: 64px;
     width: 64px;
     line-height: 64px;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
     font-size: 20px;
     border-radius: 100%;
@@ -4825,7 +4766,7 @@ Version:1.0
 
 .about-us .about-img .video:hover {
     background: #fff;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .about-us .about-img:hover .video {
@@ -4917,7 +4858,7 @@ Version:1.0
 }
 
 .team .single-team .social-links .social li a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 
@@ -4961,7 +4902,7 @@ Version:1.0
 }
 
 .shop-blog .shop-single-blog .content .title:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .shop-blog .shop-single-blog .content .date {
@@ -4980,7 +4921,7 @@ Version:1.0
 }
 
 .shop-blog .shop-single-blog .content .more-btn:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 
@@ -5039,7 +4980,7 @@ Version:1.0
     bottom: -1px;
     height: 100%;
     width: 3px;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .main-sidebar .single-widget:last-child {
@@ -5087,7 +5028,7 @@ Version:1.0
 }
 
 .main-sidebar .search .button:hover {
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
 }
 
@@ -5097,8 +5038,6 @@ Version:1.0
 .main-sidebar .categor-list {
     margin-top: 15px;
 }
-
-.main-sidebar .categor-list li {}
 
 .main-sidebar .categor-list li {
     margin-bottom: 10px;
@@ -5115,7 +5054,7 @@ Version:1.0
 }
 
 .main-sidebar .categor-list li a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     padding-left: 7px;
 }
 
@@ -5140,8 +5079,6 @@ Version:1.0
 
 /* Recent Post */
 
-.main-sidebar .recent-post {}
-
 .main-sidebar .single-post {
     position: relative;
     border-bottom: 1px solid #ddd;
@@ -5153,8 +5090,6 @@ Version:1.0
     padding-bottom: 0px;
     border: none;
 }
-
-.main-sidebar .single-post .image {}
 
 .main-sidebar .single-post .image img {
     float: left;
@@ -5183,10 +5118,8 @@ Version:1.0
 }
 
 .main-sidebar .single-post .content h5 a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
-
-.main-sidebar .single-post .content .comment {}
 
 .main-sidebar .single-post .content .comment li {
     color: #888;
@@ -5207,8 +5140,6 @@ Version:1.0
 
 
 /* Blog Tags */
-
-.main-sidebar .side-tags {}
 
 .main-sidebar .side-tags .tag {
     margin-top: 40px;
@@ -5232,14 +5163,12 @@ Version:1.0
 
 .main-sidebar .side-tags .tag a:hover {
     color: #fff;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     border-color: transparent;
 }
 
 
 /* Blog Newslatter CSS */
-
-.main-sidebar .newsletter {}
 
 .main-sidebar .newsletter .letter-inner {
     position: relative;
@@ -5280,7 +5209,7 @@ Version:1.0
 .main-sidebar .newsletter .letter-inner .form-inner a {
     height: 42px;
     width: 100%;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     color: #fff;
     font-size: 14px;
     display: block;
@@ -5338,7 +5267,7 @@ Version:1.0
 }
 
 .blog-single .blog-meta .author i {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     margin-right: 10px;
     font-size: 13px;
 }
@@ -5366,11 +5295,11 @@ Version:1.0
 
 .blog-single .blog-meta span a i {
     margin-right: 10px;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .blog-single .blog-meta span a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .blog-single .content p {
@@ -5393,12 +5322,12 @@ Version:1.0
     color: #555;
     border: none;
     margin-bottom: 25px;
-    border-left: 3px solid rgb(24, 158, 255);
+    border-left: 3px solid #f7941d;
 }
 
 .blog-single blockquote i {
     font-size: 30px;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     position: absolute;
     left: 20px;
     top: 20px;
@@ -5446,7 +5375,7 @@ Version:1.0
 
 .blog-single .share-social .content-tags .tag-inner li a:hover {
     color: #fff;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 
@@ -5474,10 +5403,8 @@ Version:1.0
     bottom: -1px;
     height: 100%;
     width: 3px;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
-
-.blog-single .comments {}
 
 .blog-single .comments .single-comment {
     position: relative;
@@ -5497,8 +5424,6 @@ Version:1.0
     position: absolute;
     left: 0;
 }
-
-.blog-single .single-comment .content {}
 
 .blog-single .single-comment .content h4 {
     color: #333;
@@ -5530,8 +5455,6 @@ Version:1.0
     line-height: 22px;
 }
 
-.blog-single .single-comment .content .button {}
-
 .blog-single .single-comment .content .btn {
     display: inline-block;
     color: #666;
@@ -5550,7 +5473,7 @@ Version:1.0
 }
 
 .blog-single .single-comment .content a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 
@@ -5579,7 +5502,7 @@ Version:1.0
     bottom: -1px;
     height: 100%;
     width: 3px;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .blog-single .reply .form-group {
@@ -5655,7 +5578,7 @@ Version:1.0
     font-size: 17px;
     font-weight: 500;
     margin-bottom: 5px;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .contact-us .title h3 {
@@ -5686,7 +5609,7 @@ Version:1.0
     text-align: center;
     border-radius: 3px;
     line-height: 40px;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
 }
 
 .contact-us .single-info ul .contact-us .single-info ul li {
@@ -5702,7 +5625,7 @@ Version:1.0
 }
 
 .contact-us .single-info ul li a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 .contact-us .single-info .title {
@@ -5785,7 +5708,7 @@ Version:1.0
     margin-bottom: 10px;
     display: block;
     font-weight: 600;
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     text-transform: uppercase;
     font-size: 30px;
 }
@@ -5827,7 +5750,7 @@ Version:1.0
 }
 
 .error-page .error-inner h2 {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     margin-bottom: 0;
     font-weight: 700;
     font-size: 100px;
@@ -5872,7 +5795,7 @@ Version:1.0
 
 .error-page .button .btn:hover {
     color: #fff;
-    background: rgb(24, 158, 255);
+    background: #f7941d;
     border-color: transparent;
 }
 
@@ -5906,8 +5829,6 @@ Version:1.0
     margin-bottom: 20px;
 }
 
-.footer .about .logo img {}
-
 .footer .about .text {
     color: #fff;
     font-weight: 400;
@@ -5924,12 +5845,10 @@ Version:1.0
 }
 
 .footer .about .call a {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     font-size: 20px;
     font-weight: 600;
 }
-
-.footer .links ul {}
 
 .footer .links ul li {
     display: block;
@@ -5946,15 +5865,9 @@ Version:1.0
 }
 
 .footer .links ul li a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
     padding-left: 10px;
 }
-
-.footer .social {}
-
-.footer .social .contact {}
-
-.footer .social .contact ul {}
 
 .footer .social .contact ul li {
     color: #fff;
@@ -5987,20 +5900,16 @@ Version:1.0
 }
 
 .footer .social ul li a:hover {
-    color: rgb(24, 158, 255);
+    color: #f7941d;
 }
 
 
 /* Copyright */
 
-.footer .copyright {}
-
 .footer .copyright .inner {
     border-top: 1px solid #eeeeee3d;
     padding: 20px 0;
 }
-
-.footer .copyright .left {}
 
 .footer .copyright .right {
     float: right;
