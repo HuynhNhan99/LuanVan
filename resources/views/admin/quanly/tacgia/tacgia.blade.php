@@ -24,9 +24,9 @@
             </div>
             <div class="col-lg-4">
               <div class="input-group md-form form-sm form-2 pl-0">
-                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search" id="timtg1">
                 <div class="input-group-append">
-                  <span class="input-group-text red lighten-3" id="basic-text1" style="color: white; background:#4d83ff;border-color: #4d83ff;"><i class="fas fa-search text-grey" aria-hidden="true"></i></span>
+                  <button class="input-group-text red lighten-3" id="timtg" style="color: white; background:#4d83ff;border-color: #4d83ff; "><i class="fas fa-search text-grey" aria-hidden="true"></i></button>
                 </div>
               </div>
             </div>
@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover" id="tim-tg">
               <thead>
                 <tr>
                   <th>STT</th>

@@ -18,11 +18,9 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
+                    <h4 class="card-title">Danh sách các đánh giá</h4>
                     <div class="row" style="margin-bottom: 20px;">
-                        <div class="col-lg-6">
-                            <h4 class="card-title">Danh sách các đánh giá</h4>
-                        </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-7">
                             <div class="input-group md-form form-sm form-2 pl-0">
                                 <input class="form-control right my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
                                 <div class="input-group-append">
@@ -30,13 +28,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-lg-3">
+                            <select class="form-control" id="sapxepdh" style="width:100%;">
+                                <option value="0">--- Điểm đánh giá --- </option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
                         <div class="col-lg-2">
-                        <select class="form-control" id="sapxepdh" style="width:100%;">
-                            <option value="0">--- Trạng thái --- </option>
-                            <option value="1">Theo giá</option>
-                            <option value="2">Theo tên</option>
-                            <option value="3">Theo ngày nhập</option>
-                        </select>
+                            <select class="form-control" id="sapxepdh" style="width:100%;">
+                                <option value="0">--- Trạng thái --- </option>
+                                <option value="1">Ẩn</option>
+                                <option value="2">Hiện</option>
+                            </select>
                         </div>
                     </div>
                     <div class="table-responsive">

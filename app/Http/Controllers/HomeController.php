@@ -30,6 +30,15 @@ class HomeController extends Controller
             ->groupBy('id_sach')
             ->orderBy('soluong', 'desc')
             ->get();
+        $list_km =  DB::table('dausach')
+            ->join('ctkhuyenmai', 'dausach.id_sach', '=', 'ctkhuyenmai.id_sach')
+            ->join('khuyenmai', 'ctkhuyenmai.id_km', '=', 'khuyenmai.id_km')
+            ->orderBy('khuyenmai.phantram_km', 'desc')
+            ->get();
+        $list_tl =  DB::table('dausach')
+            ->join('theloai', 'dausach.id_tl', '=', 'theloai.id_tl')
+            ->where('theloai.id_tl',1)
+            ->get();
         $array_sach = [];
         foreach ($list as $key => $sach) {
             $km =  DB::table('khuyenmai')
@@ -87,31 +96,130 @@ class HomeController extends Controller
                 ];
             }
         }
-        
+        $array_km = [];
+        foreach ($list_km as $key => $sach) {
+            $dg =  DB::table('danhgia')
+                ->selectRaw('round(avg(danhgia.diem_dg)) as diemtb,count(danhgia.id_sach) as soluong, dausach.id_sach as idsach, dausach.ten_sach as tensach, dausach.hinh_anh as hinhanh, dausach.gia_sach as giasach')
+                ->join('dausach', 'dausach.id_sach', '=', 'danhgia.id_sach')
+                ->where('dausach.id_sach', $sach->id_sach)
+                ->groupBy('dausach.id_sach')
+                ->first();
+            if ($dg) {
+                $array_km[$key] = [
+                    "id_sach" => $dg->idsach,
+                    "ten_sach" => $dg->tensach,
+                    "hinh_anh" => $dg->hinhanh,
+                    "gia_sach" => $dg->giasach,
+                    "diemtb" => $dg->diemtb,
+                    "soluong" => $dg->soluong,
+                    "khuyenmai" => $sach->phantram_km,
+                ];
+            } else {
+                $array_km[$key] = [
+                    "id_sach" => $sach->id_sach,
+                    "ten_sach" => $sach->ten_sach,
+                    "hinh_anh" => $sach->hinh_anh,
+                    "gia_sach" => $sach->gia_sach,
+                    "diemtb" => 0,
+                    "soluong" => 0,
+                    "khuyenmai" => $sach->phantram_km,
+                ];
+            }
+        }
+        $array_tl = [];
+        foreach ($list_tl as $key => $sach) {
+            $km =  DB::table('khuyenmai')
+                ->join('ctkhuyenmai', 'ctkhuyenmai.id_km', '=', 'khuyenmai.id_km')
+                ->join('dausach', 'dausach.id_sach', '=', 'ctkhuyenmai.id_sach')
+                ->where('dausach.id_sach', $sach->id_sach)
+                ->where('ngay_ket_thuc','>=',now())
+                ->groupBy('dausach.id_sach')
+                ->first();
+            $dg =  DB::table('danhgia')
+                ->selectRaw('round(avg(danhgia.diem_dg)) as diemtb,count(danhgia.id_sach) as soluong, dausach.id_sach as idsach, dausach.ten_sach as tensach, dausach.hinh_anh as hinhanh, dausach.gia_sach as giasach')
+                ->join('dausach', 'dausach.id_sach', '=', 'danhgia.id_sach')
+                ->where('dausach.id_sach', $sach->id_sach)
+                ->groupBy('dausach.id_sach')
+                ->first();
+            if ($dg && $km) {
+                $array_tl[$key] = [
+                    "id_sach" => $dg->idsach,
+                    "ten_sach" => $dg->tensach,
+                    "hinh_anh" => $dg->hinhanh,
+                    "gia_sach" => $dg->giasach,
+                    "diemtb" => $dg->diemtb,
+                    "soluong" => $dg->soluong,
+                    "khuyenmai" => $km->phantram_km,
+                ];
+            } elseif ($dg) {
+                $array_tl[$key] = [
+                    "id_sach" => $dg->idsach,
+                    "ten_sach" => $dg->tensach,
+                    "hinh_anh" => $dg->hinhanh,
+                    "gia_sach" => $dg->giasach,
+                    "diemtb" => $dg->diemtb,
+                    "soluong" => $dg->soluong,
+                    "khuyenmai" => 0,
+                ];
+            } elseif ($km) {
+                $array_tl[$key] = [
+                    "id_sach" => $sach->id_sach,
+                    "ten_sach" => $sach->ten_sach,
+                    "hinh_anh" => $sach->hinh_anh,
+                    "gia_sach" => $sach->gia_sach,
+                    "diemtb" => 0,
+                    "soluong" => 0,
+                    "khuyenmai" =>  $km->phantram_km,
+                ];
+            } else {
+                $array_tl[$key] = [
+                    "id_sach" => $sach->id_sach,
+                    "ten_sach" => $sach->ten_sach,
+                    "hinh_anh" => $sach->hinh_anh,
+                    "gia_sach" => $sach->gia_sach,
+                    "diemtb" => 0,
+                    "soluong" => 0,
+                    "khuyenmai" => 0,
+                ];
+            }
+        }
 
         return view('home.content')
             ->with('list_theloai', $list_theloai)
             ->with('list_nxb', $list_nxb)
             ->with('list_tacgia', $list_tacgia)
             ->with('list_ncc', $list_ncc)
-            ->with('dausach', $array_sach);
-        // ->with('sachmoi',$array_sachmoi);
+            ->with('dausach', $array_sach)
+            ->with('khuyenmai',$array_km)
+            ->with('theloai',$array_tl);
     }
     public function chitiet($sach_id)
     {
         //chi tiết sách với khuyến mãi 
         $tl_sach = DB::table('dausach')
+            ->selectRaw('sum(sl_nhap) as sl_nhap, dausach.ten_sach, dausach.hinh_anh, dausach.gia_sach, dausach.id_sach,tacgia.ten_tg,theloai.ten_tl,theloai.id_tl, ten_ncc, chieu_rong, chieu_dai, so_trang, ten_nxb, dausach.mo_ta,khuyenmai.phantram_km ')
             ->join('ctkhuyenmai', 'dausach.id_sach', '=', 'ctkhuyenmai.id_sach')
+            ->join('ngaynhaphang', 'dausach.id_sach', '=', 'ngaynhaphang.id_sach')
             ->join('khuyenmai', 'ctkhuyenmai.id_km', '=', 'khuyenmai.id_km')
             ->join('theloai', 'dausach.id_tl', '=', 'theloai.id_tl')
             ->join('tacgia', 'dausach.id_tg', '=', 'tacgia.id_tg')
             ->join('nxb', 'dausach.id_nxb', '=', 'nxb.id_nxb')
             ->join('nhacungcap', 'dausach.id_ncc', '=', 'nhacungcap.id_ncc')
             ->where('dausach.id_sach', $sach_id)
-            ->groupBy('dausach.id_sach')->first();
+            ->first();
+        $sl_ban =  DB::table('donhang')
+            ->selectRaw('sum(ctgiohang.so_luong) as soluong, dausach.id_sach')
+            ->join('ctgiohang', 'donhang.id_dh', '=', 'ctgiohang.id_dh')
+            ->join('dausach', 'ctgiohang.id_sach', '=', 'dausach.id_sach')
+            ->where('dausach.id_sach',$sach_id)
+            ->groupBy('dausach.id_sach')
+            ->orderBy('soluong', 'desc')
+            ->first();
         if ($tl_sach == null) {
             $tl_sach = DB::table('dausach')
+            ->selectRaw('sum(sl_nhap) as sl_nhap, dausach.ten_sach, dausach.hinh_anh, dausach.gia_sach, dausach.id_sach,tacgia.ten_tg,theloai.ten_tl,theloai.id_tl, ten_ncc, chieu_rong, chieu_dai, so_trang, ten_nxb, dausach.mo_ta,khuyenmai.phantram_km ')
             ->join('theloai', 'dausach.id_tl', '=', 'theloai.id_tl')
+            ->join('ngaynhaphang', 'dausach.id_sach', '=', 'ngaynhaphang.id_sach')
             ->join('tacgia', 'dausach.id_tg', '=', 'tacgia.id_tg')
             ->join('nxb', 'dausach.id_nxb', '=', 'nxb.id_nxb')
             ->join('nhacungcap', 'dausach.id_ncc', '=', 'nhacungcap.id_ncc')
@@ -219,7 +327,7 @@ class HomeController extends Controller
                 ];
             }
         }
-        return view('home.page.chitiet')->with('danh_gia', $array)->with('tong_dg', $tong_dg)->with('kh_dg', $kh_dg)->with('danhgia', $rating)->with('sach', $tl_sach)->with('sach_tuongtu', $array_sachtt);
+        return view('home.page.chitiet')->with('danh_gia', $array)->with('sl_ban', $sl_ban)->with('tong_dg', $tong_dg)->with('kh_dg', $kh_dg)->with('danhgia', $rating)->with('sach', $tl_sach)->with('sach_tuongtu', $array_sachtt);
     }
 
     public function TL1_sach(Request $request)
@@ -354,7 +462,7 @@ class HomeController extends Controller
         return dd($thongke);
     }
 
-
+// quản lý khuyến mãi
     public function khuyen_mai()
     {
         $list_theloai = DB::table('dausach')
@@ -363,6 +471,16 @@ class HomeController extends Controller
             ->get();
         $tl = DB::table('theloai')->get();
         return view('admin.quanly.Khuyenmai.add')->with('tl', $tl)->with('list_theloai', $list_theloai);
+    }
+    public function chitiet_km($id_km)
+    {
+        $km = DB::table('khuyenmai')
+            ->join('ctkhuyenmai', 'khuyenmai.id_km', '=', 'ctkhuyenmai.id_km')
+            ->join('dausach', 'dausach.id_sach', '=', 'ctkhuyenmai.id_sach')
+            ->where('khuyenmai.id_km', $id_km)
+            ->get();
+        $tenkm = DB::table('khuyenmai')->where('id_km',$id_km)->first();
+        return view('admin.quanly.Khuyenmai.chitiet')->with('tenkm', $tenkm)->with('ctkm', $km);
     }
     public function tl_km(Request $request)
     {
@@ -396,11 +514,25 @@ class HomeController extends Controller
         }
         return Redirect::to('/khuyen-mai');
     }
-
-    public function list_km(Request $request)
+    public function list_km()
     {
         $km = DB::table('khuyenmai')->get();
         
         return view('admin.quanly.Khuyenmai.list')->with('km',$km);
+    }
+    public function xoact_km($id_sach)
+    {
+        DB::table('ctkhuyenmai')->where('id_sach',$id_sach)->delete();
+        //Session::put('message','Đã xóa thành công!');
+        return Redirect::to('/list-km');
+    }
+    public function tim_km(Request $request)
+    {
+        $km = DB::table('khuyenmai')
+            ->where('ten_km', 'like', '%' . $request->timkiem . '%')
+            ->orWhere('phantram_km', 'like', '%' . $request->timkiem . '%')
+            ->get();
+        
+        return view('admin.quanly.Khuyenmai.timkiem')->with('km',$km);
     }
 }

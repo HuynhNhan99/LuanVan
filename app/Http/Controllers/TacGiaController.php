@@ -42,4 +42,12 @@ class TacGiaController extends Controller
         DB::table('tacgia')->where('id_tg',$tacgia_id)->update($data);
         return Redirect::to('/list-tacgia');
     }
+
+    public function tim_tacgia(Request $request)
+    {
+        $list_tacgia = DB::table('tacgia')
+            ->where('ten_tg', 'like', '%' . $request->timkiem . '%')
+            ->get();
+        return view('admin.quanly.tacgia.timkiem')->with('list_tacgia',$list_tacgia);
+    }
 }

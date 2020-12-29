@@ -24,18 +24,18 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="input-group md-form form-sm form-2 pl-0">
-                                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
+                                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search" id="timkm1">
                                 <div class="input-group-append">
-                                    <span class="input-group-text red lighten-3" id="basic-text1" style="color: white; background:#4d83ff;border-color: #4d83ff;"><i class="fas fa-search text-grey" aria-hidden="true"></i></span>
+                                    <button class="input-group-text red lighten-3" id="timkm" style="color: white; background:#4d83ff;border-color: #4d83ff; "><i class="fas fa-search text-grey" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <button type="button" class="btn right btn-primary" data-toggle="modal" data-target="#Themncc" style="width:100%; height:100%">Thêm mới</button>
+                            <a href="khuyen-mai"><button type="button" class="btn right btn-primary" style="width:100%; height:100%">Thêm mới</button></a>
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="tim-km">
                             <thead>
                                 <tr>
                                     <th>STT</th>
@@ -43,7 +43,8 @@
                                     <th>Giảm giá</th>
                                     <th>Ngày bắt đầu</th>
                                     <th>Ngày kết thúc</th>
-                                    <th>Action</th>
+                                    <th>Chi tiết </th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,10 +55,8 @@
                                     <td>{{ $khuyenmai->phantram_km }}%</td>
                                     <td>{{ $khuyenmai->ngay_bat_dau }}</td>
                                     <td>{{ $khuyenmai->ngay_ket_thuc }}</td>
-                                    <td>
-                                        <a href="{{URL::to('/edit-ncc/'.$khuyenmai->id_km)}}"><i class="fa fa-edit"></i></a>
-                                        <a href="{{URL::to('/delete-ncc/'.$khuyenmai->id_km)}}"><i class="fas fa-trash "></i></a>
-                                    </td>
+                                    <td><a href="{{URL::to('/chitiet-km/'.$khuyenmai->id_km)}}"><i class="fas fa-info-circle"></i></a></td>
+                                   
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -68,44 +67,5 @@
         </div>
     </div>
 </div>
-
-<!-- Thêm -->
-<!-- <div class="modal fade" id="Themncc" tabindex="-1" role="dialog" aria-labelledby="Themncc" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="Themncc">Thêm Nhà xuất bản</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form class="forms-sample" action="{{URL::to('/add-ncc')}}" method="post">
-                <div class="modal-body">
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                        <label for="TrangThai">Tên Nhà cung cấp</label>
-                        <input class="form-control" id="TenNcc" name="ten_ncc"></input>
-                    </div>
-                    <div class="form-group">
-                        <label for="TrangThai">Số điện thoại</label>
-                        <input class="form-control" id="SdtNxb" name="sdt_ncc"></input>
-                    </div>
-                    <div class="form-group">
-                        <label for="TrangThai">Email</label>
-                        <input class="form-control" id="EmailNxb" name="email_ncc"></input>
-                    </div>
-                    <div class="form-group">
-                        <label for="TrangThai">Địa chỉ</label>
-                        <input class="form-control" id="DchiNcc" name="diachi_ncc"></input>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-primary">Thêm</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div> -->
 
 @endsection

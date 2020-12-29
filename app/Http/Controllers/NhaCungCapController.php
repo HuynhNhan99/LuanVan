@@ -48,4 +48,11 @@ class NhaCungCapController extends Controller
         DB::table('nhacungcap')->where('id_ncc',$ncc_id)->update($data);
         return Redirect::to('/list-ncc');
     }
+    public function tim_ncc(Request $request)
+    {
+        $list_ncc = DB::table('nhacungcap')
+            ->where('ten_ncc', 'like', '%' . $request->timkiem . '%')
+            ->get();
+        return view('admin.quanly.nhacungcap.timkiem')->with('list_ncc',$list_ncc);
+    }
 }

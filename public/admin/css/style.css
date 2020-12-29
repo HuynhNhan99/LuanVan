@@ -21460,15 +21460,8 @@ dl li {
     border-collapse: collapse !important;
 }
 
-.dataTables_wrapper .dataTable .btn {
-    padding: 0.1rem 1rem;
-    vertical-align: top;
-}
-
 .dataTables_wrapper .dataTable thead th {
     border-bottom-width: 0;
-    border: 1px solid rgba(151, 151, 151, 0.18);
-    padding: 1.7rem 0.9375rem;
     white-space: nowrap;
 }
 
@@ -21508,11 +21501,9 @@ dl li {
 }
 
 .dataTables_wrapper .dataTable tbody tr td {
-    border: 1px solid rgba(151, 151, 151, 0.18);
     color: #08113b;
-    white-space: nowrap;
     font-weight: 300;
-    padding: 1.1rem 0.9375rem;
+    padding: 15px;
 }
 
 .dataTables_wrapper .dataTable tbody tr:nth-child(odd) {

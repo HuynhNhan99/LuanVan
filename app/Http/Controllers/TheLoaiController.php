@@ -14,11 +14,7 @@ class TheLoaiController extends Controller
         $data_theloai=view('admin.quanly.theloai.theloai')->with('list_theloai',$list_theloai);
         return view('admin.index')->with('admin.quanly.nxb.nxb',$data_theloai);
     }
-    public function List_nxb(){
-        $list_nxb= DB::table('nxb')->get();
-        $data_nxb=view('admin.quanly.nxb.nxb')->with('list_nxb',$list_nxb);
-        return view('admin.index')->with('admin.quanly.nxb.nxb',$data_nxb);
-    }
+  
     public function add_theloai(Request $request){
         $data = array();
         $data['ten_tl']= $request->ten_tl;
@@ -42,5 +38,12 @@ class TheLoaiController extends Controller
         $data['ten_tl']= $request->ten_tl;
         DB::table('theloai')->where('id_tl',$theloai_id)->update($data);
         return Redirect::to('/list-theloai');
+    }
+    public function tim_theloai(Request $request)
+    {
+        $list_theloai = DB::table('theloai')
+            ->where('ten_tl', 'like', '%' . $request->timkiem . '%')
+            ->get();
+        return view('admin.quanly.theloai.timkiem')->with('list_theloai',$list_theloai);
     }
 }

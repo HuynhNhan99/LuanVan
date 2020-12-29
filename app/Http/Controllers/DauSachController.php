@@ -42,25 +42,24 @@ class DauSachController extends Controller
         $data['so_trang'] = $request->so_trang;
         $data['chieu_dai'] = $request->chieu_dai;
         $data['chieu_rong'] = $request->chieu_rong;
-        if($request->trang_thai){
-            $tt=$request->trang_thai;
-        }else{
-            $tt=1;
-        }
-        $data['trang_thai'] = $tt ;
         $data['ngon_ngu'] = $request->ngon_ngu;
         $data['id_ncc'] = $request->id_ncc;
         $data['id_nxb'] = $request->id_nxb;
         $data['id_tg'] = $request->id_tg;
-        $data['id_km'] = $request->id_km;
         $data['id_tl'] = $request->id_tl;
-        
+        $data['ngay_nhap'] = now();
         $get_image = $request->file('hinh_anh');
         if($get_image){
             $new_image = $get_image->getClientOriginalName();
             $get_image->move('public/uploads/anhsach',$new_image);
             $data['hinh_anh'] = $new_image;
             $sach_id=DB::table('dausach')->insertGetId($data);
+            $data_i = array();
+            $data_i['id_sach']=$sach_id;
+            $data_i['sl_nhap'] = $request->sl_nhap;
+            $data_i['ngay_nhap_hang'] = now();
+            DB::table('ngaynhaphang')->insert($data_i);
+            return Redirect::to('/add-sach');
             if($request->file('fhinh_anh')){
                 $data_i = array();
                 foreach ($request->file('fhinh_anh') as $image){

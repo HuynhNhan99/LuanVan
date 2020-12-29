@@ -20,11 +20,11 @@
         <div class="card-body">
           <h4 class="card-title">DANH SÁCH CÁC ĐƠN HÀNG</h4>
           <div class="row" style="margin-bottom: 20px;">
-            <div class="col-lg-5">
+            <div class="col-lg-6">
               <div class="input-group md-form form-sm form-2 pl-0">
-                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Tìm kiếm đơn hàng theo tên khách hàng" aria-label="Search" id="timdh1">
                 <div class="input-group-append">
-                  <span class="input-group-text red lighten-3" id="basic-text1" style="color: white; background:#4d83ff;border-color: #4d83ff;"><i class="fas fa-search text-grey" aria-hidden="true"></i></span>
+                  <button class="input-group-text red lighten-3" id="timdh" style="color: white; background:#4d83ff;border-color: #4d83ff; "><i class="fas fa-search text-grey" aria-hidden="true"></i></button>
                 </div>
               </div>
             </div>
@@ -39,7 +39,7 @@
                 <option value="5">Đơn hàng đã hủy</option>
               </select>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
               <select class="form-control" id="sapxepdh" style="width:100%;">
                 <option value="0">--- Sắp xếp --- </option>
                 <option value="1">Theo ngày đặt</option>
@@ -47,9 +47,7 @@
                 <option value="3">Theo trạng thái ĐH</option>
               </select>
             </div>
-            <div class="col-lg-2">
-              <button type="button" class="btn btn-primary">Duyệt</button>
-            </div>
+
           </div>
           <div class="table-responsive" id="loc-dh">
             <table class="table table-hover">

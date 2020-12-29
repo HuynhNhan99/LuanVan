@@ -6,6 +6,12 @@ use Illuminate\Support\Facades\Session;
 
 $kh = Session::get('id_kh');
 
+if(isset($sl_ban)){
+	$slban = $sl_ban->soluong;
+}else{
+	$slban = 0;
+}
+
 ?>
 <div class="container-fluid" style="background: #f9f9f9; padding-right: 0px;padding-left: 0px;">
 	<div class="breadcrumbs" style="background: white;">
@@ -88,7 +94,7 @@ $kh = Session::get('id_kh');
 												<i class="ti-minus"></i>
 											</button>
 										</div>
-										<input type="text" name="quant[1]" class="input-number" data-min="1" data-max="{{$sach->sl_sach}}" id="qty" value="1" style="border: 1px solid #eceded;width: 100%;text-align: center;height: 47px;border-radius: 0;overflow: hidden;padding: 0px 45px;">
+										<input type="text" name="quant[1]" class="input-number" data-min="1" data-max="{{$sach->sl_nhap - $slban}}" id="qty" value="1" style="border: 1px solid #eceded;width: 100%;text-align: center;height: 47px;border-radius: 0;overflow: hidden;padding: 0px 45px;">
 										<div class="button plus" style="    display: inline-block;position: absolute;top: 0;right: 0;border-radius: 0;overflow: hidden;">
 											<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
 												<i class="ti-plus"></i>
@@ -96,7 +102,7 @@ $kh = Session::get('id_kh');
 										</div>
 									</div>
 								</div>
-								@if($sach->sl_sach==0)
+								@if($sach->sl_nhap - $slban<=0)
 								<div class="row">
 									<div class="input-group">
 										<button type="button" class="btn btn-fefault cart " >

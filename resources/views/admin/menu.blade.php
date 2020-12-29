@@ -58,7 +58,7 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="list-danhgia">
+      <a class="nav-link" href="quanly-kho">
         <i class="mdi mdi-briefcase-check menu-icon"></i>
         <span class="menu-title">Quản lý Kho</span>
       </a>
@@ -83,8 +83,8 @@
       </a>
       <div class="collapse" id="km">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="khuyen-mai">Thêm khuyến mãi</a></li>
-          <li class="nav-item"> <a class="nav-link" href="khuyen-mai">Danh sách khuyến mãi</a></li>
+         
+          <li class="nav-item"> <a class="nav-link" href="list-km">Danh sách khuyến mãi</a></li>
 
         </ul>
       </div>

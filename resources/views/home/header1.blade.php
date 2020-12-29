@@ -95,14 +95,14 @@ $count = Cart::count();
 												}
 												?>" alt="#"></a>
 											<h4><a href="#">{{ $sach->name }}</a></h4>
-											<p class="quantity">{{ $sach->qty }} X <span class="amount">{{ number_format($sach->price) }} VND</span></p>
+											<p class="quantity">{{ $sach->qty }} X <span class="amount">{{ number_format($sach->price) }} đ</span></p>
 										</li>
 									</ul>
 									@endforeach
 									<div class="bottom">
 										<div class="total">
 											<span>Tổng cộng</span>
-											<span class="total-amount">{{ $tongtien }} VND</span>
+											<span class="total-amount">{{ $tongtien }} đ</span>
 										</div>
 										<a href="gio-hang" class="btn animate">XEM GIỎ HÀNG</a>
 									</div>

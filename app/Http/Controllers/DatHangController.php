@@ -25,7 +25,7 @@ class DatHangController extends Controller
             return Redirect::to('dangnhap-kh')->send();
         }
     }
-   
+
     public function dathang(Request $request)
     {
         $this->CheckLoginKH();
@@ -70,7 +70,7 @@ class DatHangController extends Controller
             ->first();
         $thanhpho = ThanhPho::orderby('matp', 'ASC')->get();
         //dd($khachhang);
-        
+
         return view('home.dathang.xacnhandc')->with('khachhang', $khachhang)->with('thanhpho', $thanhpho);
     }
     public function dat_hang()
@@ -94,11 +94,12 @@ class DatHangController extends Controller
         return view('home.dathang.dathang')->with('thanhtoan', $thanhtoan)->with('khachhang', $khachhang);
     }
     public function thanhtoan(Request $request)
-    {   $khachhang =  DB::table('khachhang')->where('id_kh', Session::get('id_kh'))
-        ->join('tbl_tinhthanhpho', 'tbl_tinhthanhpho.matp', '=', 'khachhang.matp')
-        ->join('tbl_quanhuyen', 'tbl_quanhuyen.maqh', '=', 'khachhang.maqh')
-        ->join('tbl_xaphuongthitran', 'tbl_xaphuongthitran.maxa', '=', 'khachhang.maxa')
-        ->first();
+    {
+        $khachhang =  DB::table('khachhang')->where('id_kh', Session::get('id_kh'))
+            ->join('tbl_tinhthanhpho', 'tbl_tinhthanhpho.matp', '=', 'khachhang.matp')
+            ->join('tbl_quanhuyen', 'tbl_quanhuyen.maqh', '=', 'khachhang.maqh')
+            ->join('tbl_xaphuongthitran', 'tbl_xaphuongthitran.maxa', '=', 'khachhang.maxa')
+            ->first();
         $tongtien = Cart::subtotal(0, '.', '');
         $tienship = Session::get('phiship');
         $data_dh = array();
@@ -107,7 +108,7 @@ class DatHangController extends Controller
         $data_dh['ngay_dat'] = now();
         $data_dh['tong_tien'] = $tongtien;
         $data_dh['tien_ship'] = $tienship;
-        $data_dh['dc_dh'] = $khachhang->diachi_kh.', '.$khachhang->tenxa.', '.$khachhang->tenqh.', '.$khachhang->tentp;
+        $data_dh['dc_dh'] = $khachhang->diachi_kh . ', ' . $khachhang->tenxa . ', ' . $khachhang->tenqh . ', ' . $khachhang->tentp;
         $data_dh['trang_thai'] = 1;
         $giohang = Cart::content();
         if ($request->id_tt == 2) {
@@ -119,52 +120,48 @@ class DatHangController extends Controller
             $data_ctdh['id_sach'] = $ctgiohang->id;
             $data_ctdh['so_luong'] = $ctgiohang->qty;
             DB::table('ctgiohang')->insert($data_ctdh);
-            $sach =  DB::table('dausach')->where('id_sach',$ctgiohang->id)->first();
+            $sach =  DB::table('dausach')->where('id_sach', $ctgiohang->id)->first();
             $data_sl = array();
             $data_sl['sl_sach'] = $sach->sl_sach - $ctgiohang->qty;
-            DB::table('dausach')->where('id_sach',$ctgiohang->id)->update($data_sl);
+            DB::table('dausach')->where('id_sach', $ctgiohang->id)->update($data_sl);
         }
-        
+
         Cart::destroy();
         return Redirect::to('/');
     }
-    
+
     public function thanhtoan_vnpay(Request $request)
     {
         $khachhang =  DB::table('khachhang')->where('id_kh', Session::get('id_kh'))
-        ->join('tbl_tinhthanhpho', 'tbl_tinhthanhpho.matp', '=', 'khachhang.matp')
-        ->join('tbl_quanhuyen', 'tbl_quanhuyen.maqh', '=', 'khachhang.maqh')
-        ->join('tbl_xaphuongthitran', 'tbl_xaphuongthitran.maxa', '=', 'khachhang.maxa')
-        ->first();
-        $url = session('url_prev','/');
-    if($request->vnp_ResponseCode == "00") {
-        $tongtien = Cart::subtotal(0, '.', '');
-        $tienship = Session::get('phiship');
-        $data_dh = array();
-        $data_dh['id_tt'] = 2;
-        $data_dh['id_kh'] = Session::get('id_kh');
-        $data_dh['ngay_dat'] = now();
-        $data_dh['tong_tien'] = $tongtien;
-        $data_dh['tien_ship'] = $tienship;
-        $data_dh['dc_dh'] = $khachhang->diachi_kh.', '.$khachhang->tenxa.', '.$khachhang->tenqh.', '.$khachhang->tentp;
-        $data_dh['trang_thai'] = 1;
-        $giohang = Cart::content();
-        $id_dh = DB::table('donhang')->insertGetId($data_dh);
-        foreach ($giohang as $ctgiohang) {
-            $data_ctdh['id_dh'] = $id_dh;
-            $data_ctdh['id_sach'] = $ctgiohang->id;
-            $data_ctdh['so_luong'] = $ctgiohang->qty;
-            DB::table('ctgiohang')->insert($data_ctdh);
-            $sach =  DB::table('dausach')->where('id_sach',$ctgiohang->id)->first();
-            $data_sl = array();
-            $data_sl['sl_sach'] = $sach->sl_sach - $ctgiohang->qty;
-            DB::table('dausach')->where('id_sach',$ctgiohang->id)->update($data_sl);
+            ->join('tbl_tinhthanhpho', 'tbl_tinhthanhpho.matp', '=', 'khachhang.matp')
+            ->join('tbl_quanhuyen', 'tbl_quanhuyen.maqh', '=', 'khachhang.maqh')
+            ->join('tbl_xaphuongthitran', 'tbl_xaphuongthitran.maxa', '=', 'khachhang.maxa')
+            ->first();
+        $url = session('url_prev', '/');
+        if ($request->vnp_ResponseCode == "00") {
+            $tongtien = Cart::subtotal(0, '.', '');
+            $tienship = Session::get('phiship');
+            $data_dh = array();
+            $data_dh['id_tt'] = 2;
+            $data_dh['id_kh'] = Session::get('id_kh');
+            $data_dh['ngay_dat'] = now();
+            $data_dh['tong_tien'] = $tongtien;
+            $data_dh['tien_ship'] = $tienship;
+            $data_dh['dc_dh'] = $khachhang->diachi_kh . ', ' . $khachhang->tenxa . ', ' . $khachhang->tenqh . ', ' . $khachhang->tentp;
+            $data_dh['trang_thai'] = 1;
+            $giohang = Cart::content();
+            $id_dh = DB::table('donhang')->insertGetId($data_dh);
+            foreach ($giohang as $ctgiohang) {
+                $data_ctdh['id_dh'] = $id_dh;
+                $data_ctdh['id_sach'] = $ctgiohang->id;
+                $data_ctdh['so_luong'] = $ctgiohang->qty;
+                DB::table('ctgiohang')->insert($data_ctdh);
+            }
+            Cart::destroy();
+            return Redirect::to('/');
         }
-        Cart::destroy();
-        return Redirect::to('/');
-    }
-    session()->forget('url_prev');
-    return redirect($url)->with('loi' ,'Lỗi trong quá trình thanh toán phí dịch vụ');
+        session()->forget('url_prev');
+        return redirect($url)->with('loi', 'Lỗi trong quá trình thanh toán phí dịch vụ');
     }
     public function donhang()
     {
@@ -190,16 +187,16 @@ class DatHangController extends Controller
             ->join('dausach', 'dausach.id_sach', '=', 'ctgiohang.id_sach')
             ->where('donhang.id_dh', $id_dh)
             ->get();
-        
+
         foreach ($ct_sach as $key => $ctdh) {
             $km =  DB::table('khuyenmai')
                 ->join('ctkhuyenmai', 'ctkhuyenmai.id_km', '=', 'khuyenmai.id_km')
                 ->join('dausach', 'dausach.id_sach', '=', 'ctkhuyenmai.id_sach')
                 ->where('dausach.id_sach', $ctdh->id_sach)
-                ->where('khuyenmai.ngay_bat_dau','<=',$ctdh->ngay_dat)
-                ->where('khuyenmai.ngay_ket_thuc','>=',$ctdh->ngay_dat)
+                ->where('khuyenmai.ngay_bat_dau', '<=', $ctdh->ngay_dat)
+                ->where('khuyenmai.ngay_ket_thuc', '>=', $ctdh->ngay_dat)
                 ->first();
-            if($km){
+            if ($km) {
                 $array_sach[$key] = [
                     "id_sach" => $km->id_sach,
                     "ten_sach" => $km->ten_sach,
@@ -208,8 +205,7 @@ class DatHangController extends Controller
                     "so_luong" => $ctdh->so_luong,
                     "phantram_km" => $km->phantram_km,
                 ];
-                
-            }else{
+            } else {
                 $array_sach[$key] = [
                     "id_sach" => $ctdh->id_sach,
                     "ten_sach" => $ctdh->ten_sach,
@@ -218,7 +214,6 @@ class DatHangController extends Controller
                     "so_luong" => $ctdh->so_luong,
                     "phantram_km" => 0,
                 ];
-               
             }
         }
         $dh =  DB::table('donhang')
@@ -384,22 +379,22 @@ class DatHangController extends Controller
                         <div class="col-xs-6">
                             <address>
                             <strong>Thông tin đơn hàng:</strong><br>
-                                Tên: '.$dh->ten_kh.'<br>
-                                Số điện thoại: '.$dh->sdt_kh.'<br>
-                                Địa chỉ: '.$dh->dc_dh.'<br>
-                                Email: '.$dh->email_kh.'<br>
+                                Tên: ' . $dh->ten_kh . '<br>
+                                Số điện thoại: ' . $dh->sdt_kh . '<br>
+                                Địa chỉ: ' . $dh->dc_dh . '<br>
+                                Email: ' . $dh->email_kh . '<br>
                             </address>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
                             <address>
-                                <strong>Phương thức thanh toán:</strong> '.$dh->ten_tt.'<br>
+                                <strong>Phương thức thanh toán:</strong> ' . $dh->ten_tt . '<br>
                             </address>
                         </div>
                         <div class="col-xs-6 text-right">
                             <address>
-                                <strong>Ngày đặt:</strong> '.$dh->ngay_dat.'<br><br>
+                                <strong>Ngày đặt:</strong> ' . $dh->ngay_dat . '<br><br>
                             </address>
                         </div>
                     </div>
@@ -430,19 +425,19 @@ class DatHangController extends Controller
                                             <td class="thick-line"></td>
                                             <td class="thick-line"></td>
                                             <td class="thick-line text-center"><strong>Tổng tiền:</strong></td>
-                                            <td class="thick-line text-right">'.$dh->tong_tien.'</td>
+                                            <td class="thick-line text-right">' . $dh->tong_tien . '</td>
                                         </tr>
                                         <tr>
                                             <td class="no-line"></td>
                                             <td class="no-line"></td>
                                             <td class="no-line text-center"><strong> Tiền ship: </strong></td>
-                                            <td class="no-line text-right">'.$dh->tien_ship.'</td>
+                                            <td class="no-line text-right">' . $dh->tien_ship . '</td>
                                         </tr>
                                         <tr>
                                             <td class="no-line"></td>
                                             <td class="no-line"></td>
                                             <td class="no-line text-center"><strong>Thành tiền: </strong></td>
-                                            <td class="no-line text-right">'.$dh->tong_tien .'+'.$dh->tien_ship.'</td>
+                                            <td class="no-line text-right">' . $dh->tong_tien . '+' . $dh->tien_ship . '</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -466,61 +461,55 @@ class DatHangController extends Controller
     }
     public function loc_dh(Request $request)
     {
-        if ($request->tt > 0 && $request->sx > 0) {
-            if ($request->sx == 1) {
-                $dh = DB::table('donhang')
-                    ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
-                    ->where('trang_thai', $request->tt)
-                    ->orderby('ngay_dat','DESC')->get();
-            } elseif ($request->sx == 2) {
-                $dh = DB::table('donhang')
-                    ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
-                    ->where('trang_thai', $request->tt)
-                    ->orderby('tong_tien','DESC')->get();
-            } else {
-                $dh = DB::table('donhang')
-                    ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
-                    ->where('trang_thai', $request->tt)
-                    ->orderby('trang_thai','DESC')->get();
-            }
-        } elseif($request->sx > 0 && $request->tt ==0) {
-            if ($request->sx == 1) {
-                $dh = DB::table('donhang')
-                    ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
-                    ->orderby('ngay_dat','DESC')->get();
-            } elseif ($request->sx == 2) {
-                $dh = DB::table('donhang')
-                    ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
-                    ->orderby('tong_tien','DESC')->get();
-            } else {
-                $dh = DB::table('donhang')
-                    ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
-                    ->orderby('trang_thai','ASC')->get();
-            }
-           
-        }elseif($request->tt>0 && $request->sx ==0){
-            $dh = DB::table('donhang')
-                    ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
-                    ->where('trang_thai', $request->tt)
-                    ->orderby('ngay_dat','DESC')->get();
-        }else{
-            $dh = DB::table('donhang')
-            ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
-            ->get();
-        }
-        return view('admin.quanly.Donhang.locdh')->with('donhang', $dh);
-    }
-    public function sapxep_dh($id_tt)
-    {
-        if ($id_tt) {
+        if ($request->timkiem) {
             $dh = DB::table('donhang')
                 ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
-                ->where('trang_thai', $id_tt)->get();
-        } else {
-            $dh = DB::table('donhang')
-                ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
+                ->where('khachhang.ten_kh', 'like', '%' . $request->timkiem . '%')
                 ->get();
+        } else {
+            if ($request->tt > 0 && $request->sx > 0) {
+                if ($request->sx == 1) {
+                    $dh = DB::table('donhang')
+                        ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
+                        ->where('trang_thai', $request->tt)
+                        ->orderby('ngay_dat', 'DESC')->get();
+                } elseif ($request->sx == 2) {
+                    $dh = DB::table('donhang')
+                        ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
+                        ->where('trang_thai', $request->tt)
+                        ->orderby('tong_tien', 'DESC')->get();
+                } else {
+                    $dh = DB::table('donhang')
+                        ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
+                        ->where('trang_thai', $request->tt)
+                        ->orderby('trang_thai', 'DESC')->get();
+                }
+            } elseif ($request->sx > 0 && $request->tt == 0) {
+                if ($request->sx == 1) {
+                    $dh = DB::table('donhang')
+                        ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
+                        ->orderby('ngay_dat', 'DESC')->get();
+                } elseif ($request->sx == 2) {
+                    $dh = DB::table('donhang')
+                        ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
+                        ->orderby('tong_tien', 'DESC')->get();
+                } else {
+                    $dh = DB::table('donhang')
+                        ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
+                        ->orderby('trang_thai', 'ASC')->get();
+                }
+            } elseif ($request->tt > 0 && $request->sx == 0) {
+                $dh = DB::table('donhang')
+                    ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
+                    ->where('trang_thai', $request->tt)
+                    ->orderby('ngay_dat', 'DESC')->get();
+            } else {
+                $dh = DB::table('donhang')
+                    ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
+                    ->get();
+            }
         }
         return view('admin.quanly.Donhang.locdh')->with('donhang', $dh);
     }
+    
 }

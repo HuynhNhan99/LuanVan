@@ -45,4 +45,11 @@ class NXBController extends Controller
         DB::table('nxb')->where('id_nxb',$nxb_id)->update($data);
         return Redirect::to('/list-nxb');
     }
+    public function tim_nxb(Request $request)
+    {
+        $list_nxb = DB::table('nxb')
+            ->where('ten_nxb', 'like', '%' . $request->timkiem . '%')
+            ->get();
+        return view('admin.quanly.nxb.timkiem')->with('list_nxb',$list_nxb);
+    }
 }

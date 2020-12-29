@@ -43,18 +43,15 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="TrangThai">Trạng thái</label>
-                                    <select class="form-control" id="TrangThai" name="trang_thai">
-                                        <option value="1">Hiển thị</option>
-                                        <option value="0">Ẩn</option>
-                                    </select>
-                                </div>
-                                <div class="col-6">
                                     <label for="NgonNgu">Ngôn ngữ</label>
                                     <select class="form-control" id="NgonNgu" name="ngon_ngu">
                                         <option value="1">Tiếng Việt</option>
                                         <option value="0">Tiếng Anh</option>
                                     </select>
+                                </div>
+                                <div class="col-6">
+                                    <label for="NgonNgu">Số lượng sách</label>
+                                    <input type="text" class="form-control" id="ChieuRong" name="sl_nhap" required />
                                 </div>
                             </div>
                         </div>
@@ -100,7 +97,7 @@
                             <input type="file" class="form-control" id="customFile" name="hinh_anh">
                         </div>
                         <div class="form-group">
-                            <label>Thêm nhiều hình</label>
+                            <label>Thêm nhiều tác giả</label>
                             @for($i=1; $i<=4;$i++) <input type="file" class="form-control" name="fhinh_anh[]">
                                 @endfor
                         </div>

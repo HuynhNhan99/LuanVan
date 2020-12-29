@@ -18,42 +18,52 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
+
                     <div class="row" style="margin-bottom: 20px;">
-                        <div class="col-lg-6">
-                            <h4 class="card-title">Danh sách các đầu sách</h4>
+                        <div class="col-lg-7">
+                            <h4 class="card-title">QUẢN LÝ KHO HÀNG</h4>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-5">
                             <div class="input-group md-form form-sm form-2 pl-0">
-                                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
+                                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search" id="timkho1">
                                 <div class="input-group-append">
-                                    <span class="input-group-text red lighten-3" id="basic-text1" style="color: white; background:#4d83ff;border-color: #4d83ff;"><i class="fas fa-search text-grey" aria-hidden="true"></i></span>
+                                    <button class="input-group-text red lighten-3" id="timkho" style="color: white; background:#4d83ff;border-color: #4d83ff; "><i class="fas fa-search text-grey" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <button type="button" class="btn right btn-primary" data-toggle="modal" data-target="#Thempvc" style="width:100%; height:100%">Thêm mới</button>
-                        </div>
+
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table id="recent-purchases-listing" class="table dataTable no-footer timkiemkho" role="grid">
                             <thead>
-                                <tr>
-                                    <th>STT</th>
-                                    <th>Tên Thành phố</th>
-                                    <th>Tên Quận huyện</th>
-                                    <th>Tên Xã phường</th>
-                                    <th>Phí ship</th>
+                                <tr >
+                                    <th colspan="2" style="width: 340px;">Tên Sách</th>
+                                    
+                                    <th >Số lượng nhập </th>
+                                    <th >Số lượng tồn</th>
+                                    <th >Chi tiết</th>
+                                    <th >Thêm số lượng</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach( $phivc as $key => $phi)
+                                @foreach( $list_kho as $key => $sach)
                                 {{ csrf_field() }}
                                 <tr>
-                                    <td>{{ $key+1 }}</td>
-                                    <td>{{ $phi->tentp }}</td>
-                                    <td>{{ $phi->tenqh }}</td>
-                                    <td>{{ $phi->tenxa }}</td>
-                                    <td contenteditable data-ship_id="{{$phi->ma_phi}}" class="phi-ship">{{ number_format($phi->phi_vc) }}</td>
+                                    <td style="width:40px"><img src="<?php
+                                                                        if (file_exists('public/uploads/anhsach/' . $sach['hinh_anh'])) {
+                                                                            echo 'public/uploads/anhsach/' . $sach['hinh_anh'];
+                                                                        } else {
+                                                                            echo $sach['hinh_anh'];
+                                                                        }
+                                                                        ?>" atl="" style="width: 50px; height: 50px; border-radius: 0%;" /></td>
+                                    <td style="text-align: left;width:300px">{{ $sach['ten_sach']}}</td>
+                                   
+                                    <td>{{$sach['sl_nhap']}}</td>
+                                    <td>{{$sach['sl_ton']}}</td>
+                                    <td><a href="{{URL::to('/ct-kho/'.$sach['id_sach'])}}"><i class="fas fa-info-circle"></i></a></td>
+                                    <td><button type="button" class="open-AddBookDialog btn right btn-primary" data-toggle="modal" data-id="{{$sach['id_sach']}}" data-target="#Themncc" data-id="{{$sach['id_sach']}}" style="width:100%; height:100%">Thêm</button>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -64,5 +74,34 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="Themncc" tabindex="-1" role="dialog" aria-labelledby="Themncc" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Themncc">Thêm số lượng sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="forms-sample" action="{{URL::to('/them-kho')}}" method="post">
+                <div class="modal-body">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label for="TrangThai">Số lượng</label>
+                        <input class="form-control" id="sl_nhap" name="sl_nhap"></input>
+                        <input class="form-control" type="hidden" id="id_sach" name="id_sach"></input>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Thêm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 @endsection

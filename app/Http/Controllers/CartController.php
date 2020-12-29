@@ -22,7 +22,6 @@ class CartController extends Controller
         $this->CheckLoginKH();
         return view('home.cart.giohang');
     }
-
     public function add_cart(Request $request){
         $sach=DB::table("dausach")->where("id_sach",$request->id_sach)->first();
         $data = array();

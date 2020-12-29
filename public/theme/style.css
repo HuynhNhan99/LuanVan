@@ -1838,7 +1838,7 @@ Version:1.0
 .small-banner .single-banner {
     overflow: hidden;
     position: relative;
-    height: 250px;
+    height: 150px;
 }
 
 .small-banner .single-banner img {
@@ -4466,16 +4466,13 @@ Version:1.0
     text-align: center;
     margin-top: 40px;
     width: 80px;
-    display: inline-block;
 }
 
 .cown-down .content .cdown {
     text-align: center;
 }
 
-.cown-down .content .cdown {
-    display: inline-block;
-}
+.cown-down .content .cdown {}
 
 .cown-down .content .cdown span {
     color: #333;

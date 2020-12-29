@@ -36,6 +36,18 @@ class PhivanchuyenController extends Controller
         $data['phi_vc']= $request->phi_vc;
         DB::table('phivanchuyen')->where('ma_phi',$request->ma_phi)->update($data);
     }
+
+    public function tim_phi(Request $request){
+        $shipping =  DB::table('phivanchuyen')
+            ->join('tbl_tinhthanhpho', 'tbl_tinhthanhpho.matp', '=', 'phivanchuyen.matp')
+            ->join('tbl_quanhuyen', 'tbl_quanhuyen.maqh', '=', 'phivanchuyen.maqh')
+            ->join('tbl_xaphuongthitran', 'tbl_xaphuongthitran.maxa', '=', 'phivanchuyen.maxa')
+            ->where('tbl_tinhthanhpho.tentp', 'like', '%' . $request->timkiem . '%')
+            ->orWhere('tbl_quanhuyen.tenqh', 'like', '%' . $request->timkiem . '%')
+            ->orWhere('tbl_xaphuongthitran.tenxa', 'like', '%' . $request->timkiem . '%')
+            ->get();
+        return view('admin.quanly.phivanchuyen.timkiem')->with('phivc',$shipping);
+    }
     
     public function select_dc(Request $request){
         if($request->action){

@@ -117,7 +117,7 @@ class KhachHangController extends Controller
         DB::table('danhgia')->insert($data);
         return $data;
     }
-
+//tai khoan của tôi
     public function tai_khoan()
     {
         $khachhang = DB::table('khachhang')->where('id_kh', Session::get('id_kh'))
@@ -155,11 +155,18 @@ class KhachHangController extends Controller
         return view('home.Auth.thongtin')->with('thanhpho', $thanhpho)->with('kh', $array_kh);
     }
 
-    //admin
+//admin quản lý khách hàng
     public function list_kh()
     {
         $kh = DB::table('khachhang')->orderby('id_kh', 'ASC')->get();
         return view('admin.quanly.khachhang.list')->with('khachhang', $kh);
+    }
+    public function tim_kh(Request $request)
+    {
+        $kh = DB::table('khachhang')
+            ->where('ten_kh', 'like', '%' . $request->timkiem . '%')
+            ->get();
+        return view('admin.quanly.khachhang.timkiem')->with('khachhang', $kh);
     }
     public function Delete_khachhang($kh_id)
     {
@@ -167,6 +174,8 @@ class KhachHangController extends Controller
         Session::put('message', 'Đã xóa thành công!');
         return Redirect::to('/khach-hang');
     }
+
+//quản lý đánh giá
     public function list_danhgia()
     {
         $dg = DB::table('danhgia')
@@ -187,7 +196,19 @@ class KhachHangController extends Controller
             ->update($data);
         return Redirect::to('/list-danhgia');
     }
+    public function loc_dg(Request $request)
+    {
+            $dg = DB::table('danhgia')
+            ->join('khachhang', 'danhgia.id_kh', '=', 'khachhang.id_kh')
+            ->join('dausach', 'danhgia.id_sach', '=', 'dausach.id_sach')
+            ->where('khachhang.ten_kh', 'like', '%' . $request->timkiem . '%')
+            ->orwhere('danhgia.diem_dg', 'like', '%' . $request->timkiem . '%')
+            ->orwhere('danhgia.noi_dung', 'like', '%' . $request->timkiem . '%')
+            ->get();
 
+        return view('admin.quanly.Donhang.locdh')->with('donhang', $dh);
+    }
+//đổi mật khẩu
     public function doi_mk(Request $request)
     {
 

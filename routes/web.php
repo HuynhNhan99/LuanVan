@@ -77,30 +77,37 @@ Route::get('list-nxb','App\Http\Controllers\NXBController@List_nxb');
 Route::get('delete-nxb/{id_nxb}','App\Http\Controllers\NXBController@Delete_nxb');
 Route::get('edit-nxb/{id_nxb}','App\Http\Controllers\NXBController@Edit_nxb');
 Route::post('add-nxb','App\Http\Controllers\NXBController@add_nxb');
+Route::post('tim-nxb','App\Http\Controllers\NXBController@tim_nxb');
 Route::post('update-nxb/{id_nxb}','App\Http\Controllers\NXBController@Update_nxb');
 
 Route::get('list-tacgia','App\Http\Controllers\TacGiaController@List_tacgia');
 Route::get('delete-tacgia/{id_tacgia}','App\Http\Controllers\TacGiaController@Delete_tacgia');
 Route::get('edit-tacgia/{id_tacgia}','App\Http\Controllers\TacgiaController@Edit_tacgia');
 Route::post('add-tacgia','App\Http\Controllers\TacGiaController@add_tacgia');
+Route::post('tim-tg','App\Http\Controllers\TacGiaController@tim_tacgia');
 Route::post('update-tacgia/{id_tacgia}','App\Http\Controllers\TacGiaController@Update_tacgia');
 
 Route::get('list-theloai','App\Http\Controllers\TheLoaiController@List_theloai');
 Route::get('delete-theloai/{id_theloai}','App\Http\Controllers\TheLoaiController@Delete_theloai');
 Route::get('edit-theloai/{id_theloai}','App\Http\Controllers\TheLoaiController@Edit_theloai');
 Route::post('add-theloai','App\Http\Controllers\TheLoaiController@add_theloai');
+Route::post('tim-tl','App\Http\Controllers\TheLoaiController@tim_theloai');
 Route::post('update-theloai/{id_theloai}','App\Http\Controllers\TheLoaiController@Update_theloai');
 
 Route::get('list-ncc','App\Http\Controllers\NhaCungCapController@List_ncc');
 Route::get('delete-ncc/{id_ncc}','App\Http\Controllers\NhaCungCapController@Delete_ncc');
 Route::get('edit-ncc/{id_ncc}','App\Http\Controllers\NhaCungCapController@Edit_ncc');
 Route::post('add-ncc','App\Http\Controllers\NhaCungCapController@add_ncc');
+Route::post('tim-ncc','App\Http\Controllers\NhaCungCapController@tim_ncc');
 Route::post('update-ncc/{id_ncc}','App\Http\Controllers\NhaCungCapController@Update_ncc');
 
 Route::get('khuyen-mai','App\Http\Controllers\HomeController@khuyen_mai');
 Route::post('tl-km','App\Http\Controllers\HomeController@tl_km');
 Route::post('add-km','App\Http\Controllers\HomeController@add_km');
+Route::post('tim-km','App\Http\Controllers\HomeController@tim_km');
 Route::get('list-km','App\Http\Controllers\HomeController@list_km');
+Route::get('chitiet-km/{id_km}','App\Http\Controllers\HomeController@chitiet_km');
+Route::get('ctkm-sach/{id_sach}','App\Http\Controllers\HomeController@xoact_km');
 
 Route::get('list-danhgia','App\Http\Controllers\KhachHangController@list_danhgia');
 Route::get('ql-danhgia','App\Http\Controllers\KhachHangController@ql_danhgia');
@@ -115,10 +122,12 @@ Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
 Route::get('payment/success', 'PayPalController@success')->name('payment.success');
 
 Route::get('khach-hang','App\Http\Controllers\KhachHangController@list_kh');
+Route::post('tim-kh','App\Http\Controllers\KhachHangController@tim_kh');
 Route::get('delete-khachhang/{id_kh}','App\Http\Controllers\KhachHangController@Delete_khachhang');
 
 Route::get('phi-vc','App\Http\Controllers\PhivanchuyenController@index');
 Route::post('select-dc','App\Http\Controllers\PhivanchuyenController@select_dc');
+Route::post('tim-phi','App\Http\Controllers\PhivanchuyenController@tim_phi');
 Route::post('them-phivc','App\Http\Controllers\PhivanchuyenController@them_phivc');
 Route::post('update-phivc','App\Http\Controllers\PhivanchuyenController@update_phivc');
 
@@ -138,3 +147,9 @@ Route::post('datlai-mk','App\Http\Controllers\MailController@dat_lai_mk');
 
 //python
 Route::get('python','App\Http\Controllers\KhachHangController@python');
+
+Route::get('quanly-kho','App\Http\Controllers\AdminController@quanly_kho');
+Route::post('them-kho','App\Http\Controllers\AdminController@them_kho');
+Route::post('tim-kho','App\Http\Controllers\AdminController@tim_kho');
+Route::get('ct-kho/{id_sach}','App\Http\Controllers\AdminController@ct_kho');
+
