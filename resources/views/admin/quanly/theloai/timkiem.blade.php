@@ -12,10 +12,10 @@
             <td> {{ $key+1 }}</td>
             <td>{{ $theloai->ten_tl}}</td>
             <td>
-                <a href="{{URL::to('/edit-theloai/'.$theloai->id_tl)}}">
+                <a href="{{URL::to('addmin/edit-theloai/'.$theloai->id_tl)}}">
                     <i class="fa fa-edit"></i>
                 </a>
-                <a href="{{URL::to('/delete-theloai/'.$theloai->id_tl)}}">
+                <a href="{{URL::to('addmin/delete-theloai/'.$theloai->id_tl)}}">
                     <i class="fa fa-trash"></i>
                 </a>
             </td>

@@ -27,12 +27,12 @@ class NXBController extends Controller
         $data['ten_nxb']= $request->ten_nxb;
         DB::table('nxb')->insert($data);
         Session::put('message','Thêm nhà xuất bản thành công!');
-        return Redirect::to('/list-nxb');
+        return Redirect::to('addmin/list-nxb');
     }
     public function Delete_nxb($nxb_id){
         DB::table('nxb')->where('id_nxb',$nxb_id)->delete();
         Session::put('message','Đã xóa thành công!');
-        return Redirect::to('/list-nxb');
+        return Redirect::to('addmin/list-nxb');
     }
     public function Edit_nxb($nxb_id){
         $edit_nxb= DB::table('nxb')->where('id_nxb',$nxb_id)->get();
@@ -43,7 +43,7 @@ class NXBController extends Controller
         $data = array();
         $data['ten_nxb']= $request->ten_nxb;
         DB::table('nxb')->where('id_nxb',$nxb_id)->update($data);
-        return Redirect::to('/list-nxb');
+        return Redirect::to('addmin/list-nxb');
     }
     public function tim_nxb(Request $request)
     {

@@ -142,7 +142,7 @@
                 result = 'xaphuong';
             }
             $.ajax({
-                url: "{{ url('select-dc') }}",
+                url: "{{ url('addmin/select-dc') }}",
                 type: "POST",
                 data: {
                     "_token": '{{ csrf_token() }}',

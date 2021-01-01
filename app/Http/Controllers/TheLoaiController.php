@@ -19,14 +19,12 @@ class TheLoaiController extends Controller
         $data = array();
         $data['ten_tl']= $request->ten_tl;
         DB::table('theloai')->insert($data);
-        Session::put('message','Thêm thể loại thành công!');
-        return Redirect::to('/list-theloai');
+        return Redirect::to('addmin/list-theloai');
     }
 
     public function Delete_theloai($theloai_id){
         DB::table('theloai')->where('id_tl',$theloai_id)->delete();
-        Session::put('message','Đã xóa thành công!');
-        return Redirect::to('/list-theloai');
+        return Redirect::to('addmin/list-theloai');
     }
     public function Edit_theloai($theloai_id){
         $edit_theloai= DB::table('theloai')->where('id_tl',$theloai_id)->get();
@@ -37,7 +35,7 @@ class TheLoaiController extends Controller
         $data = array();
         $data['ten_tl']= $request->ten_tl;
         DB::table('theloai')->where('id_tl',$theloai_id)->update($data);
-        return Redirect::to('/list-theloai');
+        return Redirect::to('addmin/list-theloai');
     }
     public function tim_theloai(Request $request)
     {

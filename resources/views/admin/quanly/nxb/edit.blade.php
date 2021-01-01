@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h4 class="card-title">CẬP NHẬT NHÀ XUẤT BẢN</h4>
                     @foreach( $edit_nxb as $key => $nxb)
-                    <form class="forms-sample" action="{{URL::to('/update-nxb/'.$nxb->id_nxb)}}" method="post">
+                    <form class="forms-sample" action="{{URL::to('addmin/update-nxb/'.$nxb->id_nxb)}}" method="post">
                         {{ csrf_field() }}    
                         <div class="form-group">
                             <label for="MoTa">Tên Nhà xuất bản</label>

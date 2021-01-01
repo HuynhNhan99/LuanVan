@@ -25,7 +25,7 @@
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="{{URL::to('/logout')}}">
+              <a class="dropdown-item" href="{{URL::to('addmin/logout')}}">
               <i class="fas fa-sign-out-alt"></i>
                 Đăng xuất
               </a>

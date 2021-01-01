@@ -22,7 +22,7 @@
             <td>{{ $kh->email_kh }}</td>
             <td>{{ $kh->name }}</td>
             <td>
-                <a href="{{URL::to('/delete-khachhang/'.$kh->id_kh)}}"><i class="fas fa-trash "></i></a>
+                <a href="{{URL::to('addmin/delete-khachhang/'.$kh->id_kh)}}"><i class="fas fa-trash "></i></a>
             </td>
         </tr>
         @endforeach

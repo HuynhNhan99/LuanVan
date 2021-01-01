@@ -267,9 +267,6 @@
 					alert("Bạn chưa cho điểm đánh giá")
 				}
 			});
-
-			
-
 			$('.js-danh-gia').on('click', function() {
 				if ($("#rating-action").hasClass('hide')) {
 					$("#rating-action").addClass('active').removeClass('hide');
@@ -291,7 +288,7 @@
 					result = 'xaphuong';
 				}
 				$.ajax({
-					url: "{{ url('select-dc') }}",
+					url: "{{ url('addmin/select-dc') }}",
 					type: "POST",
 					data: {
 						"_token": '{{ csrf_token() }}',

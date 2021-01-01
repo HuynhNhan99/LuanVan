@@ -116,7 +116,7 @@
           result = 'xaphuong';
         }
         $.ajax({
-          url: "{{ url('select-dc') }}",
+          url: "{{ url('addmin/select-dc') }}",
           type: "POST",
           data: {
             "_token": '{{ csrf_token() }}',
@@ -132,7 +132,7 @@
         var maid = $(this).data('ship_id');
         var phi = $(this).text();
         $.ajax({
-          url: "{{ url('update-phivc') }}",
+          url: "{{ url('addmin/update-phivc') }}",
           type: "POST",
           data: {
             "_token": '{{ csrf_token() }}',
@@ -163,7 +163,7 @@
       $(".theloaikm").change(function() {
         var tl = $(this).val();
         $.ajax({
-          url: "{{ url('tl-km') }}",
+          url: "{{ url('addmin/tl-km') }}",
           type: "POST",
           data: {
             "_token": '{{ csrf_token() }}',
@@ -193,7 +193,7 @@
       $("#search1").click(function() {
         var tk = $('#timkiem').val();
         $.ajax({
-          url: "{{ url('tl-km') }}",
+          url: "{{ url('addmin/tl-km') }}",
           type: "POST",
           data: {
             "_token": '{{ csrf_token() }}',
@@ -224,7 +224,7 @@
         var tk = $('#timkho1').val();
         var sx = $('#sapxepkho').val();
         $.ajax({
-          url: "{{ url('tim-kho') }}",
+          url: "{{ url('addmin/tim-kho') }}",
           type: "POST",
           data: {
             "_token": '{{ csrf_token() }}',
@@ -255,7 +255,7 @@
       $("#timphi").click(function() {
         var tk = $('#timphi1').val();
         $.ajax({
-          url: "{{ url('tim-phi') }}",
+          url: "{{ url('addmin/tim-phi') }}",
           type: "POST",
           data: {
             "_token": '{{ csrf_token() }}',
@@ -270,7 +270,7 @@
       $("#timkm").click(function() {
         var tk = $('#timkm1').val();
         $.ajax({
-          url: "{{ url('tim-km') }}",
+          url: "{{ url('addmin/tim-km') }}",
           type: "POST",
           data: {
             "_token": '{{ csrf_token() }}',
@@ -285,7 +285,7 @@
       $("#timnxb").click(function() {
         var tk = $('#timnxb1').val();
         $.ajax({
-          url: "{{ url('tim-nxb') }}",
+          url: "{{ url('addmin/tim-nxb') }}",
           type: "POST",
           data: {
             "_token": '{{ csrf_token() }}',
@@ -299,7 +299,7 @@
       $("#timncc").click(function() {
         var tk = $('#timncc1').val();
         $.ajax({
-          url: "{{ url('tim-ncc') }}",
+          url: "{{ url('addmin/tim-ncc') }}",
           type: "POST",
           data: {
             "_token": '{{ csrf_token() }}',
@@ -313,7 +313,7 @@
       $("#timtl").click(function() {
         var tk = $('#timtl1').val();
         $.ajax({
-          url: "{{ url('tim-tl') }}",
+          url: "{{ url('addmin/tim-tl') }}",
           type: "POST",
           data: {
             "_token": '{{ csrf_token() }}',
@@ -327,7 +327,7 @@
       $("#timtg").click(function() {
         var tk = $('#timtg1').val();
         $.ajax({
-          url: "{{ url('tim-tg') }}",
+          url: "{{ url('addmin/tim-tg') }}",
           type: "POST",
           data: {
             "_token": '{{ csrf_token() }}',
@@ -341,7 +341,7 @@
       $("#timkh").click(function() {
         var tk = $('#timkh1').val();
         $.ajax({
-          url: "{{ url('tim-kh') }}",
+          url: "{{ url('addmin/tim-kh') }}",
           type: "POST",
           data: {
             "_token": '{{ csrf_token() }}',
@@ -350,6 +350,34 @@
         }).done(function(response) {
           $("#tim-kh").empty();
           $("#tim-kh").html(response);
+        })
+      });
+      $("#timdg").click(function() {
+        var tk = $('#timdg1').val();
+        $.ajax({
+          url: "{{ url('addmin/tim-dg') }}",
+          type: "POST",
+          data: {
+            "_token": '{{ csrf_token() }}',
+            "timkiem": tk
+          }
+        }).done(function(response) {
+          $("#tim-dg").empty();
+          $("#tim-dg").html(response);
+        })
+      });
+      $("#sapxepdg").change(function() {
+        var tt = $(this).val();
+        $.ajax({
+          url: "{{ url('addmin/tim-dg') }}",
+          type: "POST",
+          data: {
+            "_token": '{{ csrf_token() }}',
+            "loc": tt
+          }
+        }).done(function(response) {
+          $("#tim-dg").empty();
+          $("#tim-dg").html(response);
         })
       });
     });

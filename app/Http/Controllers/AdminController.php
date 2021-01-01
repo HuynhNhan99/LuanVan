@@ -17,7 +17,7 @@ class AdminController extends Controller
     {
         $ad_id = Session::get('id_admin');
         if ($ad_id) {
-            return Redirect::to('/dashboard');
+            return Redirect::to('addmin/dashboard');
         } else {
             return Redirect::to('addmin')->send();
         }
@@ -96,7 +96,7 @@ class AdminController extends Controller
             if ($result) {
                 Session::put('ten_admin', $result->ten_admin);
                 Session::put('id_admin', $result->id);
-                return Redirect::to('/dashboard');
+                return Redirect::to('addmin/dashboard');
             } else {
                 Session::put('message', 'Mật khẩu hoặc tại khoài bị sai. Vui lòng nhập lại!!!');
                 return Redirect::to('/addmin');
@@ -208,7 +208,7 @@ class AdminController extends Controller
         $data['ngay_nhap_hang'] = now();
         $data['sl_nhap'] = $request->sl_nhap;
         DB::table('ngaynhaphang')->insert($data);
-        return Redirect::to('/quanly-kho');
+        return Redirect::to('addmin/ct-kho/'.$request->id_sach);
     }
     public function tim_kho(Request $request)
     {
@@ -261,9 +261,22 @@ class AdminController extends Controller
             ->where('id_sach', $id_sach)
             ->orderBy('ngay_nhap_hang', 'ASC')
             ->get();
-        $tensach =  DB::table('dausach')
+        $slnhap =  DB::table('ngaynhaphang')
+            ->selectRaw('sum(sl_nhap) as soluong, id_sach')
             ->where('id_sach', $id_sach)
+            ->orderBy('ngay_nhap_hang', 'ASC')
             ->first();
-        return view('admin.quanly.khosach.chitietkho')->with('ct_kho', $ct_kho)->with('tensach', $tensach);
+        $slban =  DB::table('donhang')
+            ->selectRaw('sum(ctgiohang.so_luong) as soluong, dausach.id_sach')
+            ->join('ctgiohang', 'donhang.id_dh', '=', 'ctgiohang.id_dh')
+            ->join('dausach', 'ctgiohang.id_sach', '=', 'dausach.id_sach')
+            ->where('dausach.id_sach', $id_sach)
+            ->groupBy('dausach.id_sach')
+            ->orderBy('soluong', 'desc')
+            ->first();
+        $tensach =  DB::table('dausach')
+            ->where('dausach.id_sach', $id_sach)
+            ->first();
+        return view('admin.quanly.khosach.chitietkho')->with('slnhap', $slnhap)->with('slban', $slban)->with('ct_kho', $ct_kho)->with('tensach', $tensach);
     }
 }

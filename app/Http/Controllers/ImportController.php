@@ -12,7 +12,7 @@ class ImportController extends Controller
     public function import(Request $request){
         $file=$request->file('import_sach')->getRealPath();
         Excel::import(new SachImport, $file);
-        return Redirect::to('/list-sach');
+        return Redirect::to('addmin/list-sach');
 }
     
 }

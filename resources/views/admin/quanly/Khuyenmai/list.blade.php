@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <a href="khuyen-mai"><button type="button" class="btn right btn-primary" style="width:100%; height:100%">Thêm mới</button></a>
+                            <a href="addmin/khuyen-mai"><button type="button" class="btn right btn-primary" style="width:100%; height:100%">Thêm mới</button></a>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -55,7 +55,7 @@
                                     <td>{{ $khuyenmai->phantram_km }}%</td>
                                     <td>{{ $khuyenmai->ngay_bat_dau }}</td>
                                     <td>{{ $khuyenmai->ngay_ket_thuc }}</td>
-                                    <td><a href="{{URL::to('/chitiet-km/'.$khuyenmai->id_km)}}"><i class="fas fa-info-circle"></i></a></td>
+                                    <td><a href="{{URL::to('addmin/chitiet-km/'.$khuyenmai->id_km)}}"><i class="fas fa-info-circle"></i></a></td>
                                    
                                 </tr>
                                 @endforeach

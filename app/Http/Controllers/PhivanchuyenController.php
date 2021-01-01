@@ -29,7 +29,7 @@ class PhivanchuyenController extends Controller
         $data['maxa']= $request->maxa;
         $data['phi_vc']= $request->phi_vc;
         DB::table('phivanchuyen')->insert($data);
-        return Redirect::to('/phi-vc');
+        return Redirect::to('addmin/phi-vc');
     }
     public function update_phivc(Request $request){
         $data = array();

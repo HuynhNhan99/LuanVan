@@ -19,28 +19,28 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title" style="text-align: center;">THÔNG TIN ĐƠN HÀNG</h4>
+                    <h4 class="card-title" >THÔNG TIN ĐƠN HÀNG</h4>
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <th scope="row" style="text-align: right; padding-left: 0px;width: 550px; padding:10px;">Người nhận</th>
+                                    <th scope="row" style="text-align: right; padding-left: 0px;width: 180px; padding:10px;">Người nhận</th>
                                     <td  style="text-align: left;">{{ $khachhang->ten_kh }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row" style="text-align: right;padding-left: 0px;width: 550px;padding:10px;">Số điện thoại</th>
+                                    <th scope="row" style="text-align: right;padding-left: 0px;width: 180px;padding:10px;">Số điện thoại</th>
                                     <td style="text-align: left;">{{ $khachhang->sdt_kh }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row" style="text-align: right;padding-left: 0px;width: 550px;padding:10px;">Địa chỉ</th>
+                                    <th scope="row" style="text-align: right;padding-left: 0px;width: 180px;padding:10px;">Địa chỉ</th>
                                     <td style="text-align: left;">{{ $khachhang->dc_dh }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row" style="text-align: right;padding-left: 0px;width: 550px;padding:10px;">Hình thức thanh toán</th>
+                                    <th scope="row" style="text-align: right;padding-left: 0px;width: 180px;padding:10px;">Hình thức thanh toán</th>
                                     <td style="text-align: left;">{{ $khachhang->ten_tt }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row" style="text-align: right;padding-left: 0px;width: 550px;padding:10px;">Ngày đặt</th>
+                                    <th scope="row" style="text-align: right;padding-left: 0px;width: 180px;padding:10px;">Ngày đặt</th>
                                     <td style="text-align: left;">{{ $khachhang->ngay_dat }}</td>
                                 </tr>
                             </tbody>
@@ -77,16 +77,16 @@
                                 <tr>
                                     <td>{{ $key+1 }}</td>
                                     <td><img src="<?php
-                                                    if (file_exists('public/uploads/anhsach/' . $sach['hinh_anh'])) {
-                                                        echo 'public/uploads/anhsach/' . $sach['hinh_anh'];
+                                                    if (file_exists('public/uploads/anhsach/' . $sach->hinh_anh)) {
+                                                        echo 'public/uploads/anhsach/' . $sach->hinh_anh;
                                                     } else {
-                                                        echo $sach['hinh_anh'];
+                                                        echo $sach->hinh_anh;
                                                     }
                                                     ?>" style="width:50px;"></td>
-                                    <td>{{ $sach['ten_sach'] }} </td>
-                                    <td>{{ number_format($sach['gia_sach'] -($sach['gia_sach']* $sach['phantram_km']/100)) }}</td>
-                                    <td>{{ $sach['so_luong'] }}</td>
-                                    <td>{{ number_format($sach['so_luong'] *($sach['gia_sach'] -($sach['gia_sach']* $sach['phantram_km']/100))) }}</td>
+                                    <td>{{ $sach->ten_sach }} </td>
+                                    <td>{{ number_format($sach->gia)  }}</td>
+                                    <td>{{ $sach->so_luong }}</td>
+                                    <td>{{ number_format($sach->so_luong * $sach->gia) }}</td>
                                 </tr>
                                 @endforeach
                                 <tr>

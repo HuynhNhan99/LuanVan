@@ -8,12 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
-    public function json()
-    {
-        $array = ['name' => 'ten', 'honame' => 'ten'];
-        $array = ['name1' => 'ten', 'honame' => 'ten'];
-        return response()->json($array);
-    }
+    
     public function index()
     {
         //Danh mục sách
@@ -193,19 +188,20 @@ class HomeController extends Controller
             ->with('khuyenmai',$array_km)
             ->with('theloai',$array_tl);
     }
-    public function chitiet($sach_id)
-    {
+    public function chitiet($sach_id){
         //chi tiết sách với khuyến mãi 
         $tl_sach = DB::table('dausach')
-            ->selectRaw('sum(sl_nhap) as sl_nhap, dausach.ten_sach, dausach.hinh_anh, dausach.gia_sach, dausach.id_sach,tacgia.ten_tg,theloai.ten_tl,theloai.id_tl, ten_ncc, chieu_rong, chieu_dai, so_trang, ten_nxb, dausach.mo_ta,khuyenmai.phantram_km ')
             ->join('ctkhuyenmai', 'dausach.id_sach', '=', 'ctkhuyenmai.id_sach')
-            ->join('ngaynhaphang', 'dausach.id_sach', '=', 'ngaynhaphang.id_sach')
             ->join('khuyenmai', 'ctkhuyenmai.id_km', '=', 'khuyenmai.id_km')
             ->join('theloai', 'dausach.id_tl', '=', 'theloai.id_tl')
             ->join('tacgia', 'dausach.id_tg', '=', 'tacgia.id_tg')
             ->join('nxb', 'dausach.id_nxb', '=', 'nxb.id_nxb')
             ->join('nhacungcap', 'dausach.id_ncc', '=', 'nhacungcap.id_ncc')
             ->where('dausach.id_sach', $sach_id)
+            ->first();
+        $sl_nhap =  DB::table('ngaynhaphang')
+            ->where('id_sach',$sach_id)
+            ->groupBy('id_sach')
             ->first();
         $sl_ban =  DB::table('donhang')
             ->selectRaw('sum(ctgiohang.so_luong) as soluong, dausach.id_sach')
@@ -217,9 +213,7 @@ class HomeController extends Controller
             ->first();
         if ($tl_sach == null) {
             $tl_sach = DB::table('dausach')
-            ->selectRaw('sum(sl_nhap) as sl_nhap, dausach.ten_sach, dausach.hinh_anh, dausach.gia_sach, dausach.id_sach,tacgia.ten_tg,theloai.ten_tl,theloai.id_tl, ten_ncc, chieu_rong, chieu_dai, so_trang, ten_nxb, dausach.mo_ta,khuyenmai.phantram_km ')
             ->join('theloai', 'dausach.id_tl', '=', 'theloai.id_tl')
-            ->join('ngaynhaphang', 'dausach.id_sach', '=', 'ngaynhaphang.id_sach')
             ->join('tacgia', 'dausach.id_tg', '=', 'tacgia.id_tg')
             ->join('nxb', 'dausach.id_nxb', '=', 'nxb.id_nxb')
             ->join('nhacungcap', 'dausach.id_ncc', '=', 'nhacungcap.id_ncc')
@@ -327,7 +321,7 @@ class HomeController extends Controller
                 ];
             }
         }
-        return view('home.page.chitiet')->with('danh_gia', $array)->with('sl_ban', $sl_ban)->with('tong_dg', $tong_dg)->with('kh_dg', $kh_dg)->with('danhgia', $rating)->with('sach', $tl_sach)->with('sach_tuongtu', $array_sachtt);
+        return view('home.page.chitiet')->with('danh_gia', $array)->with('sl_ban', $sl_ban)->with('sl_nhap', $sl_nhap)->with('tong_dg', $tong_dg)->with('kh_dg', $kh_dg)->with('danhgia', $rating)->with('sach', $tl_sach)->with('sach_tuongtu', $array_sachtt);
     }
 
     public function TL1_sach(Request $request)
@@ -465,12 +459,8 @@ class HomeController extends Controller
 // quản lý khuyến mãi
     public function khuyen_mai()
     {
-        $list_theloai = DB::table('dausach')
-            ->join('theloai', 'dausach.id_tl', '=', 'theloai.id_tl')
-            ->orderby('theloai.id_tl', 'desc')
-            ->get();
-        $tl = DB::table('theloai')->get();
-        return view('admin.quanly.Khuyenmai.add')->with('tl', $tl)->with('list_theloai', $list_theloai);
+        
+        return view('admin.quanly.Khuyenmai.add');
     }
     public function chitiet_km($id_km)
     {
@@ -485,9 +475,14 @@ class HomeController extends Controller
     public function tl_km(Request $request)
     {
         if ($request->id_tl) {
+            if ($request->id_tl==0){
+                $list_theloai = DB::table('dausach')
+                ->join('theloai', 'dausach.id_tl', '=', 'theloai.id_tl')->orderby('theloai.id_tl', 'desc')->get();
+            }else{
             $list_theloai = DB::table('dausach')
                 ->join('theloai', 'dausach.id_tl', '=', 'theloai.id_tl')
                 ->where('theloai.id_tl', $request->id_tl)->orderby('theloai.id_tl', 'desc')->get();
+            }
         } else {
             $list_theloai = DB::table('dausach')
                 ->join('theloai', 'dausach.id_tl', '=', 'theloai.id_tl')
@@ -505,14 +500,8 @@ class HomeController extends Controller
         $data['phantram_km'] = $request->phamtram_km;
         $data['ngay_bat_dau'] = $request->ngay_bat_dau;
         $data['ngay_ket_thuc'] = $request->ngay_ket_thuc;
-        $idkm = DB::table('khuyenmai')->insertGetId($data);
-        $ctdata = array();
-        foreach ($request->id_sach as $id_sach) {
-            $ctdata['id_km'] = $idkm;
-            $ctdata['id_sach'] = $id_sach;
-            DB::table('ctkhuyenmai')->insert($ctdata);
-        }
-        return Redirect::to('/khuyen-mai');
+        DB::table('khuyenmai')->insert($data);
+        return Redirect::to('addmin/themct-km');
     }
     public function list_km()
     {
@@ -524,7 +513,26 @@ class HomeController extends Controller
     {
         DB::table('ctkhuyenmai')->where('id_sach',$id_sach)->delete();
         //Session::put('message','Đã xóa thành công!');
-        return Redirect::to('/list-km');
+        return Redirect::to('addmin/list-km');
+    }
+    public function themct_km()
+    {
+        $list_theloai = DB::table('dausach')
+            ->join('theloai', 'dausach.id_tl', '=', 'theloai.id_tl')
+            ->orderby('theloai.id_tl', 'desc')
+            ->get();
+        $tl = DB::table('theloai')->get();
+        $khuyenmai = DB::table('khuyenmai')->get();
+        return view('admin.quanly.Khuyenmai.themct')->with('khuyenmai', $khuyenmai)->with('tl', $tl)->with('list_theloai', $list_theloai);
+    }
+    public function addct_km(Request $request)
+    {
+       foreach ($request->id_sach as $id_sach) {
+        $ctdata['id_km'] = $request->id_km;
+        $ctdata['id_sach'] = $id_sach;
+        DB::table('ctkhuyenmai')->insert($ctdata);
+    }
+    return Redirect::to('addmin/list-km');
     }
     public function tim_km(Request $request)
     {

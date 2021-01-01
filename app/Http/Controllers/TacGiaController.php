@@ -24,12 +24,12 @@ class TacGiaController extends Controller
         $data['ten_tg']= $request->ten_tg;
         DB::table('tacgia')->insert($data);
         Session::put('message','Thêm tác giả thành công!');
-        return Redirect::to('/list-tacgia');
+        return Redirect::to('addmin/list-tacgia');
     }
     public function Delete_tacgia($tacgia_id){
         DB::table('tacgia')->where('id_tg',$tacgia_id)->delete();
         Session::put('message','Đã xóa thành công!');
-        return Redirect::to('/list-tacgia');
+        return Redirect::to('addmin/list-tacgia');
     }
     public function Edit_tacgia($tacgia_id){
         $edit_tacgia= DB::table('tacgia')->where('id_tg',$tacgia_id)->get();
@@ -40,7 +40,7 @@ class TacGiaController extends Controller
         $data = array();
         $data['ten_tg']= $request->ten_tg;
         DB::table('tacgia')->where('id_tg',$tacgia_id)->update($data);
-        return Redirect::to('/list-tacgia');
+        return Redirect::to('addmin/list-tacgia');
     }
 
     public function tim_tacgia(Request $request)

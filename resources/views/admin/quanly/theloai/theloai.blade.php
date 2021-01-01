@@ -50,10 +50,10 @@
                   <td> {{ $key+1 }}</td>
                   <td>{{ $theloai->ten_tl}}</td>
                   <td>
-                    <a href="{{URL::to('/edit-theloai/'.$theloai->id_tl)}}">
+                    <a href="{{URL::to('addmin/edit-theloai/'.$theloai->id_tl)}}">
                       <i class="fa fa-edit"></i>
                     </a>
-                    <a href="{{URL::to('/delete-theloai/'.$theloai->id_tl)}}">
+                    <a href="{{URL::to('addmin/delete-theloai/'.$theloai->id_tl)}}">
                       <i class="fa fa-trash"></i>
                     </a>
                   </td>
@@ -78,7 +78,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form class="forms-sample" action="{{URL::to('/add-theloai')}}" method="post">
+      <form class="forms-sample" action="{{URL::to('addmin/add-theloai')}}" method="post">
         <div class="modal-body">
           {{ csrf_field() }}
           <div class="form-group">

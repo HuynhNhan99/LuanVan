@@ -94,7 +94,7 @@ if(isset($sl_ban)){
 												<i class="ti-minus"></i>
 											</button>
 										</div>
-										<input type="text" name="quant[1]" class="input-number" data-min="1" data-max="{{$sach->sl_nhap - $slban}}" id="qty" value="1" style="border: 1px solid #eceded;width: 100%;text-align: center;height: 47px;border-radius: 0;overflow: hidden;padding: 0px 45px;">
+										<input type="text" name="quant[1]" class="input-number" data-min="1" data-max="{{$sl_nhap->sl_nhap - $slban}}" id="qty" value="1" style="border: 1px solid #eceded;width: 100%;text-align: center;height: 47px;border-radius: 0;overflow: hidden;padding: 0px 45px;">
 										<div class="button plus" style="    display: inline-block;position: absolute;top: 0;right: 0;border-radius: 0;overflow: hidden;">
 											<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
 												<i class="ti-plus"></i>
@@ -102,7 +102,7 @@ if(isset($sl_ban)){
 										</div>
 									</div>
 								</div>
-								@if($sach->sl_nhap - $slban<=0)
+								@if($sl_nhap->sl_nhap - $slban<=0)
 								<div class="row">
 									<div class="input-group">
 										<button type="button" class="btn btn-fefault cart " >

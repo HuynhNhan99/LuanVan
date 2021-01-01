@@ -7,12 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use App\Models\PhuongXa;
 use App\Models\ThanhPho;
-use App\Models\QuanHuyen;
+
 use Barryvdh\DomPDF\Facade as PDF;
-use SebastianBergmann\Environment\Console;
-use Toastr;
+
 
 class DatHangController extends Controller
 {
@@ -59,7 +57,7 @@ class DatHangController extends Controller
         $data = array();
         $data['ten_nxb'] = $request->ten_nxb;
         DB::table('nxb')->where('id_nxb', $nxb_id)->update($data);
-        return Redirect::to('/list-nxb');
+        return Redirect::to('addmin/list-nxb');
     }
     public function xacnhan_dc()
     {
@@ -111,6 +109,7 @@ class DatHangController extends Controller
         $data_dh['dc_dh'] = $khachhang->diachi_kh . ', ' . $khachhang->tenxa . ', ' . $khachhang->tenqh . ', ' . $khachhang->tentp;
         $data_dh['trang_thai'] = 1;
         $giohang = Cart::content();
+        
         if ($request->id_tt == 2) {
             return Redirect::to('payment');
         }
@@ -119,11 +118,8 @@ class DatHangController extends Controller
             $data_ctdh['id_dh'] = $id_dh;
             $data_ctdh['id_sach'] = $ctgiohang->id;
             $data_ctdh['so_luong'] = $ctgiohang->qty;
+            $data_ctdh['gia'] = $ctgiohang->price;
             DB::table('ctgiohang')->insert($data_ctdh);
-            $sach =  DB::table('dausach')->where('id_sach', $ctgiohang->id)->first();
-            $data_sl = array();
-            $data_sl['sl_sach'] = $sach->sl_sach - $ctgiohang->qty;
-            DB::table('dausach')->where('id_sach', $ctgiohang->id)->update($data_sl);
         }
 
         Cart::destroy();
@@ -150,11 +146,13 @@ class DatHangController extends Controller
             $data_dh['dc_dh'] = $khachhang->diachi_kh . ', ' . $khachhang->tenxa . ', ' . $khachhang->tenqh . ', ' . $khachhang->tentp;
             $data_dh['trang_thai'] = 1;
             $giohang = Cart::content();
+            dd($giohang);
             $id_dh = DB::table('donhang')->insertGetId($data_dh);
             foreach ($giohang as $ctgiohang) {
                 $data_ctdh['id_dh'] = $id_dh;
                 $data_ctdh['id_sach'] = $ctgiohang->id;
                 $data_ctdh['so_luong'] = $ctgiohang->qty;
+                $data_ctdh['gia'] = $ctgiohang->price;
                 DB::table('ctgiohang')->insert($data_ctdh);
             }
             Cart::destroy();
@@ -182,45 +180,17 @@ class DatHangController extends Controller
     }
     public function ctdonhang($id_dh)
     {
-        $ct_sach = DB::table('donhang')
+        $ctdh = DB::table('donhang')
             ->join('ctgiohang', 'ctgiohang.id_dh', '=', 'donhang.id_dh')
             ->join('dausach', 'dausach.id_sach', '=', 'ctgiohang.id_sach')
             ->where('donhang.id_dh', $id_dh)
             ->get();
 
-        foreach ($ct_sach as $key => $ctdh) {
-            $km =  DB::table('khuyenmai')
-                ->join('ctkhuyenmai', 'ctkhuyenmai.id_km', '=', 'khuyenmai.id_km')
-                ->join('dausach', 'dausach.id_sach', '=', 'ctkhuyenmai.id_sach')
-                ->where('dausach.id_sach', $ctdh->id_sach)
-                ->where('khuyenmai.ngay_bat_dau', '<=', $ctdh->ngay_dat)
-                ->where('khuyenmai.ngay_ket_thuc', '>=', $ctdh->ngay_dat)
-                ->first();
-            if ($km) {
-                $array_sach[$key] = [
-                    "id_sach" => $km->id_sach,
-                    "ten_sach" => $km->ten_sach,
-                    "hinh_anh" => $km->hinh_anh,
-                    "gia_sach" => $km->gia_sach,
-                    "so_luong" => $ctdh->so_luong,
-                    "phantram_km" => $km->phantram_km,
-                ];
-            } else {
-                $array_sach[$key] = [
-                    "id_sach" => $ctdh->id_sach,
-                    "ten_sach" => $ctdh->ten_sach,
-                    "hinh_anh" => $ctdh->hinh_anh,
-                    "gia_sach" => $ctdh->gia_sach,
-                    "so_luong" => $ctdh->so_luong,
-                    "phantram_km" => 0,
-                ];
-            }
-        }
         $dh =  DB::table('donhang')
             ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
             ->join('thanhtoan', 'thanhtoan.id_tt', '=', 'donhang.id_tt')
             ->where('donhang.id_dh', $id_dh)->first();
-        return view('admin.quanly.Donhang.ctdonhang')->with('ctdonhang', $array_sach)->with('khachhang', $dh);
+        return view('admin.quanly.Donhang.ctdonhang')->with('ctdonhang', $ctdh)->with('khachhang', $dh);
     }
     public function in_dh($id_dh)
     {
@@ -228,226 +198,86 @@ class DatHangController extends Controller
         $ctdh = DB::table('donhang')
             ->join('ctgiohang', 'ctgiohang.id_dh', '=', 'donhang.id_dh')
             ->join('dausach', 'dausach.id_sach', '=', 'ctgiohang.id_sach')
-            ->join('ctkhuyenmai', 'ctkhuyenmai.id_sach', '=', 'dausach.id_sach')
-            ->join('khuyenmai', 'ctkhuyenmai.id_km', '=', 'khuyenmai.id_km')
             ->where('donhang.id_dh', $id_dh)
             ->get();
-        $dh =  DB::table('donhang')
+        $kh =  DB::table('donhang')
             ->join('khachhang', 'donhang.id_kh', '=', 'khachhang.id_kh')
             ->join('thanhtoan', 'thanhtoan.id_tt', '=', 'donhang.id_tt')
             ->where('donhang.id_dh', $id_dh)->first();
         $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML('
-            <style>
-                .invoice-title h2,
-                .invoice-title h3 {
-                    display: inline-block;
-                }
+        $output='';
 
-                .table>tbody>tr>.no-line {
-                    border-top: none;
-                }
+        $output.='<style>
+                    body{
+                        font-family: DejaVu Sans;
+                    }
+                  </style>
 
-                .table>thead>tr>.no-line {
-                    border-bottom: none;
-                }
+                <h3>Cửa hàng ABC</h3>
+                <p>Địa chỉ: Số xx, đường abc, phường def, quận Ninh Kiều, TPCT<br>Email: abc@gmail.com<br> SĐT: 0101010101</p>
+                <h2 align="center">HÓA ĐƠN BÁN HÀNG</h2>
+                <br>
+                <br>
+                <center><table width="100%">
+                    <thead>';
+                    $output.='<tr>';
+                    $output.='<th width="25%" align="left">Tên khách hàng: </th><td>'.$kh->ten_kh.'</td>
+                              <th width="3%"></th> 
+                              <th width="20%" align="left">Số điện thoại: </th><td>'.$kh->sdt_kh.'</td>';           
+                    $output.='</tr>';
+                    $output.='<tr>';
+                    $output.='<th align="left">Địa chỉ: </th><td colspan="4">'.$kh->dc_dh.'</td>';           
+                    $output.='</tr>';
+                        
+                $output.='</thead>
+                </table></center><br><br>';
 
-                .table>tbody>tr>.thick-line {
-                    border-top: 2px solid;
-                }
-                * {
-                    -webkit-box-sizing: border-box;
-                    -moz-box-sizing: border-box;
-                    box-sizing: border-box;
-                }
-                *{
-                    font-family: DejaVu Sans;
-                }
-                .container {
-                    margin-right: auto;
-                    margin-left: auto;
-                    padding-left: 15px;
-                    padding-right: 15px;
-                }
+        $output.='<table class="sanpham" width="100%" style="border:1px solid">
+                    <thead>';   
+                    $output.='<tr align="center">
+                              <th>STT</th> 
+                              <th>Tên sản phẩm</th>
+                              <th>Giá</th>
+                              <th>Số lượng</th>
+                              <th>Thành tiền</th>           
+                              </tr>
+                    </thead>';
 
-                .invoice-title h2,
-                .invoice-title h3 {
-                    display: inline-block;
-                }
+          $output.='<tbody>';
+                        foreach($ctdh as $k => $sp){
+                          
+                    $output.='<tr align="center">';
+                    $output.='<td>1</td>
+                              <td>'.$sp->ten_sach.'</td>
+                              <td>'.$sp->gia_sach.'</td>
+                              <td>'.$sp->so_luong.'</td></tr>';
+                        }
 
-                .pull-right {
-                    float: right !important;
-                }
+          $output.='</tbody>
+                </table>';
 
-                h3,
-                .h3 {
-                    font-size: 24px;
-                }
+        $output.='<table align="right">';
+        $output.='<tr>
+        <th align="left">Tổng đơn hàng: </th><td>'.number_format(10000).''.'VNĐ'.'</td>
+                  </tr>
+                  <tr>
+                    <th align="left">Phí vận chuyển: </th><td>1000</td>
+                  </tr>
+                  <tr>
+                    <th align="left">Tổng tiền: </th><td>'.number_format(100000).''.'VNĐ'.'</td>
+                  </tr>';
+                  
+                
+        $output.=' </table><br><br><br><br>';
 
-                h1,
-                h2,
-                h3,
-                h4,
-                h5,
-                h6,
-                .h1,
-                .h2,
-                .h3,
-                .h4,
-                .h5,
-                .h6 {
-                    font-weight: 500;
-                    line-height: 1.1;
-                    color: inherit;
-                }
+        $output.='<br><br><table width="100%">
 
-                .panel {
-                    margin-bottom: 20px;
-                    background-color: #fff;
-                    border: 1px solid #ddd;
-                    border-radius: 4px;
-                    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-                    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-                }
+                    <th align="center">Người mua</th>
+                    <th align="center">Người bán</th>
 
-                .panel-default>.panel-heading {
-                    color: #333;
-                    background-color: #f5f5f5;
-                    border-color: #ddd;
-                }
+                 </table>';
 
-                .panel-heading {
-                    padding: 10px 15px;
-                    border-bottom: 1px solid transparent;
-                    border-top-right-radius: 3px;
-                    border-top-left-radius: 3px;
-                }
-
-                .panel-title {
-                    margin-top: 0;
-                    margin-bottom: 0;
-                    font-size: 16px;
-                    color: inherit;
-                }
-
-                .panel-body {
-                    padding: 15px;
-                }
-
-                .table {
-                    width: 100%;
-                    margin-bottom: 20px;
-                }
-
-                .table>thead:first-child>tr:first-child>td {
-                    border-top: 0;
-                }
-
-                .table-condensed>thead>tr>th,
-                .table-condensed>tbody>tr>th,
-                .table-condensed>tfoot>tr>th,
-                .table-condensed>thead>tr>td,
-                .table-condensed>tbody>tr>td,
-                .table-condensed>tfoot>tr>td {
-                    padding: 5px;
-                }
-
-                .table>thead>tr>th,
-                .table>tbody>tr>th,
-                .table>tfoot>tr>th,
-                .table>thead>tr>td,
-                .table>tbody>tr>td,
-                .table>tfoot>tr>td {
-                    padding: 8px;
-                    line-height: 1.428571429;
-                    vertical-align: top;
-                    border-top: 1px solid #ddd;
-                }
-
-                .table>tbody>tr>.thick-line {
-                    border-top: 2px solid;
-                }
-            </style>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="invoice-title">
-                    <strong style="font-size:20px;">HÓA ĐƠN</strong><h3 class="pull-right">Order #' . $id_dh . '</h3>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <address>
-                            <strong>Thông tin đơn hàng:</strong><br>
-                                Tên: ' . $dh->ten_kh . '<br>
-                                Số điện thoại: ' . $dh->sdt_kh . '<br>
-                                Địa chỉ: ' . $dh->dc_dh . '<br>
-                                Email: ' . $dh->email_kh . '<br>
-                            </address>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <address>
-                                <strong>Phương thức thanh toán:</strong> ' . $dh->ten_tt . '<br>
-                            </address>
-                        </div>
-                        <div class="col-xs-6 text-right">
-                            <address>
-                                <strong>Ngày đặt:</strong> ' . $dh->ngay_dat . '<br><br>
-                            </address>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><strong>CHI TIẾT ĐƠN HÀNG</strong></h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <td><strong>Tên sách</strong></td>
-                                            <td class="text-center"><strong>Giá sách</strong></td>
-                                            <td class="text-center"><strong>Số lượng</strong></td>
-                                            <td class="text-right"><strong>Tổng cộng</strong></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       
-                                      
-                                        <tr>
-                                            <td class="thick-line"></td>
-                                            <td class="thick-line"></td>
-                                            <td class="thick-line text-center"><strong>Tổng tiền:</strong></td>
-                                            <td class="thick-line text-right">' . $dh->tong_tien . '</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="no-line"></td>
-                                            <td class="no-line"></td>
-                                            <td class="no-line text-center"><strong> Tiền ship: </strong></td>
-                                            <td class="no-line text-right">' . $dh->tien_ship . '</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="no-line"></td>
-                                            <td class="no-line"></td>
-                                            <td class="no-line text-center"><strong>Thành tiền: </strong></td>
-                                            <td class="no-line text-right">' . $dh->tong_tien . '+' . $dh->tien_ship . '</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        ');
+        $pdf->loadHTML($output);
         return $pdf->stream();
         //     return view('admin.quanly.Donhang.hoadon');
         //     $pdf = app('dompdf.wrapper');

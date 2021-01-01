@@ -45,7 +45,6 @@ class DauSachController extends Controller
         $data['ngon_ngu'] = $request->ngon_ngu;
         $data['id_ncc'] = $request->id_ncc;
         $data['id_nxb'] = $request->id_nxb;
-        $data['id_tg'] = $request->id_tg;
         $data['id_tl'] = $request->id_tl;
         $data['ngay_nhap'] = now();
         $get_image = $request->file('hinh_anh');
@@ -59,41 +58,41 @@ class DauSachController extends Controller
             $data_i['sl_nhap'] = $request->sl_nhap;
             $data_i['ngay_nhap_hang'] = now();
             DB::table('ngaynhaphang')->insert($data_i);
-            return Redirect::to('/add-sach');
-            if($request->file('fhinh_anh')){
-                $data_i = array();
-                foreach ($request->file('fhinh_anh') as $image){
-                        $data_i['id_sach']=$sach_id;
-                        $data_i['ten_ha'] = $image->getClientOriginalName();
-                        $image->move('public/uploads/anhsach',$image->getClientOriginalName());
-                        DB::table('hinhanh')->insert($data_i);
-                }
-                return Redirect::to('/add-sach');
+            $data_tg = array();
+            foreach ($request->id_tg as $tg){
+                    $data_tg['id_sach']=$sach_id;
+                    $data_tg['id_tg'] = $tg;
+                    DB::table('cttacgia')->insert($data_tg);
             }
-
-            return Redirect::to('/add-sach');
+            return Redirect::to('addmin/add-sach');
+                
         }
+
+        return Redirect::to('addmin/add-sach');
     }
+    
     public function Delete_sach($sach_id){
         DB::table('dausach')->where('id_sach',$sach_id)->delete();
         Session::put('message','Đã xóa thành công!');
-        return Redirect::to('/list-sach');
+        return Redirect::to('addmin/list-sach');
     }
     public function Edit_sach($sach_id){
+        
         $edit_sach= DB::table('dausach')
-        ->join('tacgia','dausach.id_tg','=','tacgia.id_tg')
+        ->join('cttacgia','dausach.id_sach','=','cttacgia.id_sach')
+        ->join('tacgia','cttacgia.id_tg','=','tacgia.id_tg')
         ->join('nxb','dausach.id_nxb','=','nxb.id_nxb')
-        ->join('theloai','dausach.id_tl','=','dausach.id_tl')
-        ->where('id_sach',$sach_id)->get();
+        ->join('theloai','dausach.id_tl','=','theloai.id_tl')
+        ->where('dausach.id_sach',$sach_id)->get();
         $data_sach= view('admin.quanly.sach.edit')->with('edit_sach',$edit_sach);
         return view('admin.index')->with('admin.quanly.sach.edit',$data_sach);
     }
    
-    public function Update_nxb(Request $request, $nxb_id){
+    public function Update_sach(Request $request, $nxb_id){
         $data = array();
         $data['ten_nxb']= $request->ten_nxb;
         DB::table('nxb')->where('id_nxb',$nxb_id)->update($data);
-        return Redirect::to('/list-nxb');
+        return Redirect::to('addmin/list-nxb');
     }
     
 

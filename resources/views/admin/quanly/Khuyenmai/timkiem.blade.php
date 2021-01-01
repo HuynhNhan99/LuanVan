@@ -18,10 +18,10 @@
             <td>{{ $khuyenmai->phantram_km }}%</td>
             <td>{{ $khuyenmai->ngay_bat_dau }}</td>
             <td>{{ $khuyenmai->ngay_ket_thuc }}</td>
-            <td><a href="{{URL::to('/chitiet-km/'.$khuyenmai->id_km)}}"><i class="fas fa-info-circle"></i></a></td>
+            <td><a href="{{URL::to('addmin/chitiet-km/'.$khuyenmai->id_km)}}"><i class="fas fa-info-circle"></i></a></td>
             <td>
-                <a href="{{URL::to('/edit-ncc/'.$khuyenmai->id_km)}}"><i class="fa fa-edit"></i></a>
-                <a href="{{URL::to('/delete-ncc/'.$khuyenmai->id_km)}}"><i class="fas fa-trash "></i></a>
+                <a href="{{URL::to('addmin/edit-ncc/'.$khuyenmai->id_km)}}"><i class="fa fa-edit"></i></a>
+                <a href="{{URL::to('addmin/delete-ncc/'.$khuyenmai->id_km)}}"><i class="fas fa-trash "></i></a>
             </td>
         </tr>
         @endforeach

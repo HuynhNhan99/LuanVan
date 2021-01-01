@@ -28,7 +28,7 @@
               </div>
                
               <h4>ĐĂNG NHẬP ADMIN</h4>
-              <form class="pt-3" action="{{URL::to('/admin-dashboard')}}" method="post">
+              <form class="pt-3" action="{{URL::to('addmin/admin-dashboard')}}" method="post">
                 {{ csrf_field() }}
                 <?php
                   use Illuminate\Support\Facades\Session;

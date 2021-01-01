@@ -55,10 +55,10 @@
               <button type="button" class="btn right btn-primary " style="width:100%;padding-right: 10px;padding-left: 10px;height: 46.22222px;" data-toggle="modal" data-target="#ImportSach">Import</button>
             </div>
             <div class="col-lg-1">
-              <a href="{{URL::to('/export-sach')}}" style="color: #f4f7fa; "><button type="button" class="btn right btn-primary " style="width:100%;padding-right: 10px;padding-left: 10px;height: 46.22222px;">Export</button></a>
+              <a href="{{URL::to('addmin/export-sach')}}" style="color: #f4f7fa; "><button type="button" class="btn right btn-primary " style="width:100%;padding-right: 10px;padding-left: 10px;height: 46.22222px;">Export</button></a>
             </div>
             <div class="col-lg-2">
-              <button type="button" class="btn right btn-primary " style="width:100%;"><a href="{{URL::to('/add-sach')}}" style="color: #f4f7fa; ">Thêm mới <i class="fas fa-plus"></i></a></button>
+              <button type="button" class="btn right btn-primary " style="width:100%;"><a href="{{URL::to('addmin/add-sach')}}" style="color: #f4f7fa; ">Thêm mới <i class="fas fa-plus"></i></a></button>
             </div>
 
           </div>
@@ -88,10 +88,10 @@
                   <td >{{ $sach->gia_sach}}</td>
                   <td> <p style=" text-align: left;white-space: nowrap;width: 300px; overflow: hidden;text-overflow: ellipsis; ">{{ $sach->mo_ta}}</p></td>
                   <td>
-                    <a href="{{URL::to('/edit-sach/'.$sach->id_sach)}}">
+                    <a href="{{URL::to('addmin/edit-sach/'.$sach->id_sach)}}">
                       <i class="fa fa-edit"></i>
                     </a>
-                    <a href="{{URL::to('/delete-sach/'.$sach->id_sach)}}">
+                    <a href="{{URL::to('addmin/delete-sach/'.$sach->id_sach)}}">
                       <i class="fas fa-trash "></i>
                     </a>
                   </td>
@@ -119,7 +119,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form class="forms-sample" action="{{URL::to('/import-sach')}}" method="post" enctype="multipart/form-data">
+      <form class="forms-sample" action="{{URL::to('addmin/import-sach')}}" method="post" enctype="multipart/form-data">
         <div class="modal-body">
           {{ csrf_field() }}
           <div class="form-group">

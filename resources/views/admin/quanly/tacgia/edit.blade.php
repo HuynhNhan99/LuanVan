@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h4 class="card-title">CẬP NHẬT TÁC GIẢ</h4>
                     @foreach( $edit_tacgia as $key => $tacgia)
-                    <form class="forms-sample" action="{{URL::to('/update-tacgia/'.$tacgia->id_tg)}}" method="post">
+                    <form class="forms-sample" action="{{URL::to('addmin/update-tacgia/'.$tacgia->id_tg)}}" method="post">
                         {{ csrf_field() }}    
                         <div class="form-group">
                             <label for="MoTa">Tên Tác giả</label>

@@ -75,7 +75,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="forms-sample" action="{{URL::to('/them-phivc')}}" method="post">
+            <form class="forms-sample" action="{{URL::to('addmin/them-phivc')}}" method="post">
                 <div class="modal-body">
                     {{ csrf_field() }}
                     <div class="form-group">

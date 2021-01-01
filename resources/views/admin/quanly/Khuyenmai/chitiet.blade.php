@@ -8,7 +8,7 @@
                     <div class="d-flex">
                         <i class="mdi mdi-home text-muted hover-cursor"></i>
                         <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-                        <a href="quanly-kho">
+                        <a href="addmin/quanly-kho">
                             <p class="text-primary mb-0 hover-cursor">Quản lý kho sách</p>
                         </a>
                         <p class="text-primary mb-0 hover-cursor">&nbsp;/&nbsp;Chi tiết kho sách</p>
@@ -54,7 +54,7 @@
                                     <td style="text-align: left;">{{ $sach->ten_sach}}</td>
 
                                     <td>
-                                        <a href="{{URL::to('/ctkm-sach/'.$sach->id_sach)}}">
+                                        <a href="{{URL::to('addmin/ctkm-sach/'.$sach->id_sach)}}">
                                             <i class="fas fa-trash "></i>
                                         </a>
                                     </td>

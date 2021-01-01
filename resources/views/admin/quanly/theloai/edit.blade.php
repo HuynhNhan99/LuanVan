@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h4 class="card-title">CẬP NHẬT TÁC GIẢ</h4>
                     @foreach( $edit_theloai as $key => $theloai)
-                    <form class="forms-sample" action="{{URL::to('/update-theloai/'.$theloai->id_tl)}}" method="post">
+                    <form class="forms-sample" action="{{URL::to('addmin/update-theloai/'.$theloai->id_tl)}}" method="post">
                         {{ csrf_field() }}    
                         <div class="form-group">
                             <label for="MoTa">Tên thể loại</label>

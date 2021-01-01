@@ -12,10 +12,10 @@
             <td>{{ $key+1 }}</td>
             <td>{{ $nxb->ten_nxb }}</td>
             <td>
-                <a href="{{URL::to('/edit-nxb/'.$nxb->id_nxb)}}">
+                <a href="{{URL::to('addmin/edit-nxb/'.$nxb->id_nxb)}}">
                     <i class="fa fa-edit"></i>
                 </a>
-                <a href="{{URL::to('/delete-nxb/'.$nxb->id_nxb)}}">
+                <a href="{{URL::to('addmin/delete-nxb/'.$nxb->id_nxb)}}">
                     <i class="fas fa-trash "></i>
                 </a>
             </td>

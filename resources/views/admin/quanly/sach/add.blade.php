@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">THÊM ĐẦU SÁCH</h4>
-                    <form class="forms-sample" action="{{URL::to('/save-sach')}}" method="post" enctype="multipart/form-data">
+                    <form class="forms-sample" action="{{URL::to('addmin/save-sach')}}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <div class="row">
@@ -56,8 +56,31 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="TacGia">Tác giả</label>
+                            <div class="input-group md-form form-sm form-2 pl-0">
+                                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Nhập tên tác giả" aria-label="Search">
+                                <div class="input-group-append">
+                                    <span class="input-group-text red lighten-3" id="basic-text1" style="color: white; background:#4d83ff;border-color: #4d83ff;"><i class="fas fa-search text-grey" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                            <div class="table-responsive" style="height: 150px;">
+                                <table class="table table-hover" id="tlkm">
+                                    <tbody>
+
+                                        @foreach ($list_tacgia as $key => $tacgia)
+                                        <tr>
+                                            <td><input class="w3-check" type="checkbox" name="id_tg[]" value="{{$tacgia->id_tg}}" require></td>
+                                            <td style="text-align: left;">{{$tacgia->ten_tg}}</td>
+
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-6">
                                     <label for="TheLoai">Thể loại</label>
                                     <select class="form-control" id="TheLoai" name="id_tl">
                                         @foreach ($list_theloai as $key => $theloai)
@@ -65,15 +88,8 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-4">
-                                    <label for="TacGia">Tác giả</label>
-                                    <select class="form-control" id="TacGia" name="id_tg">
-                                        @foreach ($list_tacgia as $key => $tacgia)
-                                        <option value="{{ $tacgia->id_tg }}">{{ $tacgia->ten_tg }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-4">
+
+                                <div class="col-6">
                                     <label for="TacGia">Nhà xuất bản</label>
                                     <select class="form-control" id="NXB" name="id_nxb">
                                         @foreach ($list_nxb as $key => $nxb)
@@ -96,13 +112,8 @@
                             <label>Thêm hình</label>
                             <input type="file" class="form-control" id="customFile" name="hinh_anh">
                         </div>
-                        <div class="form-group">
-                            <label>Thêm nhiều tác giả</label>
-                            @for($i=1; $i<=4;$i++) <input type="file" class="form-control" name="fhinh_anh[]">
-                                @endfor
-                        </div>
-                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                        <button class="btn btn-light">Cancel</button>
+
+                        <button type="submit" class="btn btn-primary mr-2">Thêm</button>
                     </form>
                 </div>
             </div>

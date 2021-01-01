@@ -61,7 +61,7 @@
                                    
                                     <td>{{$sach['sl_nhap']}}</td>
                                     <td>{{$sach['sl_ton']}}</td>
-                                    <td><a href="{{URL::to('/ct-kho/'.$sach['id_sach'])}}"><i class="fas fa-info-circle"></i></a></td>
+                                    <td><a href="{{URL::to('addmin/ct-kho/'.$sach['id_sach'])}}"><i class="fas fa-info-circle"></i></a></td>
                                     <td><button type="button" class="open-AddBookDialog btn right btn-primary" data-toggle="modal" data-id="{{$sach['id_sach']}}" data-target="#Themncc" data-id="{{$sach['id_sach']}}" style="width:100%; height:100%">Thêm</button>
                                     </td>
                                 </tr>
@@ -84,7 +84,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="forms-sample" action="{{URL::to('/them-kho')}}" method="post">
+            <form class="forms-sample" action="{{URL::to('addmin/them-kho')}}" method="post">
                 <div class="modal-body">
                     {{ csrf_field() }}
                     <div class="form-group">

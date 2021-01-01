@@ -69,9 +69,9 @@ use Illuminate\Support\Facades\DB;
 																							}
 																							?>" style="width:50px;"></td>
 									<td scope="row" style="text-align: left;"><span>{{ $sa->ten_sach }}</span></td>
-									<td scope="row" style="text-align: center;">{{ $sa->gia_sach}}</td>
+									<td scope="row" style="text-align: center;">{{ $sa->gia}}</td>
 									<td scope="row" style="text-align: center;">{{ $sa->so_luong}}</td>
-									<td scope="row" style="text-align: center;">{{ $sa->gia_sach}}</td>
+									<td scope="row" style="text-align: center;">{{ $sa->gia * $sa->so_luong }}</td>
 								</tr>
 								@endforeach
 								<tr>
@@ -125,9 +125,9 @@ use Illuminate\Support\Facades\DB;
 																							}
 																							?>" style="width:50px;"></td>
 									<td scope="row" style="text-align: left;"><span>{{ $sa->ten_sach }}</span></td>
-									<td scope="row" style="text-align: center;">{{ $sa->gia_sach}}</td>
+									<td scope="row" style="text-align: center;">{{ $sa->gia}}</td>
 									<td scope="row" style="text-align: center;">{{ $sa->so_luong}}</td>
-									<td scope="row" style="text-align: center;">{{ $sa->gia_sach}}</td>
+									<td scope="row" style="text-align: center;">{{ $sa->gia * $sa->so_luong}}</td>
 								</tr>
 								@endforeach
 								<tr>
@@ -181,9 +181,9 @@ use Illuminate\Support\Facades\DB;
 																							}
 																							?>" style="width:50px;"></td>
 									<td scope="row" style="text-align: left;"><span>{{ $sa->ten_sach }}</span></td>
-									<td scope="row" style="text-align: center;">{{ $sa->gia_sach}}</td>
+									<td scope="row" style="text-align: center;">{{ $sa->gia}}</td>
 									<td scope="row" style="text-align: center;">{{ $sa->so_luong}}</td>
-									<td scope="row" style="text-align: center;">{{ $sa->gia_sach}}</td>
+									<td scope="row" style="text-align: center;">{{ $sa->gia * $sa->so_luong}}</td>
 								</tr>
 								@endforeach
 								<tr>
@@ -237,9 +237,9 @@ use Illuminate\Support\Facades\DB;
 																							}
 																							?>" style="width:50px;"></td>
 									<td scope="row" style="text-align: left;"><span>{{ $sa->ten_sach }}</span></td>
-									<td scope="row" style="text-align: center;">{{ $sa->gia_sach}}</td>
+									<td scope="row" style="text-align: center;">{{ $sa->gia}}</td>
 									<td scope="row" style="text-align: center;">{{ $sa->so_luong}}</td>
-									<td scope="row" style="text-align: center;">{{ $sa->gia_sach}}</td>
+									<td scope="row" style="text-align: center;">{{ $sa->gia * $sa->so_luong}}</td>
 								</tr>
 								@endforeach
 								<tr>
@@ -293,9 +293,9 @@ use Illuminate\Support\Facades\DB;
 																							}
 																							?>" style="width:50px;"></td>
 									<td scope="row" style="text-align: left;"><span>{{ $sa->ten_sach }}</span></td>
-									<td scope="row" style="text-align: center;">{{ $sa->gia_sach}}</td>
+									<td scope="row" style="text-align: center;">{{ $sa->gia}}</td>
 									<td scope="row" style="text-align: center;">{{ $sa->so_luong}}</td>
-									<td scope="row" style="text-align: center;">{{ $sa->gia_sach}}</td>
+									<td scope="row" style="text-align: center;">{{ $sa->gia * $sa->so_luong}}</td>
 								</tr>
 								@endforeach
 								<tr>

@@ -1,5 +1,9 @@
 @extends('admin.index')
 @section('noidung')
+<?php foreach ($top10 as $key => $sach)
+                            $thang = $sach->thang;
+                        $nam = $sach->nam;
+                        ?>
 <div class="content-wrapper">
     <div class="row">
         <div class="col-md-12 grid-margin">
@@ -25,31 +29,24 @@
                         <div class=""></div>
                     </div>
                 </div>
-                <h4 class="card-title">SỐ LƯỢNG CUỐN SÁCH BÁN ĐƯỢC TRONG THÁNG</h4>
+                <h4 class="card-title">SỐ LƯỢNG CUỐN SÁCH BÁN ĐƯỢC TRONG THÁNG </h4>
                 <div class="row" style="margin-bottom: 20px;">
                     <div class="col-lg-5">
 
                     </div>
                     {{ csrf_field() }}
                     <div class="col-lg-3">
-                        <?php foreach ($top10 as $key => $sach)
-                            $thang = $sach->thang;
-                        $nam = $sach->nam;
-                        ?>
                     </div>
                     <div class="col-lg-2">
                         <select class="form-control" id="topthang" style="width:100%;">
-                            <option>---Tháng---</option>
+                            <option>---Tháng {{$thang}}---</option>
                             @for($i=1;$i<=12;$i++) <option value="{{$i}}">Tháng {{$i}}</option>
                                 @endfor
                         </select>
                     </div>
                     <div class="col-lg-2">
                         <select class="form-control" id="sapxepdh" style="width:100%;">
-                            <option value="0">Năm {{$nam}}</option>
-                            <option value="1">Theo ngày đặt</option>
-                            <option value="2">Theo tổng tiền</option>
-                            <option value="3">Theo trạng thái ĐH</option>
+                            <option value="0">---Năm {{$nam}}---</option>
                         </select>
                     </div>
                 </div>
@@ -84,9 +81,6 @@
                         <div class="col-lg-2">
                             <select class="form-control" id="sapxepdh" style="width:100%;">
                                 <option value="0">Năm {{$nam}}</option>
-                                <option value="1">Theo ngày đặt</option>
-                                <option value="2">Theo tổng tiền</option>
-                                <option value="3">Theo trạng thái ĐH</option>
                             </select>
                         </div>
                     </div>

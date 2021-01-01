@@ -7,9 +7,9 @@
                 <div class="card-body">
                     <h4 class="card-title">CẬP NHẬT ĐẦU SÁCH</h4>
                     
-                    <form class="forms-sample" action="{{URL::to('/save-sach')}}" method="post" enctype="multipart/form-data">
+                    <form class="forms-sample" action="{{URL::to('addmin/update-sach')}}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        @foreach ($edit_sach as $key => $sach)
+                        @foreach ($edit_sach->unique('id_sach') as $key => $sach)
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-8">
@@ -61,8 +61,31 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="TacGia">Tác giả</label>
+                            <div class="input-group md-form form-sm form-2 pl-0">
+                                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Nhập tên tác giả" aria-label="Search">
+                                <div class="input-group-append">
+                                    <span class="input-group-text red lighten-3" id="basic-text1" style="color: white; background:#4d83ff;border-color: #4d83ff;"><i class="fas fa-search text-grey" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                            <div class="table-responsive" style="height: 150px;">
+                                <table class="table table-hover" id="tlkm">
+                                    <tbody>
+
+                                        @foreach ($edit_sach as $key => $tacgia)
+                                        <tr>
+                                            <td><input class="w3-check" type="checkbox" name="id_tg[]" value="{{$tacgia->id_tg}}" require></td>
+                                            <td style="text-align: left;">{{$tacgia->ten_tg}}</td>
+
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-6">
                                     <label for="TheLoai">Thể loại</label>
                                     <select class="form-control" id="TheLoai" name="id_tl">
                                        
@@ -70,15 +93,8 @@
                                        
                                     </select>
                                 </div>
-                                <div class="col-4">
-                                    <label for="TacGia">Tác giả</label>
-                                    <select class="form-control" id="TacGia" name="id_tg">
-                                        
-                                        <option value="{{ $sach->id_tg }}">{{ $sach->ten_tg }}</option>
-                                       
-                                    </select>
-                                </div>
-                                <div class="col-4">
+                                
+                                <div class="col-6">
                                     <label for="TacGia">Nhà xuất bản</label>
                                     <select class="form-control" id="NXB" name="id_nxb">
                                        

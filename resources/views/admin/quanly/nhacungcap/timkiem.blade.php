@@ -18,8 +18,8 @@
             <td>{{ $ncc->email_ncc }}</td>
             <td>{{ $ncc->diachi_ncc }}</td>
             <td>
-                <a href="{{URL::to('/edit-ncc/'.$ncc->id_ncc)}}"><i class="fa fa-edit"></i></a>
-                <a href="{{URL::to('/delete-ncc/'.$ncc->id_ncc)}}"><i class="fas fa-trash "></i></a>
+                <a href="{{URL::to('addmin/edit-ncc/'.$ncc->id_ncc)}}"><i class="fa fa-edit"></i></a>
+                <a href="{{URL::to('addmin/delete-ncc/'.$ncc->id_ncc)}}"><i class="fas fa-trash "></i></a>
             </td>
         </tr>
         @endforeach

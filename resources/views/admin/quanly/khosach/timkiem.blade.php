@@ -26,7 +26,7 @@
             <td>{{$sach['gia_sach']}}</td>
             <td>{{$sach['sl_nhap']}}</td>
             <td>{{$sach['sl_ton']}}</td>
-            <td><a href="{{URL::to('/ct-kho/'.$sach['id_sach'])}}"><i class="fas fa-info-circle"></i></a></td>
+            <td><a href="{{URL::to('addmin/ct-kho/'.$sach['id_sach'])}}"><i class="fas fa-info-circle"></i></a></td>
             <td><button type="button" class="open-AddBookDialog btn right btn-primary" data-toggle="modal" data-id="{{$sach['id_sach']}}" data-target="#Themncc" data-id="{{$sach['id_sach']}}" style="width:100%; height:100%">Thêm</button>
             </td>
         </tr>

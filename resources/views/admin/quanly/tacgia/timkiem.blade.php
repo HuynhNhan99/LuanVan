@@ -12,10 +12,10 @@
             <td>{{ $key+1 }}</td>
             <td>{{ $tacgia->ten_tg}}</td>
             <td>
-                <a href="{{URL::to('/edit-tacgia/'.$tacgia->id_tg)}}">
+                <a href="{{URL::to('addmin/edit-tacgia/'.$tacgia->id_tg)}}">
                     <i class="fa fa-edit"></i>
                 </a>
-                <a href="{{URL::to('/delete-tacgia/'.$tacgia->id_tg)}}">
+                <a href="{{URL::to('addmin/delete-tacgia/'.$tacgia->id_tg)}}">
                     <i class="fa fa-trash"></i>
                 </a>
             </td>
